@@ -3,20 +3,22 @@
 		<FrontPageNav></FrontPageNav>
 		<FrontPageCarouselMap></FrontPageCarouselMap>
 		<FrontPageDisplayBoard></FrontPageDisplayBoard>
+		<FrontPageFeatures></FrontPageFeatures>
 		<FrontPageFooter></FrontPageFooter>
 	</div>
 </template>
 
 <script>
-import Access from "@/components/Access";
-import FrontPageNav from "../components/FrontPageNav";
-import FrontPageCarouselMap from "../components/FrontPageCarouselMap";
-import FrontPageDisplayBoard from "../components/FrontPageDisplayBoard";
-import FrontPageFooter from "../components/FrontPageFooter";
+import Access from "../components/Access/Access";
+import FrontPageNav from "../components/FrontPage/FrontPageNav";
+import FrontPageCarouselMap from "../components/FrontPage/FrontPageCarouselMap";
+import FrontPageDisplayBoard from "../components/FrontPage/FrontPageDisplayBoard";
+import FrontPageFooter from "../components/FrontPage/FrontPageFooter";
+import FrontPageFeatures from "../components/FrontPage/FrontPageFeatures";
 const axios = require("axios")
 export default {
 	name: "FrontPage",
-    components: {FrontPageFooter, FrontPageDisplayBoard, FrontPageCarouselMap, FrontPageNav, Access},
+    components: {FrontPageFeatures, FrontPageFooter, FrontPageDisplayBoard, FrontPageCarouselMap, FrontPageNav, Access},
     data(){
         return {
             insert_time:null

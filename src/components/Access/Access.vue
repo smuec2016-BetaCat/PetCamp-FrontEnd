@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import AccessRecording from "@/components/AccessRecording";
-import AccessDetails from "@/components/AccessDetails";
-import AccessNavigation from "@/components/AccessNavigation";
+import AccessRecording from "./AccessRecording";
+import AccessDetails from "./AccessDetails";
+import AccessNavigation from "./AccessNavigation";
 const axios = require("axios")
 export default {
 	name: "count",

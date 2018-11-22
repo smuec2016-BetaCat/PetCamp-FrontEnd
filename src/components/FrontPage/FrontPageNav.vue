@@ -20,7 +20,9 @@
 				<el-menu-item index="3-2">待领养宠物信息</el-menu-item>
 				<el-menu-item index="3-3">领养心愿单</el-menu-item>
 			</el-submenu>
-			<el-menu-item index="4" id="login">登录|免费注册</el-menu-item>
+			<el-menu-item index="4" @click="goto">计数器|暂时给个入口</el-menu-item>
+			<el-menu-item index="5" id="login">登录|免费注册</el-menu-item>
+
 		</el-menu>
 		<br>
 		<el-row>
@@ -47,7 +49,12 @@ export default {
             activeIndex2: '1',
 			input:''
         }
-    }
+    },
+	methods:{
+		goto(){
+            this.$router.push({ path: `/Access/AccessRecording` })
+		}
+	}
 }
 </script>
 

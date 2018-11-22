@@ -1,19 +1,17 @@
 <template>
 	<el-row>
-		<el-col :span="20" offset="2" type="flex">
-			<el-col :span="18">宠物领养组团信息</el-col>
-			<el-col :span="6">宠物领养排行榜</el-col>
+		<el-col :span="20" :offset="2" type="flex">
+			<el-col :span="18">宠物周边</el-col>
 		</el-col>
 
 		<el-col :span="20" :offset="2">
-			<el-col :span="18">
 				<el-row>
-					<el-col :span=8 v-for="item in 6" :key="item">
+					<el-col :span="6" v-for="item in 8" :key="item">
 						<el-button @click="goTo">
 							<el-card :body-style="{ padding: '10px' }">
-								<img src="../assets/dog.jpg" class="image">
+								<img src="../../assets/petSupplies.jpg" class="image">
 								<div style="padding: 14px;">
-									<span>我是一直汪汪</span>
+									<span>我是一直喵喵</span>
 									<div class="bottom clearfix">
 										<time class="time">{{ currentDate }}</time>
 									</div>
@@ -22,29 +20,13 @@
 						</el-button>
 					</el-col>
 				</el-row>
-			</el-col>
-			<el-col :span="6">
-				<el-table
-						:data="tableData"
-						style="width: 100%">
-					<el-table-column
-							prop="name"
-							label="姓名"
-							width="80">
-					</el-table-column>
-					<el-table-column
-							prop="address"
-							label="地址">
-					</el-table-column>
-				</el-table>
-			</el-col>
 		</el-col>
 	</el-row>
 </template>
 
 <script>
     export default {
-        name: "FrontPageAdoptionInfo",
+        name: "FrontPagePetSupplies",
         data() {
             return {
                 currentDate: new Date(),
@@ -105,7 +87,8 @@
 	.clearfix:after {
 		clear: both
 	}
-	.el-button {
+	.el-button{
+		margin: 5% 1%;
 		padding: 0;
 	}
 </style>
