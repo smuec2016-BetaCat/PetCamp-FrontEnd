@@ -11,7 +11,7 @@
 							<el-card :body-style="{ padding: '10px' }">
 								<img src="../../assets/petSupplies.jpg" class="image">
 								<div style="padding: 14px;">
-									<span>我是一直喵喵</span>
+									<span>铲屎官道具</span>
 									<div class="bottom clearfix">
 										<time class="time">{{ currentDate }}</time>
 									</div>

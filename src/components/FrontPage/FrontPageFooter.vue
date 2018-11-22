@@ -7,7 +7,7 @@
 		</el-row>
 		<br><br>
 		<el-row type="flex" class="row-bg" justify="center">
-			<el-col :span="7">
+			<el-col :span="10">
 				<span v-text="copyWrite"></span>
 			</el-col>
 		</el-row>
