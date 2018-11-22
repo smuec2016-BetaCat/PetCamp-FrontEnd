@@ -4,6 +4,7 @@ import Access from './components/Access/Access'
 import FrontPage from './views/FrontPage'
 import AccessDetails from './components/Access/AccessDetails'
 import AccessRecording from './components/Access/AccessRecording'
+import AdminHome from "./views/AdminHome";
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ routes: [
             name:AccessRecording
         }
         ]
+    },
+    {
+        path: '/admin',
+        name: 'Admin',
+        component: AdminHome
     }
 
     ]
