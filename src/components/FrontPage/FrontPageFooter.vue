@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<el-row type="flex" class="row-bg" justify="center">
-			<el-col v-for="item in foot" v-bind:key="item.id"   >
-				|<router-link to="" v-text="item.msg"></router-link>|
+		<el-row type="flex" justify="center">
+			<el-col v-for="item in foot" v-bind:key="item.id">
+				| <router-link to="" v-text="item.msg"></router-link> |
 			</el-col>
 		</el-row>
 		<br><br>
@@ -37,5 +37,13 @@ export default {
 </script>
 
 <style scoped>
-
+a{
+	color:#666;
+	text-decoration: none;
+	font: 13px Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\5b8b\4f53,sans-serif;
+}
+span{
+	color:#666;
+	font: 13px Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\5b8b\4f53,sans-serif;
+}
 </style>

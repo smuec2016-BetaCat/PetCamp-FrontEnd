@@ -1,6 +1,11 @@
 <template>
 	<div>
-
+		<el-row>
+			<el-col :span="6"><i class="el-icon-picture"></i>企业文化</el-col>
+			<el-col :span="6"><i class="el-icon-picture"></i>企业文化</el-col>
+			<el-col :span="6"><i class="el-icon-picture"></i>企业文化</el-col>
+			<el-col :span="6"><i class="el-icon-picture"></i>企业文化</el-col>
+		</el-row>
 		<hr class="hr-up">
 		<el-row>
 			<el-col :offset="2" :span="20">
@@ -51,7 +56,8 @@
 
 <style scoped>
 .hr-up{
-	width: 80%;
+	width: 85%;
+	margin-top: 2%;
 }
 .hr-down{
 	width: 90%;
