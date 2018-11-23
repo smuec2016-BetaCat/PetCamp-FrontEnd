@@ -3,23 +3,22 @@
 		<el-col :span="20" :offset="2" type="flex">
 			<el-col :span="18">宠物周边</el-col>
 		</el-col>
-
 		<el-col :span="20" :offset="2">
-				<el-row>
-					<el-col :span="6" v-for="item in 8" :key="item">
-						<el-button @click="goTo">
-							<el-card :body-style="{ padding: '10px' }">
-								<img src="../../assets/petSupplies.jpg" class="image">
-								<div style="padding: 14px;">
-									<span>铲屎官道具</span>
-									<div class="bottom clearfix">
-										<time class="time">{{ currentDate }}</time>
-									</div>
+			<el-row>
+				<el-col :span="6" v-for="item in 8" :key="item">
+					<el-button @click="goTo">
+						<el-card :body-style="{ padding: '10px' }" shadow="hover">
+							<img src="../../assets/petSupplies.jpg" class="image">
+							<div style="padding: 14px;">
+								<span>铲屎官道具</span>
+								<div class="bottom clearfix">
+									<time class="time">{{ currentDate }}</time>
 								</div>
-							</el-card>
-						</el-button>
-					</el-col>
-				</el-row>
+							</div>
+						</el-card>
+					</el-button>
+				</el-col>
+			</el-row>
 		</el-col>
 	</el-row>
 </template>
