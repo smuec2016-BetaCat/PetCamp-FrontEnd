@@ -39,7 +39,7 @@
         },
         computed:{
             username(){
-                let username = localStorage.getItem('ms_username')
+                let username = localStorage.getItem("ms_username")
                 return username ? username : this.name
             }
         },
@@ -80,8 +80,6 @@
     }
     .btn-bell-badge{
         position: absolute;
-        right: 0;
-        top: -2px;
         width: 8px;
         height: 8px;
         border-radius: 4px;

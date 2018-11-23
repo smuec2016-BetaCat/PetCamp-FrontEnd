@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<!--<TopHeader></TopHeader>-->
 		<FrontPageNav></FrontPageNav>
 		<FrontPageCarouselMap></FrontPageCarouselMap>
 		<FrontPageDisplayBoard></FrontPageDisplayBoard>
@@ -15,10 +16,12 @@ import FrontPageCarouselMap from "../components/FrontPage/FrontPageCarouselMap";
 import FrontPageDisplayBoard from "../components/FrontPage/FrontPageDisplayBoard";
 import FrontPageFooter from "../components/FrontPage/FrontPageFooter";
 import FrontPageFeatures from "../components/FrontPage/FrontPageFeatures";
+// import TopHeader from "../components/Common/TopHeader";
 const axios = require("axios")
 export default {
 	name: "FrontPage",
-    components: {FrontPageFeatures, FrontPageFooter, FrontPageDisplayBoard, FrontPageCarouselMap, FrontPageNav, Access},
+    components: {
+        FrontPageFeatures, FrontPageFooter, FrontPageDisplayBoard, FrontPageCarouselMap, FrontPageNav, Access},
     data(){
         return {
             insert_time:null

@@ -4,6 +4,7 @@ import Access from './components/Access/Access'
 import FrontPage from './views/FrontPage'
 import AccessDetails from './components/Access/AccessDetails'
 import AccessRecording from './components/Access/AccessRecording'
+import FrontPageNav from "./components/FrontPage/FrontPageNav"
 import AdminHome from "./views/AdminHome";
 
 Vue.use(Router)
@@ -14,6 +15,11 @@ routes: [
         path: '/',
         name: 'FrontPage',
         component: FrontPage
+    },
+    {
+        path: "/FrontPageNav",
+        name: "FrontPageNav",
+        component: FrontPageNav
     },
     {
         path:'/Access',
