@@ -54,8 +54,17 @@
 					</el-submenu>
 					<el-menu-item index="4" @click="goto">计数器|暂时给个入口</el-menu-item>
 		</el-menu>
-		<br>
-		<br>
+		<!--留白广告-->
+		<el-row id="advertisement">
+			<el-col :span="20" :offset="3">
+				<el-col :span="12">
+					<router-link to=""><i class="el-icon-info"></i>在超过400多家商店中都免费接送</router-link>
+				</el-col>
+				<el-col :span="12">
+					<router-link to=""><i class="el-icon-info"></i>高标准高质量的服务</router-link>
+				</el-col>
+			</el-col>
+		</el-row>
 	</div>
 
 </template>
@@ -140,5 +149,20 @@ export default {
 #search .el-col .el-input{
 	margin: auto;
 }
-
+#advertisement{
+	height: 50px;
+	background-color:#F5FFFA;
+	line-height: 50px;
+	text-align: left;
+	margin-bottom: 50px;
+}
+#advertisement a{
+	color: green;
+	font-size: 20px;
+	font-family: sans-serif;
+	text-decoration: none;
+}
+#advertisement a i{
+	padding-right: 5%;
+}
 </style>
