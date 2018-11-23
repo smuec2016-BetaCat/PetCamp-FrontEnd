@@ -5,7 +5,7 @@ import FrontPage from './views/FrontPage'
 import AccessDetails from './components/Access/AccessDetails'
 import AccessRecording from './components/Access/AccessRecording'
 import FrontPageNav from "./components/FrontPage/FrontPageNav"
-import AdminHome from "./views/AdminHome";
+import AdminHome from "./views/Admin";
 
 Vue.use(Router)
 

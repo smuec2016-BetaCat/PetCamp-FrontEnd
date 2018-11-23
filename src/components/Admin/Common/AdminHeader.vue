@@ -15,7 +15,7 @@
                 </div>
                 <!-- user avator -->
                 <!--TODO(Ron): Config the img tag-->
-                <div class="user-avator"><img src="" alt=""></div>
+                <div class="user-avator"><img src="../../../assets/avator.jpg" alt=""></div>
                 <!-- user name menu -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
@@ -33,7 +33,7 @@
     export default {
         data() {
             return {
-                name: 'Ron',
+                name: 'admin',
                 message: 2
             }
         },

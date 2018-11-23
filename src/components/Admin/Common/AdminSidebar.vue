@@ -11,6 +11,10 @@
                 active-text-color="#20a0ff"
                 unique-opened="true"
         >
+            <el-menu-item index="dashboard">
+                <i class="el-icon-menu"></i>
+                <span slot="title">营地概况</span>
+            </el-menu-item>
             <el-submenu index="1">
                 <template slot="title">
                     <i class="el-icon-location"></i>
@@ -41,7 +45,7 @@
                 <i class="el-icon-setting"></i>
                 <span slot="title">导航四</span>
             </el-menu-item>
-            <el-button class="collapse-toggle" type="text" @click="isCollapse = !isCollapse">
+            <el-button class="collapse-toggle" type="text" @click="toggleCollapse">
                 <i class="el-icon-arrow-right" v-if="isCollapse"></i>
                 <i class="el-icon-arrow-left" v-else></i>
             </el-button>
@@ -53,17 +57,24 @@
 <script>
     export default {
         name: "AdminSidebar",
-        data() {
-            return {
-                isCollapse: true
-            }
+        props: {
+            isCollapse: Boolean
         },
+        // data() {
+        //     return {
+        //         isCollapse: true
+        //     }
+        // },
         methods: {
             handleOpen(key, keyPath) {
                 console.log(key, keyPath)
             },
             handleClose(key, keyPath) {
                 console.log(key, keyPath)
+            },
+            toggleCollapse() {
+                this.$emit("tog-collapse")
+                // alert("nnnn")
             }
         }
     }
