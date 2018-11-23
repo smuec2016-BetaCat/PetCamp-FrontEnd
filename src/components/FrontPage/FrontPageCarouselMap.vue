@@ -1,9 +1,9 @@
 <template>
 	<el-row>
 		<el-col :span="20" :offset="2">
-			<el-carousel :interval="4000" type="card" height="300px">
+			<el-carousel :interval="4000" type="card" height="400px">
 				<el-carousel-item v-for="item in 6" :key="item">
-					<h3>{{ item }}</h3>
+					<h3><img src="http://i1.adis.ws/i/petsathome/bf-assets-updated-slider-generic-1?w=960&qlt=95" alt=""></h3>
 				</el-carousel-item>
 			</el-carousel>
 		</el-col>
@@ -16,7 +16,7 @@
 		color: #475669;
 		font-size: 14px;
 		opacity: 0.75;
-		line-height: 300px;
+		line-height: 400px;
 		margin: 0;
 	}
 

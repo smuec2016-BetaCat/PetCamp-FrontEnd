@@ -1,20 +1,28 @@
 <template>
 	<div>
-		<div id="logo">
-			<span>PetCamp</span>
-		</div>
 		<!--顶部导航栏-->
 		<div id="FrontPageNav">
-			<ul v-for="item in nav" :key="item.id">
-				<li v-text="item.msg"></li>
-			</ul>
+			<el-row>
+				<el-col :span="5" :offset="2">
+					<div id="logo" class="hidden-md-and-down">
+						<span></span>
+					</div>
+				</el-col>
+				<el-col :offset="5" :span="19">
+					<ul>
+						<li  v-for="item in nav" :key="item.id">
+							<router-link to="" v-text="item.msg"></router-link>
+						</li>
+					</ul>
+				</el-col>
+			</el-row>
 		</div>
 		<!--logo和搜索栏-->
 		<el-row id="search">
 			<el-col :span="3" :offset="2"></el-col>
 			<el-col :span="10">
-				<el-input placeholder="请输入内容" v-model="input">
-					<el-button slot="append" icon="el-icon-search"></el-button>
+				<el-input placeholder="Search for product or category type..." v-model="input">
+					<el-button slot="append" icon="el-icon-search" style="color: green;font-size: 15px"></el-button>
 				</el-input>
 			</el-col>
 			<el-col :span="4" :offset="1">
@@ -30,7 +38,7 @@
 				mode="horizontal"
 				background-color="#56AF31"
 				text-color="#fff"
-				active-text-color="#ffd04b">
+				active-text-color="gold">
 					<el-menu-item index="1" style="margin-left: 20%">首页</el-menu-item>
 					<el-submenu index="2">
 						<template slot="title">宠物寄养</template>
@@ -67,8 +75,7 @@ export default {
 				{id:3,msg:"店内服务"},
 				{id:4,msg:"投资者"},
 				{id:5,msg:"品牌"},
-				{id:6,msg:"这个字符串到底要多长"},
-                {id:7,msg:"请登录|注册"}]
+                {id:6,msg:"请登录|注册"}]
         }
     },
 	methods:{
@@ -80,39 +87,49 @@ export default {
 </script>
 
 <style scoped>
-.el-menu{
-	padding:0;
-}
-#login{
-	float: right;
-}
 #FrontPageNav{
 	background-color: #07601F;
+	text-align: left;
+	height: 30px;
 }
 #FrontPageNav ul{
 	margin: 0;
-	display: inline-block;
 	color: #fff;
 	font-size: 12px;
+	padding-left: 0;
 }
 #FrontPageNav ul li{
 	list-style: none;
+	display: inline-block;
+	margin-right: 5%;
+}
+#FrontPageNav ul li a{
+	color: #fff;
+	font-size: 12px;
+	list-style: none;
+	text-decoration: none;
+	line-height: 30px;
+}
+#FrontPageNav ul li :hover{
+	color: gold;
+	font-size: 12px;
+	list-style: none;
+	text-decoration: none;
 }
 #logo{
-	background-color: green;
+	background-image: url("http://media.petsathome.com/wcsstore/pah-as01/images/creatives/logo.png");
 	width: 120px;
 	height: 120px;
 	display: flex;
 	z-index: 999;
 	position: absolute;
-	margin-left: 10%;
 }
 #logo span{
 	margin: auto;
 }
 #search{
 	display: flex;
-	height: 70px;
+	height: 60px;
 }
 #search .el-col{
 	display: flex;
