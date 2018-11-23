@@ -14,7 +14,7 @@
 <!--http://i1.adis.ws/i/petsathome/bf-assets-updated-slider-generic-1?w=960&qlt=95-->
 
 <script>
-const axios = require("axios")
+// const axios = require("axios")
 export default {
     name: "FrontPageCarouselMap",
 	data() {

@@ -1,11 +1,15 @@
 <template>
 	<el-row>
-		<el-col :span="20" :offset="2" type="flex">
-			<el-col :span="18">宠物周边</el-col>
+		<el-col :span="20" :offset="2" id="PetSide">
+			<i class="el-icon-arrow-left"></i>
+			<span id="PetSide1">特色推荐</span>
+			<i class="el-icon-arrow-right"></i>
+			<br>
+			<span id="PetSide2">宠物周边</span>
 		</el-col>
 		<el-col :span="20" :offset="2">
 			<el-row>
-				<el-col :span="6" v-for="item in 8" :key="item">
+				<el-col :xs={span:12,offset:6} :sm={span:8,offset:3} :md={span:6,offset:0} v-for="item in 8" :key="item">
 					<el-button @click="goTo">
 						<el-card :body-style="{ padding: '10px' }" shadow="hover">
 							<img src="../../assets/petSupplies.jpg" class="image">
@@ -57,37 +61,49 @@
 </script>
 
 <style scoped>
-	.time {
-		font-size: 13px;
-		color: #999;
-	}
+.time {
+	font-size: 13px;
+	color: #999;
+}
 
-	.bottom {
-		margin-top: 13px;
-		line-height: 12px;
-	}
+.bottom {
+	margin-top: 13px;
+	line-height: 12px;
+}
 
-	.button {
-		padding: 0;
-		float: right;
-	}
+.button {
+	padding: 0;
+	float: right;
+}
 
-	.image {
-		width: 100%;
-		display: block;
-	}
+.image {
+	width: 100%;
+	display: block;
+}
 
-	.clearfix:before,
-	.clearfix:after {
-		display: table;
-		content: "";
-	}
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	content: "";
+}
 
-	.clearfix:after {
-		clear: both
-	}
-	.el-button{
-		margin: 5% 1%;
-		padding: 0;
-	}
+.clearfix:after {
+	clear: both
+}
+.el-button{
+	margin: 5% 1%;
+	padding: 0;
+}
+#PetSide #PetSide1{
+	margin: 0;
+	font-family:'Poppins', sans-serif;
+	font-size: 14px;
+}
+#PetSide #PetSide2{
+	margin: 0;
+	font-family: 'Yesteryear', cursive;
+	font-size: 35px;
+	display: block;
+}
+
 </style>
