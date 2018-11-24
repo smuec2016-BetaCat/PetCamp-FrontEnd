@@ -85,6 +85,7 @@
         position: absolute;
         bottom: 0;
         top: 70px;
+        text-align: left;
     }
 
     .sidebar-menu {
