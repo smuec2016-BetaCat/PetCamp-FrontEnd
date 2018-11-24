@@ -1,44 +1,78 @@
 <template>
 	<el-row>
-		<el-col :span="20" :offset="2" type="flex">
-			<el-col :span="18">宠物领养组团信息</el-col>
-			<el-col :span="6">宠物领养排行榜</el-col>
-		</el-col>
-
-		<el-col :span="20" :offset="2">
-			<el-col :span="18">
-				<el-row>
-					<el-col :span=8 v-for="item in 6" :key="item">
-						<el-button @click="goTo">
-							<el-card :body-style="{ padding: '10px' }">
-								<img src="../../assets/cat.jpg" class="image">
-								<div style="padding: 14px;">
-									<span>我是一直喵喵</span>
-									<div class="bottom clearfix">
-										<time class="time">{{ currentDate }}</time>
-									</div>
-								</div>
+		<el-col :span="20" :offset="2" style="display: flex">
+			<!--等待组团新宠-->
+			<el-col :md={span:17,offset:0} class="WhiteBoder">
+				<el-col>
+					<span class="title">等待组团新宠<i class="el-icon-caret-right"></i></span>
+				</el-col>
+				<el-col v-for="item in 6" :key="item" :md={span:8,offset:0}>
+					<el-button>
+						<el-card :body-style="{ padding: '10px' }" shadow="hover" style="position: relative;">
+							<img src="../../assets/cat.jpg" class="image">
+							<span class="GroupContent">这里有几只喵喵想被领走</span>
+						</el-card>
+					</el-button>
+				</el-col>
+			</el-col>
+			<!--火热组团中-->
+			<el-col :md={span:7,offset:0} class="WhiteBoder hidden-sm-and-down">
+				<el-col>
+					<span class="title">
+						火热组团中 <i class="el-icon-caret-right"></i>
+					</span>
+				</el-col>
+				<div>
+					<el-col v-for="item in 5" :key="item" :md={span:24,offset:0} style="margin-bottom:5%">
+						<el-button class="bg">
+							<el-card :body-style="{ padding: '0px' }" shadow="hover" class="bg">
+								<el-col :span="6">
+									<img src="../../assets/cat.jpg" class="image">
+								</el-col>
+								<el-col :span="18">
+									<el-col>
+										<h3>异瞳猫还是少见</h3>
+									</el-col>
+									<el-col>
+										<span>带走猫猫一家</span>
+									</el-col>
+								</el-col>
 							</el-card>
 						</el-button>
 					</el-col>
-				</el-row>
+				</div>
 			</el-col>
-			<el-col :span="6">
-				<el-table
-						:data="tableData"
-						style="width: 100%">
-					<el-table-column
-							prop="name"
-							label="姓名"
-							width="80">
-					</el-table-column>
-					<el-table-column
-							prop="address"
-							label="地址">
-					</el-table-column>
-				</el-table>
+			<!--适配中等屏幕-->
+		</el-col>
+		<el-col :span="20" :offset="2" style="margin-top: 20px" class="hidden-md-and-up">
+			<el-col class="WhiteBoder">
+				<el-col>
+					<span class="title">
+						火热组团中 <i class="el-icon-caret-right"></i>
+					</span>
+				</el-col>
+				<div>
+					<el-col v-for="item in 5" :key="item" :md={span:24,offset:0} style="margin-bottom:5%">
+						<el-button class="bg">
+							<el-card :body-style="{ padding: '0px' }" shadow="hover" class="bg">
+								<el-col :span="6">
+									<img src="../../assets/cat.jpg" class="image">
+								</el-col>
+								<el-col :span="18">
+									<el-col>
+										<h3>异瞳猫还是少见</h3>
+									</el-col>
+									<el-col>
+										<span>打包带走这几只猫猫</span>
+									</el-col>
+								</el-col>
+							</el-card>
+						</el-button>
+					</el-col>
+				</div>
 			</el-col>
 		</el-col>
+
 	</el-row>
 </template>
 
@@ -47,24 +81,7 @@
         name: "FrontPageAdoptionInfo",
         data() {
             return {
-                currentDate: new Date(),
-                tableData: [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }]
+
             }
         },
         methods:{
@@ -76,37 +93,42 @@
 </script>
 
 <style scoped>
-	.time {
-		font-size: 13px;
-		color: #999;
-	}
-
-	.bottom {
-		margin-top: 13px;
-		line-height: 12px;
-	}
-
-	.button {
-		padding: 0;
-		float: right;
-	}
-
-	.image {
-		width: 100%;
-		display: block;
-	}
-
-	.clearfix:before,
-	.clearfix:after {
-		display: table;
-		content: "";
-	}
-
-	.clearfix:after {
-		clear: both
-	}
-	.el-button{
-		margin: 5% 1%;
-		padding:0;
-	}
+img{
+	width: 100%;
+	height: 100%;
+}
+button {
+	padding: 0;
+}
+.GroupContent{
+	background:white;
+	left: 30%;
+	padding: 10px 15px;
+	pointer-events: none;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	z-index: 9;
+}
+.perfusion{
+	width: 100%;
+	height: 100%;
+}
+.title{
+	margin-bottom: 15px;
+	font-family: 'Yesteryear', cursive;
+	font-size: 30px;
+	display: block;
+}
+.bg{
+	background-color: #f6f6f6;
+}
+.bg :hover{
+	background-color: #eeefed;
+}
+.WhiteBoder{
+	padding: 20px;
+	background: white;
+	margin-left: 2%;
+}
 </style>
