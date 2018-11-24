@@ -13,7 +13,7 @@
 							<img src="../../assets/petSupplies.jpg" class="image">
 							<div style="padding: 14px;">
 								<span style="color:#000" v-text="item.title"></span>
-								<div class="bottom clearfix" style="background-color: #f8f8fa">
+								<div class="bottom clearfix">
 									<span v-if="item.show" v-text="item.price" style="color: #555;text-decoration: line-through"></span>
 									<span v-if="item.show" v-text="item.dprice" style="color: #555;margin-left: 10%;"></span>
 									<span v-if="!item.show" style="color: #555;">加入购物车</span>
