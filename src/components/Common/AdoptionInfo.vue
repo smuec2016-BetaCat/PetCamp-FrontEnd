@@ -1,60 +1,31 @@
 <template>
-	<el-row>
-		<el-col :span="20" :offset="2" style="display: flex">
-			<!--等待组团新宠-->
-			<el-col :md={span:17,offset:0} class="WhiteBoder">
-				<el-col>
-					<span class="title">等待组团新宠<i class="el-icon-caret-right"></i></span>
-				</el-col>
-				<el-col v-for="item in 6" :key="item" :md={span:8,offset:0}>
-					<el-button  style="margin: 10px">
-						<el-card :body-style="{ padding: '10px' }" shadow="hover" style="position: relative;">
-							<img src="../../assets/cat.jpg" class="image">
-							<span class="GroupContent">这里有几只喵喵想被领走</span>
+	<div>
+		<el-row>
+			<el-col :span="20" :offset="2" id="PetSide">
+				<span id="PetSide1">宠物寄养</span>
+				<br>
+			</el-col>
+			<el-col :span="20" :offset="2">
+				<el-col :span="8" class="MyMaxHeight" style="display: flex">
+					<el-button style="margin: auto;width: 100%">
+						<el-card :body-style="{ padding: '0px' }" shadow="hover" style="max-height: 400px">
+							<img src="../../assets/banner2.jpg" alt="">
 						</el-card>
 					</el-button>
 				</el-col>
-			</el-col>
-			<!--火热组团中-->
-			<el-col :md={span:7,offset:0} class="WhiteBoder hidden-sm-and-down">
-				<el-col>
-					<span class="title">
-						火热组团中 <i class="el-icon-caret-right"></i>
-					</span>
-				</el-col>
-				<div>
-					<el-col v-for="item in 5" :key="item" :md={span:24,offset:0} style="margin-bottom:5%">
-						<el-button class="bg">
-							<el-card :body-style="{ padding: '0px' }" shadow="hover" class="bg">
-								<el-col :span="6">
-									<img src="../../assets/cat.jpg" class="image">
-								</el-col>
-								<el-col :span="18">
-									<el-col>
-										<h3>异瞳猫还是少见</h3>
-									</el-col>
-									<el-col>
-										<span>带走猫猫一家</span>
-									</el-col>
-								</el-col>
+				<el-col :span="8" class="MyMaxHeight">
+					<el-col class="MyMaxHeight2" v-for="i in 2" :key="i">
+						<el-button>
+							<el-card :body-style="{ padding: '0px' }" shadow="hover" style="max-height: 200px">
+								<img src="../../assets/banner3.jpg" alt="">
 							</el-card>
 						</el-button>
 					</el-col>
-				</div>
-			</el-col>
-			<!--适配中等屏幕-->
-		</el-col>
-		<el-col :span="20" :offset="2" style="margin-top: 20px" class="hidden-md-and-up">
-			<el-col class="WhiteBoder">
-				<el-col>
-					<span class="title">
-						火热组团中 <i class="el-icon-caret-right"></i>
-					</span>
 				</el-col>
-				<div>
-					<el-col v-for="item in 5" :key="item" :md={span:24,offset:0} style="margin-bottom:5%">
+				<el-col :span="8" class="MyMaxHeight">
+					<el-col v-for="item in 4" :key="item" :md={span:24,offset:0}>
 						<el-button class="bg">
-							<el-card :body-style="{ padding: '0px' }" shadow="hover" class="bg">
+							<el-card :body-style="{ padding: '0px' }" shadow="hover" class="bg" style="max-height: 100px">
 								<el-col :span="6">
 									<img src="../../assets/cat.jpg" class="image">
 								</el-col>
@@ -69,27 +40,26 @@
 							</el-card>
 						</el-button>
 					</el-col>
-				</div>
+				</el-col>
 			</el-col>
-		</el-col>
-
-	</el-row>
+		</el-row>
+	</div>
 </template>
 
 <script>
-    export default {
-        name: "FrontPageAdoptionInfo",
-        data() {
-            return {
+export default {
+    name: "FrontPageAdoptionInfo",
+    data() {
+        return {
 
-            }
-        },
-        methods:{
-            goTo(){
-                alert("haha")
-            }
+        }
+    },
+    methods:{
+        goTo(){
+            alert("haha")
         }
     }
+}
 </script>
 
 <style scoped>
@@ -99,6 +69,7 @@ img{
 }
 button {
 	padding: 0;
+	margin: 0;
 }
 .GroupContent{
 	background:white;
@@ -115,10 +86,12 @@ button {
 	height: 100%;
 }
 .title{
-	margin-bottom: 15px;
-	font-family: 'Yesteryear', cursive;
-	font-size: 30px;
+	margin: 0;
+	font-family: 'fzzzh', sans-serif;
+	font-size: 28px;
+	position: relative;
 	display: block;
+	text-align: left;
 }
 .bg{
 	background-color: #f6f6f6;
@@ -128,7 +101,34 @@ button {
 }
 .WhiteBoder{
 	padding: 20px;
-	background: white;
 	margin-left: 2%;
+}
+.MyMaxHeight{
+	height: 400px;
+	padding: 4px;
+}
+.MyMaxHeight2{
+	height: 200px;
+}
+#PetSide #PetSide1{
+	margin: 0;
+	font-family: 'fzzzh', sans-serif;
+	font-size: 28px;
+	position: relative;
+	display: block;
+}
+#PetSide #PetSide1:before,#PetSide #PetSide1:after{
+	content: "";
+	position: absolute;
+	background: #222;
+	width: 5%;
+	height: 3px;
+	top: 50%;
+}
+#PetSide #PetSide1:before{
+	left: 37%;
+}
+#PetSide #PetSide1:after{
+	right: 37%;
 }
 </style>

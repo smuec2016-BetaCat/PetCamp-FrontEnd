@@ -1,7 +1,7 @@
 <template>
 	<el-row>
 		<el-col :span="20" :offset="2" id="PetSide">
-			<span id="PetSide1">宠物周边</span>
+			<span id="PetSide1">更多商品</span>
 			<br>
 		</el-col>
 		<el-col :span="20" :offset="2">
