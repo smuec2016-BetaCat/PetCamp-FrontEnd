@@ -39,7 +39,7 @@
 					{id:1,title:"到底能不能遍历啊",price: "$150.00",dprice:"$130.00",show:true,src:""},
 					{id:2,title:"终于可以遍历了",price: "$250.00",dprice:"$130.00",show:true,src:""},
 					{id:3,title:"能不能有个悬浮效果啊",price: "$1500.00",dprice:"$1030.00",show:true,src:""},
-					{id:4,title:"用数组表示布尔值可能有点问题",price: "$1250.00",dprice:"$730.00",show:true,src:""},
+					{id:4,title:"字数不能超过10个",price: "$1250.00",dprice:"$730.00",show:true,src:""},
 					{id:5,title:"最终决定直接尝试json文件",price: "$150.00",dprice:"$130.00",show:true,src:""},
 					{id:6,title:"突然发现就可以了",price: "$650.00",dprice:"$630.00",show:true,src:""},
 					{id:7,title:"可以只买单个物品了",price: "$1020.00",dprice:"$930.00",show:true,src:""}

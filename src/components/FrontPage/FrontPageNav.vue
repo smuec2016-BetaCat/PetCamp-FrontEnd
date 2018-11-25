@@ -112,7 +112,7 @@
 			</el-row>
 			<el-row>
 				<el-col id="sidebarHead">
-					<el-button icon="el-icon-tickets" @click="ShowSideBar"></el-button>
+					<el-button class="el-icon-tickets" @click="ShowSideBar"></el-button>
 				</el-col>
 			</el-row>
 		</div>

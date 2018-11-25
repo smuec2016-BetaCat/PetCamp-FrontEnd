@@ -7,7 +7,7 @@
 					<span class="title">宠物领养<i class="el-icon-caret-right"></i></span>
 				</el-col>
 				<el-col v-for="item in 6" :key="item" :md={span:8,offset:0}>
-					<el-button>
+					<el-button style="margin: 10px">
 						<el-card :body-style="{ padding: '10px' }" shadow="hover" style="position: relative;">
 							<img src="../../assets/dog.jpg" class="image">
 							<span class="GroupContent">有15只狗狗等待领养</span>

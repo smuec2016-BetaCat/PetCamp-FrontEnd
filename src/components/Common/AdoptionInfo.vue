@@ -7,7 +7,7 @@
 					<span class="title">等待组团新宠<i class="el-icon-caret-right"></i></span>
 				</el-col>
 				<el-col v-for="item in 6" :key="item" :md={span:8,offset:0}>
-					<el-button>
+					<el-button  style="margin: 10px">
 						<el-card :body-style="{ padding: '10px' }" shadow="hover" style="position: relative;">
 							<img src="../../assets/cat.jpg" class="image">
 							<span class="GroupContent">这里有几只喵喵想被领走</span>
