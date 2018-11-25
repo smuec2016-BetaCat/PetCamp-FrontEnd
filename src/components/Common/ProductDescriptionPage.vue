@@ -1,4 +1,5 @@
 <template>
+	<!--这个组件存在bug，需要纯手撸-->
 	<div style="margin-left: 8.333333%">
 		<div id="zoom">
 			<pic-zoom url="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg" :scale="2"></pic-zoom>
