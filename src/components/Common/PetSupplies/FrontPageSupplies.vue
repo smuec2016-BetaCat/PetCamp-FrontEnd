@@ -6,7 +6,7 @@
 				<br>
 			</el-col>
 			<el-col :span="20" :offset="2">
-				<el-col :span="8" v-for="i in 3" :key="i">
+				<el-col :md={span:8} :sm={span:24} v-for="i in 3" :key="i">
 					<el-button style="margin: 5px">
 						<el-card :body-style="{ padding: '0px' }" shadow="hover" style="position: relative;">
 							<img src="../../../assets/banner1.jpg" class="image">
@@ -26,16 +26,6 @@
 </script>
 
 <style scoped>
-.time {
-	font-size: 13px;
-	color: #999;
-}
-
-.bottom {
-	margin-top: 13px;
-	line-height: 12px;
-}
-
 .button {
 	padding: 0;
 	float: right;
@@ -45,15 +35,8 @@
 	width: 100%;
 	display: block;
 }
-
-.clearfix:before,
-.clearfix:after {
-	display: table;
-	content: "";
-}
-
-.clearfix:after {
-	clear: both
+.image:hover{
+	transform: scale(1.1);
 }
 .el-button{
 	margin: 5% 1%;
@@ -75,9 +58,9 @@
 	top: 50%;
 }
 #PetSide #PetSide1:before{
-	left: 37%;
+	left: 25%;
 }
 #PetSide #PetSide1:after{
-	right: 37%;
+	right: 25%;
 }
 </style>

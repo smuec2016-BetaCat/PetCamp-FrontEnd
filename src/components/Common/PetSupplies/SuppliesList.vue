@@ -6,12 +6,12 @@
 		</el-col>
 		<el-col :span="20" :offset="2">
 			<el-row>
-				<el-col :xs={span:12,offset:6} :sm={span:8,offset:3} :md={span:6,offset:0} v-for="item in PetSide" :key="item.id">
+				<el-col :xs={span:24,offset:0} :sm={span:8,offset:0} :md={span:6,offset:0} v-for="item in PetSide" :key="item.id">
 					<el-button @click="goTo" @mouseenter.native="textChange(item)" @mouseleave.native="textChange(item)">
 						<el-card :body-style="{ padding: '10px' }" shadow="hover">
 							<img src="../../../assets/petSupplies.jpg" class="image">
 							<div style="padding: 14px;">
-								<span style="color:#000" v-text="item.title"></span>
+								<span style="color:#000;" v-text="item.title"></span>
 								<div class="bottom clearfix">
 									<span v-if="item.show" v-text="item.price" style="color: #555;text-decoration: line-through"></span>
 									<span v-if="item.show" v-text="item.dprice" style="color: #555;margin-left: 10%;"></span>

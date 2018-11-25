@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="hidden-sm-and-down">
+		<div class="hidden-sm-and-down" style="margin-bottom: 5%">
 			<!--顶部导航栏-->
 			<el-row id="FrontPageNav">
 				<el-col class="hidden-xs-only" :sm={span:3,offset:1} :md={span:3,offset:2}>
@@ -54,8 +54,7 @@
 				<el-menu-item index="4" @click="goto">计数器|暂时给个入口</el-menu-item>
 			</el-menu>
 		</div>
-		<br><br>
-		<div class="hidden-md-and-up">
+		<div class="hidden-md-and-up" style="margin-bottom: 5%">
 			<!--侧边导航栏-->
 			<el-row v-if="sidebar">
 				<el-col :sm={span:7,offset:0} :xs={span:15,offset:0} id="sidebar">

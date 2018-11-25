@@ -1,8 +1,12 @@
 <template>
 	<div>
-		<el-row type="flex" justify="center">
-			<el-col v-for="item in foot" v-bind:key="item.id">
-				| <router-link to="" v-text="item.msg"></router-link> |
+		<el-row>
+			<el-col :span="20" :offset="2">
+				<el-row type="flex" justify="center">
+					<el-col v-for="item in foot" v-bind:key="item.id">
+						| <router-link to="" v-text="item.msg"></router-link> |
+					</el-col>
+				</el-row>
 			</el-col>
 		</el-row>
 		<br><br>
