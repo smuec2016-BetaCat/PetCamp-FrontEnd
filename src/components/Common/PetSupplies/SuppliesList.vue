@@ -123,9 +123,9 @@ export default {
 	top: 50%;
 }
 #PetSide #PetSide1:before{
-	left: 37%;
+	left: 25%;
 }
 #PetSide #PetSide1:after{
-	right: 37%;
+	right: 25%;
 }
 </style>
