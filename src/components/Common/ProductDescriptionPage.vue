@@ -3,8 +3,17 @@
 	<div>
 		<div style="margin-left: 8.333333%;width: 400px;float: left">
 			<div id="zoom">
-				<pic-zoom url="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg" :scale="2"></pic-zoom>
+				<pic-zoom url="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg" :scale="2.5"></pic-zoom>
 			</div>
+			<el-row>
+				<el-col :span="6" v-for="i in img" :key="i.id">
+					<el-button style="padding: 5px">
+						<el-card :body-style="{ padding: '0px' }" shadow="hover" >
+							<img :src="i.url" alt="">
+						</el-card>
+					</el-button>
+				</el-col>
+			</el-row>
 		</div>
 		<div style="margin-right: 8.333333%;float: left;width:43.66666%">
 			<el-row style="text-align: left" id="right">
@@ -72,6 +81,12 @@ data (){
 		value:3.5,
 		introduction:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.",
 		num8:1,
+		img:[
+			{id:0,url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg"},
+			{id:1,url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg"},
+			{id:2,url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg"},
+			{id:3,url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg"}
+		],
 		options: [{
 			value: 'guide',
 			label: 'Guide',
@@ -273,6 +288,10 @@ data (){
 </script>
 
 <style scoped>
+img{
+	width: 100%;
+	height: 100%;
+}
 #zoom{
 	width: 400px;
 	height: 400px;
