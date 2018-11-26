@@ -1,13 +1,13 @@
 <template>
 	<!--这个组件存在bug，需要纯手撸-->
-	<div>
+	<div style="margin-bottom: 5%;overflow: hidden">
 		<div style="margin-left: 8.333333%;width: 400px;float: left">
 			<div id="zoom">
-				<pic-zoom url="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg" :scale="2.5"></pic-zoom>
+				<pic-zoom :url="myImgUrl" :scale="2.5"></pic-zoom>
 			</div>
 			<el-row>
-				<el-col :span="6" v-for="i in img" :key="i.id">
-					<el-button style="padding: 5px">
+				<el-col :span="6" v-for="i in img" :key="i.id" style="height: 100px;display: flex">
+					<el-button style="padding: 5px;margin: auto;height: 95px" @click="changeMyImage(i.id)">
 						<el-card :body-style="{ padding: '0px' }" shadow="hover" >
 							<img :src="i.url" alt="">
 						</el-card>
@@ -74,18 +74,19 @@
 <script>
 import PicZoom from 'vue-piczoom'
 export default {
-name: "ProductDescriptionPage",
-components: { PicZoom },
-data (){
+	name: "ProductDescriptionPage",
+	components: { PicZoom },
+	data (){
 	return {
 		value:3.5,
 		introduction:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.",
 		num8:1,
+		myImgUrl: "",
 		img:[
 			{id:0,url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg"},
-			{id:1,url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg"},
-			{id:2,url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg"},
-			{id:3,url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg"}
+			{id:1,url:"https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike60%2C5%2C5%2C60%2C20/sign=4058d79e0ef41bd5ce5ee0a630b3eaae/730e0cf3d7ca7bcb3700f79abe096b63f624a80f.jpg"},
+			{id:2,url:"https://imgsa.baidu.com/baike/pic/item/00e93901213fb80e2f604bc43dd12f2eb938946b.jpg"},
+			{id:3,url:"https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=1fbc3a8edaa20cf4529df68d17602053/1ad5ad6eddc451dac7f5b1e2bcfd5266d01632b3.jpg"}
 		],
 		options: [{
 			value: 'guide',
@@ -283,7 +284,18 @@ data (){
 			}]
 		}]
 	}
-}
+	},
+	methods:{
+		changeMyImage(key){
+			this.myImgUrl = this.img[key].url
+		},
+		initMyImage(){
+			this.myImgUrl = this.img[0].url
+		}
+	},
+	created:function () {
+		this.initMyImage()
+	}
 }
 </script>
 
