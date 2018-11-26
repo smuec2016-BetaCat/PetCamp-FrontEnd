@@ -1,8 +1,63 @@
 <template>
 	<!--这个组件存在bug，需要纯手撸-->
-	<div style="margin-left: 8.333333%">
-		<div id="zoom">
-			<pic-zoom url="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg" :scale="2"></pic-zoom>
+	<div>
+		<div style="margin-left: 8.333333%;width: 400px;float: left">
+			<div id="zoom">
+				<pic-zoom url="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg" :scale="2"></pic-zoom>
+			</div>
+		</div>
+		<div style="margin-right: 8.333333%;float: left;width:43.66666%">
+			<el-row style="text-align: left" id="right">
+				<el-col :span="20" :offset="2">
+					<el-col>
+						<span id="introduce">商品介绍</span>
+					</el-col>
+					<el-col>
+						<el-col :span="12" style="margin-bottom: 0">
+							<el-rate
+									v-model="value"
+									disabled
+									show-score
+									text-color="#ff9900"
+									score-template="{value} points">
+							</el-rate>
+						</el-col>
+						<el-col :span="12" style="margin-bottom: 0">
+							<span>(100位顾客已浏览)</span>
+						</el-col>
+					</el-col>
+					<el-col>
+						<span id="price">$77.00</span>
+						<span>$66.00</span>
+					</el-col>
+					<el-col>
+						<span v-text="introduction"></span>
+					</el-col>
+					<el-col>
+						<span>
+							<i class="el-icon-circle-check-outline"></i>
+							150 在库存内
+						</span>
+					</el-col>
+					<el-col>
+						<span id="address">配送地址</span>
+						<el-cascader
+								placeholder="选择地址"
+								:options="options"
+								filterable
+								change-on-select
+						></el-cascader>
+					</el-col>
+					<el-col>
+						<el-col :span="9" style="margin-bottom: 0">
+							<el-input-number v-model="num8" controls-position="right" :min="1"></el-input-number>
+						</el-col>
+						<el-col :span="12" style="margin-bottom: 0">
+							<el-button type="success" icon="el-icon-goods">加入购物车</el-button>
+						</el-col>
+					</el-col>
+				</el-col>
+			</el-row>
 		</div>
 	</div>
 </template>
@@ -10,8 +65,210 @@
 <script>
 import PicZoom from 'vue-piczoom'
 export default {
-	name: "ProductDescriptionPage",
-	components: { PicZoom }
+name: "ProductDescriptionPage",
+components: { PicZoom },
+data (){
+	return {
+		value:3.5,
+		introduction:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.",
+		num8:1,
+		options: [{
+			value: 'guide',
+			label: 'Guide',
+			children: [{
+				value: 'disciplines',
+				label: 'Disciplines',
+				children: [{
+					value: 'consistency',
+					label: 'Consistency'
+				}, {
+					value: 'feedback',
+					label: 'Feedback'
+				}, {
+					value: 'efficiency',
+					label: 'Efficiency'
+				}, {
+					value: 'controllability',
+					label: 'Controllability'
+				}]
+			}, {
+				value: 'navigation',
+				label: 'Navigation',
+				children: [{
+					value: 'side nav',
+					label: 'Side Navigation'
+				}, {
+					value: 'top nav',
+					label: 'Top Navigation'
+				}]
+			}]
+		}, {
+			value: 'component',
+			label: 'Component',
+			children: [{
+				value: 'basic',
+				label: 'Basic',
+				children: [{
+					value: 'layout',
+					label: 'Layout'
+				}, {
+					value: 'color',
+					label: 'Color'
+				}, {
+					value: 'typography',
+					label: 'Typography'
+				}, {
+					value: 'icon',
+					label: 'Icon'
+				}, {
+					value: 'button',
+					label: 'Button'
+				}]
+			}, {
+				value: 'form',
+				label: 'Form',
+				children: [{
+					value: 'radio',
+					label: 'Radio'
+				}, {
+					value: 'checkbox',
+					label: 'Checkbox'
+				}, {
+					value: 'input',
+					label: 'Input'
+				}, {
+					value: 'input-number',
+					label: 'InputNumber'
+				}, {
+					value: 'select',
+					label: 'Select'
+				}, {
+					value: 'cascader',
+					label: 'Cascader'
+				}, {
+					value: 'switch',
+					label: 'Switch'
+				}, {
+					value: 'slider',
+					label: 'Slider'
+				}, {
+					value: 'time-picker',
+					label: 'TimePicker'
+				}, {
+					value: 'date-picker',
+					label: 'DatePicker'
+				}, {
+					value: 'datetime-picker',
+					label: 'DateTimePicker'
+				}, {
+					value: 'upload',
+					label: 'Upload'
+				}, {
+					value: 'rate',
+					label: 'Rate'
+				}, {
+					value: 'form',
+					label: 'Form'
+				}]
+			}, {
+				value: 'data',
+				label: 'Data',
+				children: [{
+					value: 'table',
+					label: 'Table'
+				}, {
+					value: 'tag',
+					label: 'Tag'
+				}, {
+					value: 'progress',
+					label: 'Progress'
+				}, {
+					value: 'tree',
+					label: 'Tree'
+				}, {
+					value: 'pagination',
+					label: 'Pagination'
+				}, {
+					value: 'badge',
+					label: 'Badge'
+				}]
+			}, {
+				value: 'notice',
+				label: 'Notice',
+				children: [{
+					value: 'alert',
+					label: 'Alert'
+				}, {
+					value: 'loading',
+					label: 'Loading'
+				}, {
+					value: 'message',
+					label: 'Message'
+				}, {
+					value: 'message-box',
+					label: 'MessageBox'
+				}, {
+					value: 'notification',
+					label: 'Notification'
+				}]
+			}, {
+				value: 'navigation',
+				label: 'Navigation',
+				children: [{
+					value: 'menu',
+					label: 'NavMenu'
+				}, {
+					value: 'tabs',
+					label: 'Tabs'
+				}, {
+					value: 'breadcrumb',
+					label: 'Breadcrumb'
+				}, {
+					value: 'dropdown',
+					label: 'Dropdown'
+				}, {
+					value: 'steps',
+					label: 'Steps'
+				}]
+			}, {
+				value: 'others',
+				label: 'Others',
+				children: [{
+					value: 'dialog',
+					label: 'Dialog'
+				}, {
+					value: 'tooltip',
+					label: 'Tooltip'
+				}, {
+					value: 'popover',
+					label: 'Popover'
+				}, {
+					value: 'card',
+					label: 'Card'
+				}, {
+					value: 'carousel',
+					label: 'Carousel'
+				}, {
+					value: 'collapse',
+					label: 'Collapse'
+				}]
+			}]
+		}, {
+			value: 'resource',
+			label: 'Resource',
+			children: [{
+				value: 'axure',
+				label: 'Axure Components'
+			}, {
+				value: 'sketch',
+				label: 'Sketch Templates'
+			}, {
+				value: 'docs',
+				label: 'Design Documentation'
+			}]
+		}]
+	}
+}
 }
 </script>
 
@@ -19,5 +276,19 @@ export default {
 #zoom{
 	width: 400px;
 	height: 400px;
+}
+#introduce{
+	color: #555;
+	font-size: 28px;
+}
+#right div{
+	margin-bottom: 5%;
+}
+#price{
+	text-decoration: line-through;
+	margin-right: 20px;
+}
+#address{
+	margin-right: 5%;
 }
 </style>
