@@ -8,12 +8,12 @@
 				<div id="title">账户登录</div>
 			</el-col>
 			<el-col :span="20" :offset="2">
-				<el-input placeholder="邮箱/用户名/已验证手机" v-model="input3" class="MyMargin">
+				<el-input placeholder="邮箱/用户名/已验证手机" v-model="UserName" class="MyMargin">
 					<template slot="prepend">
 						<i class="el-icon-loading"></i>
 					</template>
 				</el-input>
-				<el-input placeholder="密码" v-model="input3" class="MyMargin">
+				<el-input placeholder="密码" v-model="Password" class="MyMargin">
 					<template slot="prepend">
 						<i class="el-icon-loading"></i>
 					</template>
@@ -39,7 +39,9 @@ export default {
 	name: "LoginBody",
 	data (){
 		return {
-			input3:""
+			input3:"",
+			UserName:"",
+			Password:""
 		}
 	}
 }
