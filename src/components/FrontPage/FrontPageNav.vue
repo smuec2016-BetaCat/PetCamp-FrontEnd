@@ -11,7 +11,7 @@
 				<el-col :xs={span:20,offset:2} :sm={span:20,offset:5} :md={span:17,offset:5}>
 					<ul>
 						<li  v-for="item in nav" :key="item.id">
-							<router-link to="" v-text="item.msg"></router-link>
+							<router-link v-text="item.msg" to="/Register/RegisterStep1"></router-link>
 						</li>
 					</ul>
 				</el-col>
@@ -172,13 +172,13 @@ export default {
 				{id:3,msg:"店内服务"},
 				{id:4,msg:"投资者"},
 				{id:5,msg:"品牌"},
-                {id:6,msg:"请登录|注册"}],
+                {id:6,msg:"请登录|注册",url:"/Register/RegisterStep1"}],
 			show:false
         }
     },
 	methods:{
-		goto(){
-            this.$router.push({ path: `/Access/AccessRecording` })
+		goto(event){
+            this.$router.push({ path: `/Access/AccessDetails` })
 		},
 		ShowSideBar(){
 			this.sidebar = !this.sidebar

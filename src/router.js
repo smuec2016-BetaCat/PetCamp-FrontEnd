@@ -9,6 +9,9 @@ import ProductDescriptionDetails from './components/Common/ProductDsecription/Pr
 import ProductComments from './components/Common/ProductDsecription/ProductComments'
 import Register from "./views/Register";
 import Login from "./views/Login";
+import RegisterStep1 from "./components/Login/RegisterStep1";
+import RegisterStep2 from "./components/Login/RegisterStep2";
+import RegisterStep3 from "./components/Login/RegisterStep3";
 
 Vue.use(Router)
 
@@ -22,12 +25,28 @@ routes: [
 	{
 		path: '/Login',
 		name: 'Login',
-		component: Login
+		component: Login,
 	},
 	{
 		path: '/Register',
 		name: 'Register',
-		component: Register
+		component: Register,
+		children:[{
+			path:'RegisterStep1',
+			component:RegisterStep1,
+			name:RegisterStep1,
+		},
+		{
+			path:'RegisterStep2',
+			component:RegisterStep2,
+			name:RegisterStep2,
+		},
+		{
+			path:'RegisterStep3',
+			component:RegisterStep3,
+			name:RegisterStep3,
+		}
+		]
 	},
 	{
 		path: '/PurchasePage',
