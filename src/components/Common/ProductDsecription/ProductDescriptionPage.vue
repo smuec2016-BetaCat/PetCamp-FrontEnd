@@ -7,7 +7,7 @@
 			</div>
 			<el-row>
 				<el-col :span="6" v-for="i in img" :key="i.id" style="height: 100px;display: flex">
-					<el-button style="padding: 5px;margin: auto;height: 95px" @click="changeMyImage(i.id)">
+					<el-button style="padding: 5px;margin: auto;height: 95px" @mouseover.native="changeMyImage(i.id)">
 						<el-card :body-style="{ padding: '0px' }" shadow="hover" >
 							<img :src="i.url" alt="">
 						</el-card>
