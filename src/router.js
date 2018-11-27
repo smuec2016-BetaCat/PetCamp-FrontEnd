@@ -1,17 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Access from './components/Access/Access'
 import FrontPage from './views/FrontPage'
+import PurchasePage from './views/PurchasePage'
+import Register from "./views/Register"
+import Login from "./views/Login"
+import CommodityBrowsing from './views/CommodityBrowsing'
+
+import Access from './components/Access/Access'
 import AccessDetails from './components/Access/AccessDetails'
 import AccessRecording from './components/Access/AccessRecording'
-import PurchasePage from './views/PurchasePage'
 import ProductDescriptionDetails from './components/Common/ProductDsecription/ProductDescriptionDetails'
 import ProductComments from './components/Common/ProductDsecription/ProductComments'
-import Register from "./views/Register";
-import Login from "./views/Login";
-import RegisterStep1 from "./components/Login/RegisterStep1";
-import RegisterStep2 from "./components/Login/RegisterStep2";
-import RegisterStep3 from "./components/Login/RegisterStep3";
+import RegisterStep1 from "./components/Login/RegisterStep1"
+import RegisterStep2 from "./components/Login/RegisterStep2"
+import RegisterStep3 from "./components/Login/RegisterStep3"
 
 Vue.use(Router)
 
@@ -26,6 +28,11 @@ routes: [
 		path: '/Login',
 		name: 'Login',
 		component: Login,
+	},
+	{
+		path: '/CommodityBrowsing',
+		name: 'CommodityBrowsing',
+		component: CommodityBrowsing,
 	},
 	{
 		path: '/Register',
