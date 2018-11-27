@@ -7,6 +7,8 @@ import AccessRecording from './components/Access/AccessRecording'
 import PurchasePage from './views/PurchasePage'
 import ProductDescriptionDetails from './components/Common/ProductDsecription/ProductDescriptionDetails'
 import ProductComments from './components/Common/ProductDsecription/ProductComments'
+import Register from "./views/Register";
+import Login from "./views/Login";
 
 Vue.use(Router)
 
@@ -17,6 +19,16 @@ routes: [
         name: 'FrontPage',
         component: FrontPage
     },
+	{
+		path: '/Login',
+		name: 'Login',
+		component: Login
+	},
+	{
+		path: '/Register',
+		name: 'Register',
+		component: Register
+	},
 	{
 		path: '/PurchasePage',
 		name: 'PurchasePage',

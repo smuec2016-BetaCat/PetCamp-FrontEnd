@@ -52,10 +52,10 @@
 					<el-menu-item index="3-3">领养心愿单</el-menu-item>
 				</el-submenu>
 				<el-menu-item index="4" @click="goto">计数器|暂时给个入口</el-menu-item>
-				<el-menu-item index="5" @mouseenter.native="test" @mouseleave.native="test">测试</el-menu-item>
+				<el-menu-item index="5" @mouseenter.native="test">测试</el-menu-item>
 			</el-menu>
 			<!--dropdown导航栏-->
-			<el-col v-if="show" class="myDropDown" :span="20" :offset="2">
+			<el-col v-if="show" class="myDropDown" :span="20" :offset="2" @mouseleave.native="test">
 				<el-col>
 					<el-col :span="4" style="padding: 10px 0px 10px 20px;">
 						<div>
@@ -282,7 +282,7 @@ export default {
 }
 .myDropDown{
 	position: absolute;
-	z-index: 10;
+	z-index: 20;
 	background-color: rgb(86, 175, 49);
 	text-align: left;
 }
