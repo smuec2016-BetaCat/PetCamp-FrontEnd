@@ -25,7 +25,7 @@
 					<el-button type="danger" style="width: 100%">登录</el-button>
 				</el-col>
 				<el-col class="MyMargin">
-					<router-link to="" style="float: right">
+					<router-link to="/Register/RegisterStep1" style="float: right">
 						<i class="el-icon-caret-right"></i>立即注册
 					</router-link>
 				</el-col>

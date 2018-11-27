@@ -11,7 +11,7 @@
 				<el-col :xs={span:20,offset:2} :sm={span:20,offset:5} :md={span:17,offset:5}>
 					<ul>
 						<li  v-for="item in nav" :key="item.id">
-							<router-link v-text="item.msg" to="/Register/RegisterStep1"></router-link>
+							<router-link v-text="item.msg" :to="item.url"></router-link>
 						</li>
 					</ul>
 				</el-col>
@@ -166,13 +166,13 @@ export default {
 			input:'',
 			sidebar:false,
 			nav:[
-				{id:0,msg:"找一家商店"},
-				{id:1,msg:"贵宾俱乐部"},
-				{id:2,msg:"宠物保险"},
-				{id:3,msg:"店内服务"},
-				{id:4,msg:"投资者"},
-				{id:5,msg:"品牌"},
-                {id:6,msg:"请登录|注册",url:"/Register/RegisterStep1"}],
+				{id:0,msg:"找一家商店",url:"/"},
+				{id:1,msg:"贵宾俱乐部",url:"/"},
+				{id:2,msg:"宠物保险",url:"/"},
+				{id:3,msg:"店内服务",url:"/"},
+				{id:4,msg:"投资者",url:"/"},
+				{id:5,msg:"品牌",url:"/"},
+                {id:6,msg:"请登录|注册",url:"/Login"}],
 			show:false
         }
     },
