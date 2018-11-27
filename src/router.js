@@ -5,8 +5,9 @@ import FrontPage from './views/FrontPage'
 import AccessDetails from './components/Access/AccessDetails'
 import AccessRecording from './components/Access/AccessRecording'
 import FrontPageNav from "./components/FrontPage/FrontPageNav"
-import AdminHome from "./views/Admin";
-import AdminInfo from "./components/Admin/Home/AdminInfo";
+import Admin from "./views/Admin";
+// import AdminInfo from "./components/Admin/Home/AdminInfo";
+import AdminHome from "./views/AdminPages/AdminHome";
 
 Vue.use(Router)
 
@@ -40,12 +41,12 @@ routes: [
     },
     {
         path: '/admin',
-        name: 'Admin',
-        component: AdminHome,
+        name: 'AdminPages',
+        component: Admin,
         children: [{
             path: "",
             name: "Home",
-            component: AdminInfo
+            component: AdminHome
         }]
     }
 

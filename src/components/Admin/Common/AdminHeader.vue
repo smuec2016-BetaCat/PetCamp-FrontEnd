@@ -14,7 +14,6 @@
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div>
                 <!-- user avator -->
-                <!--TODO(Ron): Config the img tag-->
                 <div class="user-avator"><img src="../../../assets/avator.jpg" alt=""></div>
                 <!-- user name menu -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
