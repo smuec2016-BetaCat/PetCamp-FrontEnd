@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
 	<el-row>
 		<el-col :span="20" :offset="2">
