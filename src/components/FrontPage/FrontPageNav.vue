@@ -11,7 +11,7 @@
 				<el-col :xs={span:20,offset:2} :sm={span:20,offset:5} :md={span:17,offset:5}>
 					<ul>
 						<li  v-for="item in nav" :key="item.id">
-							<router-link to="" v-text="item.msg"></router-link>
+							<router-link v-text="item.msg" :to="item.url"></router-link>
 						</li>
 					</ul>
 				</el-col>
@@ -52,7 +52,46 @@
 					<el-menu-item index="3-3">领养心愿单</el-menu-item>
 				</el-submenu>
 				<el-menu-item index="4" @click="goto">计数器|暂时给个入口</el-menu-item>
+				<el-menu-item index="5" @mouseenter.native="test">测试</el-menu-item>
 			</el-menu>
+			<!--dropdown导航栏-->
+			<transition name="fade">
+				<el-col v-if="show" class="myDropDown" :span="20" :offset="2" @mouseleave.native="test">
+					<el-col>
+						<el-col :span="4" style="padding: 10px 0 10px 20px;">
+							<div>
+								<span>热门分类</span>
+							</div>
+							<ul>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
+							</ul>
+						</el-col>
+						<el-col :span="4" style="margin-top: 10px">
+							<div>
+								<span>其他分类</span>
+							</div>
+							<ul>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
+
+							</ul>
+						</el-col>
+						<el-col :span="16" style="height: 100%">
+							<div style="padding: 10px;height: 100%">
+								<img src="../../assets/banner4.jpg" alt="" style="width: 100%;height: 100%;display:block;">
+							</div>
+						</el-col>
+					</el-col>
+				</el-col>
+			</transition>
+
 		</div>
 		<div class="hidden-md-and-up" style="margin-bottom: 5%">
 			<!--侧边导航栏-->
@@ -129,21 +168,25 @@ export default {
 			input:'',
 			sidebar:false,
 			nav:[
-				{id:0,msg:"找一家商店"},
-				{id:1,msg:"贵宾俱乐部"},
-				{id:2,msg:"宠物保险"},
-				{id:3,msg:"店内服务"},
-				{id:4,msg:"投资者"},
-				{id:5,msg:"品牌"},
-                {id:6,msg:"请登录|注册"}]
+				{id:0,msg:"找一家商店",url:"/"},
+				{id:1,msg:"贵宾俱乐部",url:"/"},
+				{id:2,msg:"宠物保险",url:"/"},
+				{id:3,msg:"店内服务",url:"/"},
+				{id:4,msg:"投资者",url:"/"},
+				{id:5,msg:"品牌",url:"/"},
+                {id:6,msg:"请登录|注册",url:"/Login"}],
+			show:false
         }
     },
 	methods:{
-		goto(){
-            this.$router.push({ path: `/Access/AccessRecording` })
+		goto(event){
+            this.$router.push({ path: `/Access/AccessDetails` })
 		},
 		ShowSideBar(){
 			this.sidebar = !this.sidebar
+		},
+		test(){
+			this.show = !this.show
 		}
 	}
 }
@@ -238,7 +281,27 @@ export default {
 	padding-left: 0;
 	line-height: 1.5em;
 	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-
+}
+.myDropDown{
+	position: absolute;
+	z-index: 20;
+	background-color: rgb(86, 175, 49);
+	text-align: left;
+}
+.myDropDown ul{
+	padding-left: 0;
+}
+.myDropDown ul li{
+	list-style: none;
+	color: #fff;
+	font-size: 16px;
+	line-height: 30px;
+}
+.fade-enter-active, .fade-leave-active {
+	transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to{
+	opacity: 0;
 }
 </style>
 
