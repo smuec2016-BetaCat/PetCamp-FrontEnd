@@ -1,82 +1,90 @@
 <template>
 	<el-row>
-		<el-col :span="20" :offset="2">
-			<el-row>
-				<el-tabs v-model="activeName">
-					<el-tab-pane label="热门商品" name="first"></el-tab-pane>
-				</el-tabs>
-			</el-row>
-			<el-row>
-				<el-col :xs={span:24,offset:0} :sm={span:8,offset:0} :md={span:6,offset:0} v-for="i in 8" :key="i">
-					<el-button style="padding:0;margin: 20px 10px;">
+		<el-col>
+			<el-col :span="20" :offset="2">
+				<el-col :span="8" v-for="item in top3" :key="item.id">
+					<el-button style="padding: 0;position: relative;">
 						<el-card :body-style="{ padding: '0px' }" shadow="hover">
-							<img src="http://viptail.image.alimmdn.com/files/official_web/img/sh002-f.jpg" class="image">
-							<div style="padding: 10px;overflow: hidden;">
-								<div class="myImg1">
-									<img style="border-radius: 20px;" src="http://viptail.image.alimmdn.com/files/official_web/img/sh002-u.jpg" alt="">
+							<el-col class="topThree">
+								<div class="flag">
+									<div class="rank" v-text="item.id"></div>
+									<div class="desc" v-text="item.title"></div>
 								</div>
-								<div class="bottom clearfix"  style="float: left">
-									<img class="myImg2" src="http://viptail.image.alimmdn.com/files/official_web/img/home_icon_family.png" alt="">
-									<span class="house">某某人家</span>
-									<div style="text-align: left;margin: 5px 10px">
-										<i class="el-icon-location-outline"></i>
-										<span class="place">上海</span>
-									</div>
-								</div>
-								<div style="float: right;position:relative;bottom: 8px">
-									<span style="color: #fbc02d;font-size: 18px;">￥</span>
-									<span style="color: #fbc02d;font-size: 35px;">{{price}}</span>
-									<strong>起/每晚</strong>
-								</div>
-							</div>
+								<el-col :span="10">1</el-col>
+								<el-col :span="14">2</el-col>
+							</el-col>
 						</el-card>
 					</el-button>
 				</el-col>
-			</el-row>
-		</el-col>
-		<el-col :span="20" :offset="2">
-			<el-row style="margin-top: 5%">
-				<el-tabs v-model="activeName">
-					<el-tab-pane label="其他商品" name="first"></el-tab-pane>
-				</el-tabs>
-			</el-row>
-			<el-row>
-				<el-col :xs={span:24,offset:0} :sm={span:8,offset:0} :md={span:6,offset:0} v-for="i in 8" :key="i">
-					<el-button style="padding:0;margin: 20px 10px;">
-						<el-card :body-style="{ padding: '0px' }" shadow="hover">
-							<img src="http://viptail.image.alimmdn.com/files/official_web/img/sh002-f.jpg" class="image">
-							<div style="padding: 10px;overflow: hidden;">
-								<div class="myImg1">
-									<img style="border-radius: 20px;" src="http://viptail.image.alimmdn.com/files/official_web/img/sh002-u.jpg" alt="">
-								</div>
-								<div class="bottom clearfix"  style="float: left">
-									<img class="myImg2" src="http://viptail.image.alimmdn.com/files/official_web/img/home_icon_family.png" alt="">
-									<span class="house">某某人家</span>
-									<div style="text-align: left;margin: 5px 10px">
-										<i class="el-icon-location-outline"></i>
-										<span class="place">上海</span>
-									</div>
-								</div>
-								<div style="float: right;position:relative;bottom: 8px">
-									<span style="color: #fbc02d;font-size: 18px;">￥</span>
-									<span style="color: #fbc02d;font-size: 35px;">{{price}}</span>
-									<strong>起/每晚</strong>
-								</div>
-							</div>
-						</el-card>
-					</el-button>
-				</el-col>
-			</el-row>
+			</el-col>
+			<el-col>
+				<el-col></el-col>
+				<el-col></el-col>
+				<el-col></el-col>
+				<el-col></el-col>
+				<el-col></el-col>
+			</el-col>
 		</el-col>
 	</el-row>
 </template>
 
 <script>
-	export default {
-		name: "CommodityBrowsingList3"
+export default {
+	name: "CommodityBrowsingList3",
+	data(){
+		return {
+			top3:[{id:1,title:"热卖指数100"},{id:2,title:"热卖指数95"},{id:3,title:"热卖指数90"}]
+		}
 	}
+}
 </script>
 
 <style scoped>
+.topThree{
+	width: 351px;
+	height: 160px;
+	padding: 65px 20px 20px 20px;
+}
+.flag{
+	position: absolute;
+	left: 0;
+	top: 15px;
+}
+.rank{
+	background: linear-gradient(49deg,#dd1d1d,#f84141);
+	border-color: #de1e1e;
+	position: absolute;
+	left: -6px;
+	top: 0;
+	width: 36px;
+	height: 24px;
+	line-height: 26px;
+	border-width: 1px 0;
+	font-size: 14px;
+	color: #fff;
+	text-align: center;
+}
+.rank:after{
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 23px;
+	width: 0;
+	height: 0;
+	border: 3px solid;
+	border-color: #a98138 #a98138 transparent transparent;
 
+}
+.desc{
+	color: #de1e1e;
+	border-color: #de1e1e;
+	height: 22px;
+	line-height: 22px;
+	background: #fff;
+	padding: 0 10px 0 5px;
+	margin-left: 30px;
+	border: 1px solid #d3bf99;
+	border-width: 1px 1px 1px 0;
+	border-radius: 0 24px 24px 0;
+}
 </style>
