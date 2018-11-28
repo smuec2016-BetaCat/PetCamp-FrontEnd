@@ -110,7 +110,7 @@ export default {
 	name: "CommodityBrowsingList3",
 	data(){
 		return {
-			top3:[{id:1,title:"热卖指数100"},{id:2,title:"热卖指数95"},{id:3,title:"热卖指数90"}],
+			top3:[{id:1,title:"热卖指数100",src:"",msg:"",price:"",rate:3.7},{id:2,title:"热卖指数95",src:"",msg:"",price:"",rate:3.7},{id:3,title:"热卖指数90",src:"",msg:"",price:"",rate:3.7}],
 			top5:[{id:4,title:"热卖指数100"},{id:5,title:"热卖指数95"},{id:6,title:"热卖指数90"},{id:7,title:"热卖指数90"}],
 			PetSide:[
 				{id:0,title:"铲屎官道具",price: "$100.00",dprice:"$80.00",show:true,src:""},
