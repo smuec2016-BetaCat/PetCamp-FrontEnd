@@ -42,24 +42,7 @@ export default {
 				{id:5,title:"最终决定直接尝试json文件",price: "$150.00",dprice:"$130.00",show:true,src:""},
 				{id:6,title:"突然发现就可以了",price: "$650.00",dprice:"$630.00",show:true,src:""},
 				{id:7,title:"可以只买单个物品了",price: "$1020.00",dprice:"$930.00",show:true,src:""}
-			],
-			tableData: [{
-				date: '2016-05-02',
-				name: '王小虎',
-				address: '上海市普陀区金沙江路 1518 弄'
-			}, {
-				date: '2016-05-04',
-				name: '王小虎',
-				address: '上海市普陀区金沙江路 1517 弄'
-			}, {
-				date: '2016-05-01',
-				name: '王小虎',
-				address: '上海市普陀区金沙江路 1519 弄'
-			}, {
-				date: '2016-05-03',
-				name: '王小虎',
-				address: '上海市普陀区金沙江路 1516 弄'
-			}]
+			]
 		}
 	},
 	methods:{
