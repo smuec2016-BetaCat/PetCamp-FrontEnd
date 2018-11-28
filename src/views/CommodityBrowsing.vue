@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import CommodityBrowsingList from "@/components/Common/CommodityBrowsingList";
+import CommodityBrowsingList from "@/components/Common/CommodityBrowsingList1";
 import FrontPageNav from "@/components/FrontPage/FrontPageNav";
 export default {
 	name: "CommodityBrowsing",
