@@ -9,29 +9,18 @@
                 background-color="#324157"
                 text-color="#bfcbd9"
                 active-text-color="#20a0ff"
-                unique-opened="true"
         >
-            <el-menu-item index="dashboard">
-                <i class="el-icon-menu"></i>
-                <span slot="title">营地概况</span>
+            <el-menu-item index="dashboard" @click="routerPush('/admin')">
+                <i class="el-icon-news"></i>
+                <span slot="title">我的概况</span>
             </el-menu-item>
-            <el-submenu index="1">
+            <el-submenu index="trusteeship">
                 <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span slot="title">导航一</span>
+                    <i class="el-icon-tickets"></i>
+                    <span slot="title">宠物寄养</span>
                 </template>
-                <el-menu-item-group>
-                    <span slot="title">分组一</span>
-                    <el-menu-item index="1-1">选项1</el-menu-item>
-                    <el-menu-item index="1-2">选项2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="分组2">
-                    <el-menu-item index="1-3">选项3</el-menu-item>
-                </el-menu-item-group>
-                <el-submenu index="1-4">
-                    <span slot="title">选项4</span>
-                    <el-menu-item index="1-4-1">选项1</el-menu-item>
-                </el-submenu>
+                <el-menu-item index="trusteeship-order" @click="routerPush('/admin/trusteeship-order')">订单管理</el-menu-item>
+                <el-menu-item index="trusteeship-editor">条件编辑</el-menu-item>
             </el-submenu>
             <el-menu-item index="2">
                 <i class="el-icon-menu"></i>
@@ -60,11 +49,6 @@
         props: {
             isCollapse: Boolean
         },
-        // data() {
-        //     return {
-        //         isCollapse: true
-        //     }
-        // },
         methods: {
             handleOpen(key, keyPath) {
                 console.log(key, keyPath)
@@ -74,7 +58,9 @@
             },
             toggleCollapse() {
                 this.$emit("tog-collapse")
-                // alert("nnnn")
+            },
+            routerPush(to) {
+                this.$router.push(to)
             }
         }
     }
@@ -98,7 +84,7 @@
 
     .collapse-toggle {
         position: absolute;
-        bottom: 10px;
+        bottom: 0;
         left: 23px;
         color: #bfcbd9;
     }

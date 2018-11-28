@@ -49,7 +49,7 @@
 
     .grid-con-icon {
         font-size: 50px;
-        width: 100px;
+        width: 30%;
         height: 100px;
         text-align: center;
         line-height: 100px;
