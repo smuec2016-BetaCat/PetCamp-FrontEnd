@@ -18,7 +18,8 @@ import FrontPageFeatures from "../components/FrontPage/FrontPageFeatures";
 const axios = require("axios")
 export default {
 	name: "FrontPage",
-    components: {FrontPageFeatures, FrontPageFooter, FrontPageDisplayBoard, FrontPageCarouselMap, FrontPageNav, Access},
+    components: {
+        FrontPageFeatures, FrontPageFooter, FrontPageDisplayBoard, FrontPageCarouselMap, FrontPageNav, Access},
     data(){
         return {
             insert_time:null

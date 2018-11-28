@@ -4,7 +4,7 @@
 			<el-col>
 				<el-menu
 						default-active="2"
-						class="el-menu-vertical-demo"
+						class="sidebar-menu"
 						background-color="#545c64"
 						text-color="#fff"
 						active-text-color="#ffd04b">

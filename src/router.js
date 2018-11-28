@@ -4,6 +4,10 @@ import Access from './components/Access/Access'
 import FrontPage from './views/FrontPage'
 import AccessDetails from './components/Access/AccessDetails'
 import AccessRecording from './components/Access/AccessRecording'
+import FrontPageNav from "./components/FrontPage/FrontPageNav"
+import Admin from "./views/Admin";
+// import AdminInfo from "./components/Admin/Home/AdminInfo";
+import AdminHome from "./views/AdminPages/AdminHome";
 import PurchasePage from './views/PurchasePage'
 
 
@@ -22,6 +26,11 @@ routes: [
 		component: PurchasePage
 	},
     {
+        path: "/FrontPageNav",
+        name: "FrontPageNav",
+        component: FrontPageNav
+    },
+    {
         path:'/Access',
         name:Access,
         component:Access,
@@ -36,6 +45,16 @@ routes: [
             name:AccessRecording
         }
         ]
+    },
+    {
+        path: '/admin',
+        name: 'AdminPages',
+        component: Admin,
+        children: [{
+            path: "",
+            name: "Home",
+            component: AdminHome
+        }]
     }
 
     ]
