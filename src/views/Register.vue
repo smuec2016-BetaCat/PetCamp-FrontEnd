@@ -1,5 +1,5 @@
 <template>
-	<div :style={height:screenHeight}>
+	<div :style="formStyle">
 		<RegisterNav></RegisterNav>
 		<RegisterBody></RegisterBody>
 	</div>
@@ -14,10 +14,17 @@ export default {
 	components: {RegisterBody, RegisterNav},
 	data (){
 		return {
-			screenHeight:document.body.clientHeight +"px"
+
+		}
+	},
+	computed: {
+		formStyle: () => {
+			let screenHeight = document.body.clientHeight + 105
+			return {
+				height: screenHeight + "px"
+			}
 		}
 	}
-
 }
 </script>
 

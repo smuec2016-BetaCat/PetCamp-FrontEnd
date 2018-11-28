@@ -1,16 +1,15 @@
 <template>
 	<div>
 		<FrontPageNav></FrontPageNav>
-		<CommodityBrowsingList></CommodityBrowsingList>
+		<router-view></router-view>
 	</div>
 </template>
 
 <script>
-import CommodityBrowsingList from "@/components/Common/CommodityBrowsingList1";
 import FrontPageNav from "@/components/FrontPage/FrontPageNav";
 export default {
 	name: "CommodityBrowsing",
-	components: {FrontPageNav, CommodityBrowsingList}
+	components: {FrontPageNav}
 }
 </script>
 

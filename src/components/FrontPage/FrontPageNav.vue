@@ -55,41 +55,43 @@
 				<el-menu-item index="5" @mouseenter.native="test">测试</el-menu-item>
 			</el-menu>
 			<!--dropdown导航栏-->
-			<el-col v-if="show" class="myDropDown" :span="20" :offset="2" @mouseleave.native="test">
-				<el-col>
-					<el-col :span="4" style="padding: 10px 0px 10px 20px;">
-						<div>
-							<span>热门分类</span>
-						</div>
-						<ul>
-							<li>test</li>
-							<li>test</li>
-							<li>test</li>
-							<li>test</li>
-							<li>test</li>
+			<transition name="fade">
+				<el-col v-if="show" class="myDropDown" :span="20" :offset="2" @mouseleave.native="test">
+					<el-col>
+						<el-col :span="4" style="padding: 10px 0 10px 20px;">
+							<div>
+								<span>热门分类</span>
+							</div>
+							<ul>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
+							</ul>
+						</el-col>
+						<el-col :span="4" style="margin-top: 10px">
+							<div>
+								<span>其他分类</span>
+							</div>
+							<ul>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
+								<li>test</li>
 
-						</ul>
+							</ul>
+						</el-col>
+						<el-col :span="16" style="height: 100%">
+							<div style="padding: 10px;height: 100%">
+								<img src="../../assets/banner4.jpg" alt="" style="width: 100%;height: 100%;display:block;">
+							</div>
+						</el-col>
 					</el-col>
-					<el-col :span="4" style="margin-top: 10px">
-						<div>
-							<span>其他分类</span>
-						</div>
-						<ul>
-							<li>test</li>
-							<li>test</li>
-							<li>test</li>
-							<li>test</li>
-							<li>test</li>
+				</el-col>
+			</transition>
 
-						</ul>
-					</el-col>
-					<el-col :span="16" style="height: 100%">
-						<div style="padding: 10px;height: 100%">
-							<img src="../../assets/banner4.jpg" alt="" style="width: 100%;height: 100%;display:block;">
-						</div>
-				</el-col>
-				</el-col>
-			</el-col>
 		</div>
 		<div class="hidden-md-and-up" style="margin-bottom: 5%">
 			<!--侧边导航栏-->
@@ -294,5 +296,11 @@ export default {
 	color: #fff;
 	font-size: 16px;
 	line-height: 30px;
+}
+.fade-enter-active, .fade-leave-active {
+	transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to{
+	opacity: 0;
 }
 </style>
