@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import FrontPageNav from "../components/FrontPage/FrontPageNav";
-import ProductDescriptionPage from "../components/Common/ProductDescriptionPage";
+import FrontPageNav from "../components/FrontPage/FrontPageNav"
+import ProductDescriptionPage from "../components/Common/ProductDescriptionPage"
 export default {
 	name: "PurchasePage",
 	components: {ProductDescriptionPage, FrontPageNav}

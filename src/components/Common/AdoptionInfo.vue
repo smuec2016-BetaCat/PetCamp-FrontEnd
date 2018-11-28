@@ -27,7 +27,7 @@
 						<el-button class="bg">
 							<el-card :body-style="{ padding: '0px' }" shadow="hover" class="bg" style="max-height: 100px">
 								<el-col :span="6">
-									<img src="../../assets/cat.jpg" class="image">
+									<img src="../../assets/cat.jpg" class="image" alt="img">
 								</el-col>
 								<el-col :span="18">
 									<el-col>

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import FrontPageSupplies from "../Common/PetSupplies/FrontPageSupplies";
-import SuppliesList from "../Common/PetSupplies/SuppliesList";
+import FrontPageSupplies from "../Common/PetSupplies/FrontPageSupplies"
+import SuppliesList from "../Common/PetSupplies/SuppliesList"
 export default {
     name: "FrontPagePetSupplies",
 	components: {SuppliesList, FrontPageSupplies},

@@ -9,7 +9,7 @@
 				<el-col :xs={span:24,offset:0} :sm={span:8,offset:0} :md={span:6,offset:0} v-for="item in PetSide" :key="item.id">
 					<el-button @click="goTo" @mouseenter.native="textChange(item)" @mouseleave.native="textChange(item)">
 						<el-card :body-style="{ padding: '10px' }" shadow="hover">
-							<img src="../../../assets/petSupplies.jpg" class="image">
+							<img src="../../../assets/petSupplies.jpg" class="image" alt="img">
 							<div style="padding: 14px;">
 								<span style="color:#000;" v-text="item.title"></span>
 								<div class="bottom clearfix">

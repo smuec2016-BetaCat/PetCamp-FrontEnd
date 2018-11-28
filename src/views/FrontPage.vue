@@ -9,27 +9,27 @@
 </template>
 
 <script>
-import Access from "../components/Access/Access";
-import FrontPageNav from "../components/FrontPage/FrontPageNav";
-import FrontPageCarouselMap from "../components/FrontPage/FrontPageCarouselMap";
-import FrontPageDisplayBoard from "../components/FrontPage/FrontPageDisplayBoard";
-import FrontPageFooter from "../components/FrontPage/FrontPageFooter";
-import FrontPageFeatures from "../components/FrontPage/FrontPageFeatures";
-const axios = require("axios")
+import FrontPageNav from "../components/FrontPage/FrontPageNav"
+import FrontPageCarouselMap from "../components/FrontPage/FrontPageCarouselMap"
+import FrontPageDisplayBoard from "../components/FrontPage/FrontPageDisplayBoard"
+import FrontPageFooter from "../components/FrontPage/FrontPageFooter"
+import FrontPageFeatures from "../components/FrontPage/FrontPageFeatures"
+import axios from "axios"
+
 export default {
 	name: "FrontPage",
     components: {
-        FrontPageFeatures, FrontPageFooter, FrontPageDisplayBoard, FrontPageCarouselMap, FrontPageNav, Access},
+        FrontPageFeatures, FrontPageFooter, FrontPageDisplayBoard, FrontPageCarouselMap, FrontPageNav},
     data(){
         return {
-            insert_time:null
+            insertTime:null
         }
     },
 	methods:{
 		onLoad:function () {
             axios.post("http://itsyuekao.com:5000/api/v0/counter", { })
                 .then(response=> {
-                    this.insert_time = response.data.insert_time
+                    this.insertTime = response.data.insertTime
                 })
                 .catch(error=> {
                     console.log(error)

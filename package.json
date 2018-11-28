@@ -1,5 +1,5 @@
 {
-  "name": "pethome",
+  "name": "petcamp",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -34,7 +34,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

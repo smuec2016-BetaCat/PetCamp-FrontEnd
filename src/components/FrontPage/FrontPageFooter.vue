@@ -34,7 +34,7 @@ export default {
                 {id:8,msg:"爱宠讨论社区"},
                 {id:9,msg:"友情链接"}
 				],
-			copyWrite:"Copyright © 2018 Group BataCat. All rights reserved."
+			copyWrite:"Copyright © 2018 Group BetaCat. All rights reserved."
         }
     }
 }

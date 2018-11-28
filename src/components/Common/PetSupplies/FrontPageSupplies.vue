@@ -9,7 +9,7 @@
 				<el-col :md={span:8} :sm={span:24} v-for="i in 3" :key="i">
 					<el-button style="margin: 5px">
 						<el-card :body-style="{ padding: '0px' }" shadow="hover" style="position: relative;">
-							<img src="../../../assets/banner1.jpg" class="image">
+							<img src="../../../assets/banner1.jpg" class="image" alt="img">
 						</el-card>
 					</el-button>
 				</el-col>

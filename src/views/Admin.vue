@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
     <div>
         <el-container>
@@ -18,11 +19,10 @@
 
 <script>
     import adminHeader from "../components/Admin/Common/AdminHeader"
-    import AdminSidebar from "../components/Admin/Common/AdminSidebar";
-    import AdminInfo from "../components/Admin/Home/AdminInfo";
+    import AdminSidebar from "../components/Admin/Common/AdminSidebar"
     export default {
         name: "Admin",
-        components: {AdminInfo, AdminSidebar, adminHeader},
+        components: {AdminSidebar, adminHeader},
         data() {
             return {
                 isCollapse: true

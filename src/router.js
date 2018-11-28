@@ -5,9 +5,8 @@ import FrontPage from './views/FrontPage'
 import AccessDetails from './components/Access/AccessDetails'
 import AccessRecording from './components/Access/AccessRecording'
 import FrontPageNav from "./components/FrontPage/FrontPageNav"
-import Admin from "./views/Admin";
-// import AdminInfo from "./components/Admin/Home/AdminInfo";
-import AdminHome from "./views/AdminPages/AdminHome";
+import Admin from "./views/Admin"
+import AdminHome from "./views/AdminPages/AdminHome"
 import PurchasePage from './views/PurchasePage'
 
 

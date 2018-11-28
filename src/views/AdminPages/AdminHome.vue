@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
     <div class="admin-home">
         <el-row :gutter="20">
@@ -32,8 +33,8 @@
 </template>
 
 <script>
-    import NameCard from "../../components/Admin/Home/NameCard";
-    import ColorfulTag from "../../components/Admin/Home/ColorfulTag";
+    import NameCard from "../../components/Admin/Home/NameCard"
+    import ColorfulTag from "../../components/Admin/Home/ColorfulTag"
     import axios from "axios"
     export default {
         name: "AdminHome",

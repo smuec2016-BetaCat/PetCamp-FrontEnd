@@ -7,9 +7,10 @@
 </template>
 
 <script>
-    import GroupInfo from "../Common/GroupInfo";
-    import AdoptionInfo from "../Common/AdoptionInfo";
-    import FrontPagePetSupplies from "./FrontPagePetSupplies";
+    import GroupInfo from "../Common/GroupInfo"
+    import AdoptionInfo from "../Common/AdoptionInfo"
+    import FrontPagePetSupplies from "./FrontPagePetSupplies"
+
     export default {
         name: "FrontPageDisplayBoard",
         components: {FrontPagePetSupplies, AdoptionInfo, GroupInfo}
