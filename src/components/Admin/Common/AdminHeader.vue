@@ -1,7 +1,8 @@
 <template>
     <div class="header">
         <!--TODO(Ron): Add logo-->
-        <div class="logo">PetCamp 控制台</div>
+        <div class="logo"><i class="el-icon-menu"></i></div>
+        <div class="title">营地控制中心</div>
         <div class="header-right">
             <div class="header-user-con">
                 <!-- message center -->
@@ -65,8 +66,14 @@
     }
     .header .logo{
         float: left;
-        width:250px;
         line-height: 70px;
+        text-align: left;
+        padding-left: 21px;
+    }
+    .header .title {
+        float: left;
+        line-height: 70px;
+        margin-left: 20px;
     }
     .header-right{
         float: right;

@@ -59,10 +59,12 @@
         color: #999;
         line-height: 25px;
         text-align: left;
+        height: 25px;
+        overflow: hidden;
     }
 
     .user-info-list span {
-        margin-left: 70px;
+        float: right;
     }
 
     .name-card {

@@ -10,20 +10,20 @@
                     <el-col :span="8">
                         <colorful-tag color="rgb(45, 140, 240)">
                             <template slot="value">{{requestCount}}</template>
-                            <template slot="title">浏览量</template>
+                            <template slot="title">我的点击量</template>
                         </colorful-tag>
                     </el-col>
                     <!--TODO(Ron): add content-->
                     <el-col :span="8">
                         <colorful-tag color="rgb(100, 213, 114)">
                             <template slot="value">0</template>
-                            <template slot="title">?</template>
+                            <template slot="title">寄养订单总数</template>
                         </colorful-tag>
                     </el-col>
                     <el-col :span="8">
                         <colorful-tag color="rgb(242, 94, 67)">
                             <template slot="value">0</template>
-                            <template slot="title">?</template>
+                            <template slot="title">领养订单总数</template>
                         </colorful-tag>
                     </el-col>
                 </el-row>
@@ -55,10 +55,12 @@
 
 <style scoped>
     .admin-home {
+        position: absolute;
         padding: 10px;
-        width: 100%;
-        height: 100%;
-        background-color: #F0F0F0;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
     }
 
     .colored-tags {
