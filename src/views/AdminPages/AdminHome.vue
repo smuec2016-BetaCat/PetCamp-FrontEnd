@@ -33,24 +33,24 @@
 </template>
 
 <script>
-    import NameCard from "../../components/Admin/Home/NameCard"
-    import ColorfulTag from "../../components/Admin/Home/ColorfulTag"
-    import axios from "axios"
-    export default {
-        name: "AdminHome",
-        components: {ColorfulTag, NameCard},
-        data() {
-            return {
-                requestCount: 0
-            }
-        },
-        mounted() {
-            axios.get("http://itsyuekao.com:5000/api/v0/counter")
-                .then(resp => {
-                    this.requestCount = resp.data.count
-                })
+import NameCard from "../../components/Admin/Home/NameCard"
+import ColorfulTag from "../../components/Admin/Home/ColorfulTag"
+import axios from "axios"
+export default {
+    name: "AdminHome",
+    components: {ColorfulTag, NameCard},
+    data() {
+        return {
+            requestCount: 0
         }
+    },
+    mounted() {
+        axios.get("http://itsyuekao.com:5000/api/v0/counter")
+            .then(resp => {
+                this.requestCount = resp.data.count
+            })
     }
+}
 </script>
 
 <style scoped>
