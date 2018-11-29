@@ -4,7 +4,6 @@ import FrontPage from './views/FrontPage'
 import Register from "./views/Register"
 import Login from "./views/Login"
 import CommodityBrowsing from './views/CommodityBrowsing'
-
 import Access from './components/Access/Access'
 import AccessDetails from './components/Access/AccessDetails'
 import AccessRecording from './components/Access/AccessRecording'
@@ -19,6 +18,7 @@ import CommodityBrowsingList3 from "@/components/Common/CommodityBrowsingList3";
 import Admin from "./views/Admin"
 import AdminHome from "./views/AdminPages/AdminHome"
 import PurchasePage from './views/PurchasePage'
+import ShoppingList from "./views/ShoppingList";
 
 
 Vue.use(Router)
@@ -30,6 +30,11 @@ routes: [
         name: 'FrontPage',
         component: FrontPage
     },
+	{
+		path: '/ShoppingList',
+		name: 'ShoppingList',
+		component: ShoppingList
+	},
 	{
 		path: '/Login',
 		name: 'Login',
