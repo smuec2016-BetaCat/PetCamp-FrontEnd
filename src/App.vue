@@ -16,4 +16,20 @@
 body{
     margin:0
 }
+.el-form-item__label {
+  text-align: left;
+  font-weight: 600;
+}
+.el-upload-dragger{
+  width: 100%;
+}
+.el-upload{
+  width: 100%;
+}
+.el-dialog__title {
+  font-size: 25px;
+}
+.el-dialog {
+
+}
 </style>

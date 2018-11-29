@@ -35,6 +35,7 @@ routes: [
 		name: 'Login',
 		component: Login,
 	},
+
 	{
 		path: '/CommodityBrowsing',
 		name: 'CommodityBrowsing',
