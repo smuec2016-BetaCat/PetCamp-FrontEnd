@@ -6,13 +6,13 @@
 			</el-col>
 			<el-col style="text-align: left"  v-for="(item,index) in shoppingCartList" :key="item.shopId">
 				<el-col class="shop">
-					<el-checkbox v-model="item.shopChecked" @change.native="checking(index)"></el-checkbox>
+					<el-checkbox v-model="item.shopChecked" @change.native="bothCheck(index)"></el-checkbox>
 					<span style="margin-left: 5px" v-text="item.name"></span>
 				</el-col>
 				<el-col style="padding: 5px" v-for="i in item.shoppingList" :key="i.id">
 					<el-col style="padding: 10px;border-bottom: #aaa dotted 1px">
 						<el-col :span="1">
-							<el-checkbox v-model="i.checked" @click.native="checkItems(index)"></el-checkbox>
+							<el-checkbox v-model="i.checked" @change.native="checkItems(index)"></el-checkbox>
 						</el-col>
 						<el-col :span="2">
 							<img src="../../assets/cat.jpg" alt="">
@@ -147,10 +147,8 @@ export default {
 			else {
 				myChecking.shopChecked = false
 			}
-			this.AllChecked()
 		},
 		AllChecked(){
-			alert("hello")
 			let checkNumber = 0
 			let self = this.shoppingCartList
 			self.forEach(value=>{
@@ -165,6 +163,10 @@ export default {
 			else {
 				this.allChecked = false
 			}
+		},
+		bothCheck(index){
+			this.checking(index)
+			this.AllChecked()
 		}
 	}
 }
