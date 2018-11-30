@@ -38,20 +38,24 @@
 						<h5>领宠方式</h5>
 					</el-col>
 					<el-col>
-						<el-col :span="4">
-							<el-button class="consignee-item"><span>送宠到家</span><b></b></el-button>
+						<el-col :span="5">
+							<el-button v-bind:class="{'consignee-item' : Active,'consignee-item1':true}" @click.native="changeClass">
+								<span>送宠到家</span><b v-if="Active"></b>
+							</el-button>
 						</el-col>
 						<el-col :span="4">
-							<el-button class="consignee-item"><span>去店自提</span><b></b></el-button>
+							<el-button v-bind:class="{'consignee-item' : !Active,'consignee-item1':true}" @click.native="changeClass">
+								<span>去店自提</span><b v-if="!Active"></b>
+							</el-button>
 						</el-col>
 					</el-col>
 				</el-col>
 				<!--订单详情-->
-				<el-col class="bottomBoder">
+				<el-col class="bottomBoder" id="orderList">
 					<el-col>
 						<h5>订单详情</h5>
 					</el-col>
-					<el-col style="background-color:#f2f7ff;padding: 5px 15px;margin-bottom: 10px" v-for="(i,index) in items" :key="i.id">
+					<el-col style="background-color:#f2f7ff;padding: 5px 15px;margin-bottom: 10px" v-for="i in items" :key="i.id">
 						<el-col class="bottomBoder" style="padding-bottom: 0">
 							<el-col :span="3" style="padding: 5px">
 								<span>店铺/机构</span>
@@ -70,6 +74,9 @@
 							</el-col>
 							<el-col :span="3" style="padding: 5px">
 								<span>总价</span>
+							</el-col>
+							<el-col :span="1" style="padding: 5px">
+								<el-switch v-model="i.details" active-color="#13ce66"></el-switch>
 							</el-col>
 						</el-col>
 						<el-col>
@@ -93,45 +100,47 @@
 							</el-col>
 						</el-col>
 						<el-col style="padding: 5px">
-							<router-link to="" class="details" @click.native="showDetails(index)">宠物具体信息</router-link>
-							<el-col v-if="i.details">
-								<el-col :span="4">
-									<span class="block">宠物昵称：</span>
-									<span class="block">宠物性别：</span>
-									<span class="block">宠物类型：</span>
-									<span class="block">宠物年龄：</span>
-									<span class="block">宠物体重：</span>
-									<span class="block">是否绝育：</span>
+							<transition name="slide-fade">
+								<el-col v-if="i.details" style="border-top: 1px solid #e6e6e6;padding-top: 5px">
+									<el-col :span="4">
+										<span class="block">宠物昵称：</span>
+										<span class="block">宠物性别：</span>
+										<span class="block">宠物类型：</span>
+										<span class="block">宠物年龄：</span>
+										<span class="block">宠物体重：</span>
+										<span class="block">是否绝育：</span>
+									</el-col>
+									<el-col :span="4">
+										<span class="block">犇犇</span>
+										<span class="block">公</span>
+										<span class="block">小型犬</span>
+										<span class="block">2岁</span>
+										<span class="block">20 KG</span>
+										<span class="block">已绝育</span>
+									</el-col>
+									<el-col :span="16">
+										<el-col :span="9"><span class="block">TA是不是调皮鬼？</span></el-col>
+										<el-col :span="15"><span class="block">生性乖巧</span></el-col>
+									</el-col>
+									<el-col :span="16">
+										<el-col :span="9"><span class="block">TA胆子特别小吗？</span></el-col>
+										<el-col :span="15"><span class="block">胆子不是特别小，相处一段时间就好了</span></el-col>
+									</el-col>
+									<el-col :span="16">
+										<el-col :span="9"><span class="block">TA与其他伙伴好相处吗？</span></el-col>
+										<el-col :span="15"><span class="block">与小伙伴能够友好相处</span></el-col>
+									</el-col>
+									<el-col :span="16">
+										<el-col :span="9"><span class="block">需要寄养的时间</span></el-col>
+										<el-col :span="15"><span class="block">2018年11月30日-2018年11月30日</span></el-col>
+									</el-col>
+									<el-col :span="16">
+										<el-col :span="9"><span class="block">宠物简介：</span></el-col>
+										<el-col :span="15"><span class="block">我是一直狗我是一直狗我是一直狗我是一直狗我是一直狗我是一直狗</span></el-col>
+									</el-col>
 								</el-col>
-								<el-col :span="4">
-									<span class="block">犇犇</span>
-									<span class="block">公</span>
-									<span class="block">小型犬</span>
-									<span class="block">2岁</span>
-									<span class="block">20 KG</span>
-									<span class="block">已绝育</span>
-								</el-col>
-								<el-col :span="16">
-									<el-col :span="9"><span class="block">TA是不是调皮鬼？</span></el-col>
-									<el-col :span="15"><span class="block">生性乖巧</span></el-col>
-								</el-col>
-								<el-col :span="16">
-									<el-col :span="9"><span class="block">TA胆子特别小吗？</span></el-col>
-									<el-col :span="15"><span class="block">胆子不是特别小，相处一段时间就好了</span></el-col>
-								</el-col>
-								<el-col :span="16">
-									<el-col :span="9"><span class="block">TA与其他伙伴好相处吗？</span></el-col>
-									<el-col :span="15"><span class="block">与小伙伴能够友好相处</span></el-col>
-								</el-col>
-								<el-col :span="16">
-									<el-col :span="9"><span class="block">需要寄养的时间</span></el-col>
-									<el-col :span="15"><span class="block">2018年11月30日-2018年11月30日</span></el-col>
-								</el-col>
-								<el-col :span="16">
-									<el-col :span="9"><span class="block">宠物简介：</span></el-col>
-									<el-col :span="15"><span class="block">我是一直狗我是一直狗我是一直狗我是一直狗我是一直狗我是一直狗</span></el-col>
-								</el-col>
-							</el-col>
+							</transition>
+
 						</el-col>
 					</el-col>
 				</el-col>
@@ -182,12 +191,13 @@ export default {
 				{id:1,details:false},
 				{id:2,details:false},
 				{id:3,details:false},
-			]
+			],
+			Active:false
 		}
 	},
 	methods:{
-		showDetails(i){
-			this.items[i].details = !this.items[i].details
+		changeClass(){
+			this.Active = !this.Active
 		}
 	}
 }
@@ -203,12 +213,21 @@ img{
 	height: 100%;
 }
 .checkout-steps{
-	background-color: #fff;
 	padding: 0 20px;
-	border: 1px solid #f0f0f0;
+	border: 2px solid #e6e6e6;
+	background-color: #fff;
+	border-radius: 10px;
 }
 .consignee-item{
 	border: 2px solid #e4393c;
+	padding: 4px 10px;
+	min-width: 120px;
+	min-height: 30px;
+	text-align: center;
+	position: relative;
+}
+/*这个css属性是必须的*/
+.consignee-item1{
 	padding: 4px 10px;
 	min-width: 120px;
 	min-height: 30px;
@@ -232,15 +251,20 @@ b {
 	border-bottom: 1px solid #e6e6e6;
 	padding-bottom: 20px;
 }
-.details{
-	margin: 5px 0;
-	text-decoration: none;
-	display: block;
-	font-size: 0.67em;
-	font-weight: bold;
-	color: #2c3e50;
+#orderList span{
+	font-size: 0.95em;
+	color: #666;;
 }
-.details:hover{
-	color: green;
+/*动画*/
+.slide-fade-enter-active {
+	transition: all .4s ease-in;
+}
+.slide-fade-leave-active {
+	transition: all .3s ease;
+}
+.slide-fade-enter, .slide-fade-leave-to
+	/* .slide-fade-leave-active for below version 2.1.8 */ {
+	transform: translateY(-10px);
+	opacity: 0;
 }
 </style>
