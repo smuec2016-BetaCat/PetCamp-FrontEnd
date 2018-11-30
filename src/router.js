@@ -20,6 +20,7 @@ import AdminHome from "./views/AdminPages/AdminHome"
 import PurchasePage from './views/PurchasePage'
 import AdminTrustOrder from "./views/AdminPages/AdminTrustOrder"
 import ShoppingList from "./views/ShoppingList";
+import Order from "./views/Order";
 
 
 Vue.use(Router)
@@ -33,15 +34,19 @@ export default new Router({
         },
         {
             path: '/ShoppingList',
-		name: 'ShoppingList',
-		component: ShoppingList
-	},
-	{
-		path: '/Login',
-		name: 'Login',
-		component: Login,
-	},
-
+            name: 'ShoppingList',
+            component: ShoppingList
+        },
+        {
+            path: '/Login',
+            name: 'Login',
+            component: Login,
+        },
+        {
+            path: '/Order',
+            name: 'Order',
+            component: Order,
+        },
         {
             path: '/CommodityBrowsing',
             name: 'CommodityBrowsing',

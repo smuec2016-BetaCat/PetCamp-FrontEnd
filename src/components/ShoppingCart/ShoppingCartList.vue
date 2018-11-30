@@ -46,7 +46,7 @@
 					<el-checkbox style="margin-left: 5px" v-model="allChecked" @click.native="checkAll">全选</el-checkbox>
 				</el-col>
 				<el-col :span="2" style="float: right">
-					<el-button style="height: 100%">结算</el-button>
+					<el-button style="height: 100%" @click.native="pay">结算</el-button>
 				</el-col>
 				<el-col :span="4" style="float: right">
 					<span>合计：</span>
@@ -200,6 +200,9 @@ export default {
 			this.dialogVisible = false
 			//ajax请求删除后端数据
 			// axios.post()
+		},
+		pay(){
+			this.$router.push({path:`/Order`})
 		}
 	},
 	computed:{
