@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import OrderTable from "../../components/Admin/Trust/OrderTable";
+    import OrderTable from "../../components/Admin/Trust/TrustOrderTable";
     export default {
         name: "AdminTrustOrder",
         components: {OrderTable}
