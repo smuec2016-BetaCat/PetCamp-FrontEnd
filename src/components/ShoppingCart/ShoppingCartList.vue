@@ -9,7 +9,7 @@
 					<el-checkbox v-model="item.shopChecked" @change.native="bothCheck(index)"></el-checkbox>
 					<span style="margin-left: 5px" v-text="item.name"></span>
 				</el-col>
-				<el-col style="padding: 5px" v-for="i in item.shoppingList" :key="i.id">
+				<el-col style="padding: 5px" v-for="(i,ind) in item.shoppingList" :key="i.id">
 					<el-col style="padding: 10px;border-bottom: #aaa dotted 1px">
 						<el-col :span="1">
 							<el-checkbox v-model="i.checked" @change.native="checkItems(index)"></el-checkbox>
@@ -35,7 +35,7 @@
 							<span v-text="`￥${(i.price*i.num).toFixed(2)}`"></span>
 						</el-col>
 						<el-col :span="2" style="padding: 5px">
-							<router-link to="">删除</router-link>
+							<router-link to="" @click.native="deleteItem(index,ind)">删除</router-link>
 						</el-col>
 					</el-col>
 				</el-col>
@@ -43,18 +43,27 @@
 			<!--底部-->
 			<el-col id="footer">
 				<el-col :span="2">
-					<el-checkbox>全选</el-checkbox>
+					<el-checkbox style="margin-left: 5px" v-model="allChecked" @click.native="checkAll">全选</el-checkbox>
 				</el-col>
 				<el-col :span="2" style="float: right">
 					<el-button style="height: 100%">结算</el-button>
 				</el-col>
 				<el-col :span="4" style="float: right">
 					<span>合计：</span>
-					<strong style="font-size: 22px">0.00</strong>
+					<strong style="font-size: 22px">{{totalPrice.toFixed(2)}}</strong>
 				</el-col>
 				<el-col :span="4" style="float: right">
-					<span>已选商品 <span style="font-size: 22px">0</span>件</span>
+					<span>已选商品 <span style="font-size: 22px">{{totalItem}}</span>件</span>
 				</el-col>
+			</el-col>
+			<el-col>
+				<el-dialog title="删除宝贝？" :visible.sync="dialogVisible" width="30%">
+					<span>您确定要删除该宝贝？</span>
+					<span slot="footer" class="dialog-footer">
+						<el-button @click="deleteI">确定删除</el-button>
+						<el-button type="primary" @click="dialogVisible = false">取消</el-button>
+                     </span>
+				</el-dialog>
 			</el-col>
 		</el-col>
 	</el-row>
@@ -67,6 +76,9 @@ export default {
 		return{
 			num:1,
 			allChecked:true,
+			dialogVisible: false,
+			cartList:0,
+			shopList:0,
 			shoppingCartList:[
 				{
 					shopId:1,
@@ -75,7 +87,8 @@ export default {
 					shoppingList:[
 						{id:1,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:32.80,num:1},
 						{id:2,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:55.80,num:1},
-						{id:3,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:62.48,num:1}
+						{id:3,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:62.48,num:1},
+						{id:4,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:62.48,num:1}
 					]
 				},
 				{
@@ -84,8 +97,7 @@ export default {
 					shopChecked:true,
 					shoppingList:[
 						{id:1,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:32.80,num:1},
-						{id:2,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:55.80,num:1},
-						{id:3,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:62.48,num:1}
+						{id:2,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:55.80,num:1}
 					]
 				},
 				{
@@ -143,9 +155,19 @@ export default {
 			})
 			if(checkLength === myChecking.shoppingList.length){
 				myChecking.shopChecked = true
+				let checkNumber = 0
+				this.shoppingCartList.forEach(value => {
+					if(value.shopChecked){
+						checkNumber += 1
+					}
+				})
+				if (checkNumber === this.shoppingCartList.length){
+					this.allChecked = true
+				}
 			}
 			else {
 				myChecking.shopChecked = false
+				this.allChecked = false
 			}
 		},
 		AllChecked(){
@@ -167,6 +189,41 @@ export default {
 		bothCheck(index){
 			this.checking(index)
 			this.AllChecked()
+		},
+		deleteItem(index,ind){
+			this.dialogVisible = true
+			this.cartList = index
+			this.shopList = ind
+		},
+		deleteI(){
+			this.shoppingCartList[this.cartList].shoppingList.splice(this.shopList,1)
+			this.dialogVisible = false
+			//ajax请求删除后端数据
+			// axios.post()
+		}
+	},
+	computed:{
+		totalPrice(){
+			let sum = 0
+			this.shoppingCartList.forEach(function (value) {
+				value.shoppingList.forEach(function (value) {
+					if (value.checked){
+						sum += value.price*value.num
+					}
+				})
+			})
+			return sum
+		},
+		totalItem(){
+			let sum = 0
+			this.shoppingCartList.forEach(function (value) {
+				value.shoppingList.forEach(function (value) {
+					if (value.checked){
+						sum += 1
+					}
+				})
+			})
+			return sum
 		}
 	}
 }
