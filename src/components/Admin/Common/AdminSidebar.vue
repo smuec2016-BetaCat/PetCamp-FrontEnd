@@ -19,21 +19,25 @@
                     <i class="el-icon-tickets"></i>
                     <span slot="title">宠物寄养</span>
                 </template>
-                <el-menu-item index="trusteeship-order" @click="routerPush('/admin/trusteeship-order')">订单管理</el-menu-item>
-                <el-menu-item index="trusteeship-editor">条件编辑</el-menu-item>
+                <el-menu-item-group>
+                    <span slot="title">宠物寄养</span>
+                    <el-menu-item index="trusteeship-order" @click="routerPush('/admin/trusteeship-order')">订单管理</el-menu-item>
+                    <el-menu-item index="trusteeship-editor">条件编辑</el-menu-item>
+                </el-menu-item-group>
             </el-submenu>
-            <el-menu-item index="2">
+            <el-submenu index="adoption">
+                <template slot="title">
+                    <i class="el-icon-tickets"></i>
+                    <span slot="title">宠物领养</span>
+                </template>
+                <el-menu-item index="adoption-order" @click="routerPush('/admin/adoption-order')">订单管理</el-menu-item>
+                <el-menu-item index="adoption-editor">宠物名单</el-menu-item>
+            </el-submenu>
+            <el-menu-item index="image-management" @click="routerPush('/admin/image-management')">
                 <i class="el-icon-menu"></i>
-                <span slot="title">导航二</span>
+                <span slot="title">图片管理</span>
             </el-menu-item>
-            <el-menu-item index="3" disabled>
-                <i class="el-icon-document"></i>
-                <span slot="title">导航三</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">导航四</span>
-            </el-menu-item>
+
             <el-button class="collapse-toggle" type="text" @click="toggleCollapse">
                 <i class="el-icon-arrow-right" v-if="isCollapse"></i>
                 <i class="el-icon-arrow-left" v-else></i>

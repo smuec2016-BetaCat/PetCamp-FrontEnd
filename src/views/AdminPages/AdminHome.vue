@@ -9,7 +9,8 @@
                 <el-row :gutter="20" class="colored-tags">
                     <el-col :span="8">
                         <colorful-tag color="rgb(45, 140, 240)">
-                            <template slot="value">{{requestCount}}</template>
+                            <template slot="value" v-if="requestCount === -1"><i class="el-icon-loading"></i></template>
+                            <template slot="value" v-else>{{requestCount}}</template>
                             <template slot="title">我的点击量</template>
                         </colorful-tag>
                     </el-col>
@@ -41,7 +42,7 @@
         components: {ColorfulTag, NameCard},
         data() {
             return {
-                requestCount: 0
+                requestCount: -1
             }
         },
         mounted() {
