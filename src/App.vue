@@ -29,7 +29,10 @@ body{
 .el-dialog__title {
   font-size: 25px;
 }
-.el-dialog {
-
+.el-input-number--mini .el-input__inner{
+  padding: 0;
+}
+.el-input-number--mini .el-input-number__decrease, .el-input-number--mini .el-input-number__increase{
+  width: 20px;
 }
 </style>

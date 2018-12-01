@@ -2,7 +2,7 @@
 	<el-row>
 		<el-col :span="18" :offset="3" style="text-align: left">
 			<el-col>
-				<h3>填写订单信息</h3>
+				<h3>填写并核对订单信息</h3>
 			</el-col>
 			<el-col class="checkout-steps">
 				<!--用户地址信息-->
