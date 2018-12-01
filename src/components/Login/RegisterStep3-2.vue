@@ -4,29 +4,29 @@
 			<el-input v-model="form.name"></el-input>
 		</el-form-item>
 		<el-form-item label="密码" prop="pass">
-			<el-input type="password"></el-input>
+			<el-input type="password"  v-model="form.password"></el-input>
 		</el-form-item>
 		<el-form-item label="确认密码" prop="checkPass">
-			<el-input type="password"></el-input>
+			<el-input type="password"  v-model="form.password"></el-input>
 		</el-form-item>
 		<el-form-item label="邮箱" prop="checkPass">
-			<el-input></el-input>
+			<el-input  v-model="form.email"></el-input>
 		</el-form-item>
 		<el-form-item label="城市" prop="checkPass">
-			<el-select v-model="value" placeholder="Select" style="width: 100%">
-				<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-			</el-select>
+			<el-input  v-model="form.city"></el-input>
 		</el-form-item>
 		<el-form-item label="地址" prop="checkPass">
-			<el-input></el-input>
+			<el-input  v-model="form.address"></el-input>
 		</el-form-item>
 		<el-form-item label="寄养种类" prop="checkPass">
 			<el-checkbox v-model="form.value1">可寄养的猫猫容量 ：</el-checkbox>
-			<el-input-number size="mini" v-model="form.num1" :min="0" :disabled="!form.value1"></el-input-number>
+			<el-input-number size="mini" v-model="form.num1" :min="1" :disabled="!form.value1"></el-input-number>
 			<el-checkbox v-model="form.value2">可寄养的狗狗容量 ：</el-checkbox>
-			<el-input-number size="mini" v-model="form.num2" :min="0" :disabled="!form.value2"></el-input-number>
+			<el-input-number size="mini" v-model="form.num2" :min="1" :disabled="!form.value2"></el-input-number>
 			<el-checkbox v-model="form.value3">可寄养的乌龟容量 ：</el-checkbox>
-			<el-input-number size="mini" v-model="form.num3" :min="0" :disabled="!form.value3"></el-input-number>
+			<el-input-number size="mini" v-model="form.num3" :min="1" :disabled="!form.value3"></el-input-number>
+			<el-checkbox v-model="form.value4">可寄养的仓鼠容量 ：</el-checkbox>
+			<el-input-number size="mini" v-model="form.num4" :min="1" :disabled="!form.value4"></el-input-number>
 		</el-form-item>
 		<el-form-item label="详情">
 			<el-input type="textarea" v-model="form.desc"></el-input>
@@ -41,38 +41,24 @@ export default {
 	data (){
 		return {
 			form: {
-				name: '',
-				region: '',
-				date1: '',
-				date2: '',
-				delivery: false,
-				type: [],
-				resource: '',
+				name:"",
+				password1:"",
+				password2:"",
+				email:"",
+				city:"",
+				address:"",
 				desc: '',
 				num1:0,
 				num2:0,
 				num3:0,
+				num4:0,
 				value1:false,
 				value2:false,
-				value3:false
+				value3:false,
+				value4:false
 			},
 			active:4,
-			options: [{
-				value: 'Option1',
-				label: 'Option1'
-			}, {
-				value: 'Option2',
-				label: 'Option2'
-			}, {
-				value: 'Option3',
-				label: 'Option3'
-			}, {
-				value: 'Option4',
-				label: 'Option4'
-			}, {
-				value: 'Option5',
-				label: 'Option5'
-			}],
+
 			value: ''
 		}
 	},
