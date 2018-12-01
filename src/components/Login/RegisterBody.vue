@@ -5,6 +5,7 @@
 				<el-col id="step">
 					<el-steps :space="200" :active="active" finish-status="success" align-center>
 						<el-step title="验证手机号"></el-step>
+						<el-step title="选择用户类别"></el-step>
 						<el-step title="填写账号信息"></el-step>
 						<el-step title="注册成功"></el-step>
 					</el-steps>

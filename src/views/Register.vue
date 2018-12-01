@@ -1,9 +1,8 @@
 <template>
-	<div :style="formStyle">
+	<div style="background-color: #f0f3ef;padding-bottom: 10%">
 		<RegisterNav></RegisterNav>
 		<RegisterBody></RegisterBody>
 	</div>
-
 </template>
 
 <script>
@@ -15,14 +14,6 @@ export default {
 	data (){
 		return {
 
-		}
-	},
-	computed: {
-		formStyle: () => {
-			let screenHeight = document.body.clientHeight + 105
-			return {
-				height: screenHeight + "px"
-			}
 		}
 	}
 }

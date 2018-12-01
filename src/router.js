@@ -11,7 +11,9 @@ import ProductDescriptionDetails from './components/Common/ProductDsecription/Pr
 import ProductComments from './components/Common/ProductDsecription/ProductComments'
 import RegisterStep1 from "./components/Login/RegisterStep1"
 import RegisterStep2 from "./components/Login/RegisterStep2"
-import RegisterStep3 from "./components/Login/RegisterStep3"
+import RegisterStep3a from "./components/Login/RegisterStep3-1"
+import RegisterStep3b from "./components/Login/RegisterStep3-2"
+import RegisterStep4 from "./components/Login/RegisterStep4"
 import CommodityBrowsingList1 from "@/components/Common/CommodityBrowsingList1"
 import CommodityBrowsingList2 from "@/components/Common/CommodityBrowsingList2"
 import CommodityBrowsingList3 from "@/components/Common/CommodityBrowsingList3"
@@ -84,9 +86,19 @@ export default new Router({
                     name: RegisterStep2,
                 },
                 {
-                    path: 'RegisterStep3',
-                    component: RegisterStep3,
-                    name: RegisterStep3,
+                    path: 'RegisterStep3a',
+                    component: RegisterStep3a,
+                    name: RegisterStep3a,
+                },
+				{
+                    path: 'RegisterStep3b',
+                    component: RegisterStep3b,
+                    name: RegisterStep3b,
+				},
+                {
+                    path: 'RegisterStep4',
+                    component: RegisterStep4,
+                    name: RegisterStep4,
                 }
             ]
         },
