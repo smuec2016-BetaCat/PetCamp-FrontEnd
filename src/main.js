@@ -5,9 +5,11 @@ import 'element-ui/lib/theme-chalk/display.css'
 import App from './App.vue'
 import router from './router'
 import axios from "axios"
+import Vuelidate from 'vuelidate'
 axios.defaults.baseURL = "http://itsyuekao.com:5000"
 axios.defaults.headers["Content-Type"] = "application/x-www-form-urlencoded"
 
+Vue.use(Vuelidate)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 

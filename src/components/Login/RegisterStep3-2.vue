@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
 	name: "RegisterStep3-2",
 	data (){
@@ -58,14 +59,28 @@ export default {
 				value4:false
 			},
 			active:4,
-
+			status:"",
 			value: ''
 		}
 	},
 	methods:{
 		goto(){
-			this.$emit("listen",this.active)
-			this.$router.push({path:"/Register/RegisterStep4"})
+			axios.post("/api/v0/register", {
+				username:this.name,
+				password:this.password1
+			})
+				.then(response=> {
+					this.status = response.data.msg
+					this.$message({
+						message: 'Congrats, this is a success message.',
+						type: 'success'
+					})
+					this.$router.push({path:"/Register/RegisterStep4"})
+					this.$emit("listen",this.active)
+				})
+				.catch(error=> {
+					this.$message.error(error);
+				})
 		}
 	}
 }
