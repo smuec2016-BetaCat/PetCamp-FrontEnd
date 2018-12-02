@@ -23,7 +23,7 @@ export default {
 	bottom: -22px;
 }
 .errorItems{
-	margin-bottom: 5%;
+	margin-bottom: 15px;
 	position: relative;
 }
 </style>

@@ -1,25 +1,58 @@
 <template>
 	<el-form ref="form" :model="form" label-width="70px" style="margin-top: 5%">
-		<el-form-item label="用户名">
-			<el-input v-model="form.name"></el-input>
-		</el-form-item>
-		<el-form-item label="密码" prop="pass">
-			<el-input v-model="form.password1" type="password"></el-input>
-		</el-form-item>
-		<el-form-item label="确认密码" prop="checkPass">
-			<el-input v-model="form.password2" type="password"></el-input>
-		</el-form-item>
-		<el-form-item label="邮箱" prop="checkPass">
-			<el-input v-model="form.email"></el-input>
-		</el-form-item>
+		<error>
+			<template slot="inputGroups">
+				<el-form-item label="用户名">
+					<el-input v-model.trim="$v.form.name.$model"></el-input>
+				</el-form-item>
+			</template>
+			<template slot="errors">
+				<div class="error" v-if="!$v.form.name.required && $v.form.name.$anyDirty">您必须填写用户名</div>
+				<div class="error" v-if="!$v.form.name.minLength">账号至少{{ $v.form.name.$params.minLength.min }}位</div>
+			</template>
+		</error>
+		<error>
+			<template slot="inputGroups">
+				<el-form-item label="密码" prop="pass">
+					<el-input v-model.trim="$v.form.password1.$model" type="password"></el-input>
+				</el-form-item>
+			</template>
+			<template slot="errors">
+				<div class="error" v-if="!$v.form.password1.required && $v.form.password1.$anyDirty">您必须填写密码</div>
+			</template>
+		</error>
+		<error>
+			<template slot="inputGroups">
+				<el-form-item label="确认密码" prop="checkPass">
+					<el-input v-model="$v.form.password2.$model" type="password"></el-input>
+				</el-form-item>
+			</template>
+			<template slot="errors">
+				<div class="error"  v-if="!$v.form.password2.sameAsPassword && $v.form.password2.$anyDirty">密码不一致</div>
+			</template>
+		</error>
+		<error>
+			<template slot="inputGroups">
+				<el-form-item label="邮箱" prop="checkPass">
+					<el-input v-model="$v.form.email.$model"></el-input>
+				</el-form-item>
+			</template>
+			<template slot="errors">
+				<div class="error" v-if="!$v.form.email.required && $v.form.email.$anyDirty">您必须填写邮箱</div>
+				<div class="error" v-if="!$v.form.email.email">您必须填写正确的邮箱地址</div>
+			</template>
+		</error>
 		<el-button type="danger" style="width: 100%" @click="goto">立即注册</el-button>
 	</el-form>
 </template>
 
 <script>
 import axios from "axios"
+import Error from "@/components/Login/error";
+import { required, minLength, email, sameAs } from 'vuelidate/lib/validators'
 export default {
 	name: "LoginStep3-1",
+	components: {Error},
 	data (){
 		return {
 			form: {
@@ -30,6 +63,25 @@ export default {
 			},
 			active:4,
 			status:""
+		}
+	},
+	validations:{
+		form:{
+			name:{
+				required,
+				minLength:minLength(6)
+			},
+			password1:{
+				required
+			},
+			password2: {
+				required,
+				sameAsPassword:sameAs("password1")
+			},
+			email:{
+				required,
+				email
+			}
 		}
 	},
 	methods:{
@@ -56,5 +108,8 @@ export default {
 </script>
 
 <style scoped>
-
+.error{
+	bottom: 20px;
+	position: absolute;
+}
 </style>

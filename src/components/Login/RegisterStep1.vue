@@ -13,6 +13,7 @@
 				<template slot="errors">
 					<div v-if="!$v.tel.required && $v.tel.$anyDirty">您必须填写手机号</div>
 					<div v-if="!$v.tel.minLength || !$v.tel.maxLength">手机号填写错误</div>
+					<div v-if="!$v.tel.numeric" style="position: absolute;bottom: -22px">手机号必须为数字</div>
 				</template>
 			</error>
 		</el-col>
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-import { required,minLength ,maxLength} from 'vuelidate/lib/validators'
+import { required,minLength ,maxLength,numeric} from 'vuelidate/lib/validators'
 import axios from 'axios'
 import Error from "./error";
 export default {
@@ -40,7 +41,8 @@ export default {
 		tel: {
 			required,
 			minLength: minLength(11),
-			maxLength: maxLength(11)
+			maxLength: maxLength(11),
+			numeric
 		}
 	},
 	methods:{
