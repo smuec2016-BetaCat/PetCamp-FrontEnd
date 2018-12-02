@@ -32,6 +32,7 @@ export default {
 			else if (this.form.class === "注册机构/商户") {
 				this.$router.push({path:"/Register/RegisterStep3b"})
 				this.$emit("listen",this.active)
+
 			}
 			else {
 				this.$message.error('请选择您要注册的类别')
