@@ -76,17 +76,18 @@
 				</el-form-item>
 			</template>
 			<template slot="errors">
-
+				<div class="error" v-if="!noClass && $v.form.desc.$anyDirty">您必须选择至少一种可寄养的宠物种类</div>
 			</template>
 		</error>
 		<error>
 			<template slot="inputGroups">
 				<el-form-item label="详情">
-					<el-input type="textarea" v-model="form.desc"></el-input>
+					<el-input type="textarea" v-model="$v.form.desc.$model"></el-input>
 				</el-form-item>
 			</template>
 			<template slot="errors">
-
+				<div class="error" v-if="!$v.form.desc.required && $v.form.desc.$anyDirty">请填写店铺介绍</div>
+				<div class="error" v-if="!$v.form.desc.minLength">店铺介绍至少需要{{ $v.form.desc.$params.minLength.min }}个字</div>
 			</template>
 		</error>
 		<el-button type="danger" style="width: 100%" @click="goto">立即注册</el-button>
@@ -140,36 +141,56 @@ export default {
 			email:{
 				required,
 				email
+			},
+			desc:{
+				required,
+				minLength:minLength(20)
 			}
 		}
 	},
 	methods:{
 		goto(){
-			axios.post("/api/v0/register", {
-				username:this.from.name,
-				password:this.from.password1,
-				email:this.from.email,
-				city:this.from.city,
-				address:this.from.address,
-				desc:this.form.desc
-			})
-				.then(response=> {
-					this.status = response.data.msg
-					this.$message({
-						message: 'Congrats, this is a success message.',
-						type: 'success'
+			if (this.$v.$invalid) {
+				this.$v.$touch()
+				this.noClass()
+			}
+			else {
+				axios.post("/api/v0/register", {
+					username:this.form.name,
+					password:this.form.password1,
+					email:this.form.email,
+					city:this.form.city,
+					address:this.form.address,
+					desc:this.form.desc
+				})
+					.then(response=> {
+						this.status = response.data.msg
+						this.$message({
+							message: 'Congrats, this is a success message.',
+							type: 'success'
+						})
+						this.$router.push({path:"/Register/RegisterStep4"})
+						this.$emit("listen",this.active)
 					})
-					this.$router.push({path:"/Register/RegisterStep4"})
-					this.$emit("listen",this.active)
-				})
-				.catch(error=> {
-					this.$message.error(error);
-				})
+					.catch(error=> {
+						this.$message.error(error.message);
+					})
+			}
+
+		}
+	},
+	computed:{
+		noClass() {
+			return this.form.value1 || this.form.value2 || this.form.value3 || this.form.value4
 		}
 	}
 }
 </script>
 
 <style scoped>
-
+.error{
+	position: absolute;
+	bottom: 20px;
+	margin-left: 15%;
+}
 </style>

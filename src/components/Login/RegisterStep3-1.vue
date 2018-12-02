@@ -19,6 +19,9 @@
 			</template>
 			<template slot="errors">
 				<div class="error" v-if="!$v.form.password1.required && $v.form.password1.$anyDirty">您必须填写密码</div>
+				<div class="error" v-if="$v.form.password1.$anyDirty && isSimplePassword && !(!$v.form.password1.required && $v.form.password1.$anyDirty)">
+					密码过于简单, 必须包含数字、小写字母、大写字母、特殊字符其三
+				</div>
 			</template>
 		</error>
 		<error>
@@ -86,22 +89,52 @@ export default {
 	},
 	methods:{
 		goto(){
-			axios.post("/api/v0/register", {
-				username:this.name,
-				password:this.password1
-			})
-				.then(response=> {
-					this.status = response.data.msg
-					this.$message({
-						message: 'Congrats, this is a success message.',
-						type: 'success'
+			if (this.$v.$invalid) {
+				this.$v.$touch()
+			}
+			else{
+				axios.post("/api/v0/register", {
+					username:this.name,
+					password:this.password1
+				})
+					.then(response=> {
+						this.status = response.status
+						this.$message({
+							message: 'Congrats, this is a success message.',
+							type: 'success'
+						})
+						this.$router.push({path:"/Register/RegisterStep4"})
+						this.$emit("listen",this.active)
 					})
-					this.$router.push({path:"/Register/RegisterStep4"})
-					this.$emit("listen",this.active)
-				})
-				.catch(error=> {
-					this.$message.error(error);
-				})
+					.catch(error=> {
+						this.$message.error(error.message);
+					})
+			}
+
+		}
+	},
+	computed:{
+		isSimplePassword(){
+			let s = this.form.password1
+			if(s.length<6){
+				return true
+			}
+			else {
+				let simple = 0
+				if(s.match(/([a-z])+/)){
+					simple++;
+				}
+				if(s.match(/([0-9])+/)){
+					simple++;
+				}
+				if(s.match(/([A-Z])+/)){
+					simple++;
+				}
+				if(s.match(/[^a-zA-Z0-9]+/)){
+					simple++;
+				}
+				return simple<3
+			}
 		}
 	}
 }
