@@ -15,18 +15,7 @@ export default {
 		return {
 			check:0,
 		}
-	},
-	methods:{
-		boxHeight(){
-			let myBoxHeight = document.body.offsetHeight
-			let screenHeight = document.documentElement.clientHeight
-			this.$refs.myBody.style.height = Math.max(myBoxHeight,screenHeight) + "px"
-		}
-	},
-	mounted: function() {
-		this.boxHeight()
 	}
-
 }
 </script>
 

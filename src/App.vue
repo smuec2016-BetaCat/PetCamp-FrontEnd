@@ -11,10 +11,10 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #f0f3ef;
 }
 body{
-    margin:0
+    margin:0;
+  background-color: #f0f3ef;
 }
 .el-form-item__label {
   text-align: left;

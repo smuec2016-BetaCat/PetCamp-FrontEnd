@@ -122,7 +122,11 @@ export default {
 			},
 			active:4,
 			status:"",
-			value: ''
+			value: '',
+			propsToFather:{
+				active:4,
+				boxOffset:null
+			}
 		}
 	},
 	validations:{

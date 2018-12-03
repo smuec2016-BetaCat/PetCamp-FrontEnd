@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div ref="son">
 		<el-row style="display: flex">
 			<el-col :span="10" style="margin: auto">
 				<el-col id="step">
@@ -16,7 +16,6 @@
 			</el-col>
 		</el-row>
 	</div>
-
 </template>
 
 <script>
@@ -31,6 +30,7 @@ export default {
 	},
 	methods:{
 		changeActive:function (data) {
+			console.log(data)
 			this.active = data
 		}
 	}

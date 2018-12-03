@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<el-col ref="grandson">
 		<el-col class="MyMargin">
 			<error>
 				<template slot="inputGroups">
@@ -20,7 +20,7 @@
 		<el-col class="MyMargin">
 			<el-button type="danger" style="width: 100%" @click="goto">下一步</el-button>
 		</el-col>
-	</div>
+	</el-col>
 </template>
 
 <script>
