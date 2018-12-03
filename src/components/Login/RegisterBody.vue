@@ -11,7 +11,9 @@
 					</el-steps>
 				</el-col>
 				<el-col :span="20" :offset="2">
-					<router-view v-on:listen="changeActive"></router-view>
+					<transition name="slide-fade" mode="out-in">
+						<router-view v-on:listen="changeActive"></router-view>
+					</transition>
 				</el-col>
 			</el-col>
 		</el-row>
@@ -40,5 +42,19 @@ export default {
 <style scoped>
 #step{
 	margin-top: 25%;
+}
+.slide-fade-enter-active {
+	transition: all .3s ease;
+}
+.slide-fade-leave-active {
+	transition: all .3s ease;
+}
+.slide-fade-enter {
+	transform: translateX(10px);
+	opacity: 0;
+}
+.slide-fade-leave-to{
+	transform: translateX(-10px);
+	opacity: 0;
 }
 </style>
