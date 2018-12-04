@@ -12,7 +12,7 @@
 					</el-col>
 					<el-col>
 						<el-col :span="6">
-							<el-button class="consignee-item"><span>用户id</span><b></b></el-button>
+							<el-button class="consignee-item"><span>{{order.userId}}</span><b></b></el-button>
 						</el-col>
 						<el-col :span="18">
 							<div class="consignee-msg">
@@ -28,7 +28,7 @@
 					</el-col>
 					<el-col>
 						<el-col :span="6">
-							<el-button class="consignee-item"><span>电子支付</span><b></b></el-button>
+							<el-button class="consignee-item"><span>{{order.payment}}</span><b></b></el-button>
 						</el-col>
 					</el-col>
 				</el-col>
@@ -40,12 +40,12 @@
 					<el-col>
 						<el-col :span="5">
 							<el-button v-bind:class="{'consignee-item' : Active,'consignee-item1':true}" @click.native="changeClass">
-								<span>送宠到家</span><b v-if="Active"></b>
+								<span>{{order.delivery[0].way}}</span><b v-if="Active"></b>
 							</el-button>
 						</el-col>
 						<el-col :span="4">
 							<el-button v-bind:class="{'consignee-item' : !Active,'consignee-item1':true}" @click.native="changeClass">
-								<span>去店自提</span><b v-if="!Active"></b>
+								<span>{{order.delivery[1].way}}</span><b v-if="!Active"></b>
 							</el-button>
 						</el-col>
 					</el-col>
@@ -55,7 +55,7 @@
 					<el-col>
 						<h5>订单详情</h5>
 					</el-col>
-					<el-col style="background-color:#f2f7ff;padding: 5px 15px;margin-bottom: 10px" v-for="i in items" :key="i.id">
+					<el-col style="background-color:#f2f7ff;padding: 5px 15px;margin-bottom: 10px" v-for="i in order.orderDetails" :key="i.id">
 						<el-col class="bottomBoder" style="padding-bottom: 0">
 							<el-col :span="3" style="padding: 5px">
 								<span>店铺/机构</span>
@@ -76,32 +76,32 @@
 								<span>总价</span>
 							</el-col>
 							<el-col :span="1" style="padding: 5px">
-								<el-switch v-model="i.details" active-color="#13ce66"></el-switch>
+								<el-switch v-model="i.show" active-color="#13ce66"></el-switch>
 							</el-col>
 						</el-col>
 						<el-col>
 							<el-col :span="3" style="padding: 5px">
-								<span>爱宠社区</span>
+								<span>{{i.shopName}}</span>
 							</el-col>
 							<el-col :span="7" style="padding: 5px">
-								<span>宠物寄养，寄养一条小型猪，他的名字为犇犇</span>
+								<span>{{i.shopMessage}}</span>
 							</el-col>
 							<el-col :span="4" style="padding: 5px">
-								<span>无</span>
+								<span>{{i.details}}</span>
 							</el-col>
 							<el-col :span="3" style="padding: 5px">
-								<span>￥150.00</span>
+								<span>￥{{i.price}}</span>
 							</el-col>
 							<el-col :span="3" style="padding: 5px">
-								<span>1</span>
+								<span>{{i.num}}</span>
 							</el-col>
 							<el-col :span="3" style="padding: 5px">
-								<span>￥150.00</span>
+								<span>￥{{i.price}}</span>
 							</el-col>
 						</el-col>
 						<el-col style="padding: 5px">
 							<transition name="slide-fade">
-								<el-col v-if="i.details" style="border-top: 1px solid #e6e6e6;padding-top: 5px">
+								<el-col v-if="i.show" style="border-top: 1px solid #e6e6e6;padding-top: 5px">
 									<el-col :span="4">
 										<span class="block">宠物昵称：</span>
 										<span class="block">宠物性别：</span>
@@ -111,32 +111,32 @@
 										<span class="block">是否绝育：</span>
 									</el-col>
 									<el-col :span="4">
-										<span class="block">犇犇</span>
-										<span class="block">公</span>
-										<span class="block">小型犬</span>
-										<span class="block">2岁</span>
-										<span class="block">20 KG</span>
+										<span class="block">{{i.nickName}}</span>
+										<span class="block">{{i.sex}}</span>
+										<span class="block">{{i.type}}</span>
+										<span class="block">{{i.age}}岁</span>
+										<span class="block">{{i.weight}}KG</span>
 										<span class="block">已绝育</span>
 									</el-col>
 									<el-col :span="16">
 										<el-col :span="9"><span class="block">TA是不是调皮鬼？</span></el-col>
-										<el-col :span="15"><span class="block">生性乖巧</span></el-col>
+										<el-col :span="15"><span class="block">{{i.naughty}}</span></el-col>
 									</el-col>
 									<el-col :span="16">
 										<el-col :span="9"><span class="block">TA胆子特别小吗？</span></el-col>
-										<el-col :span="15"><span class="block">胆子不是特别小，相处一段时间就好了</span></el-col>
+										<el-col :span="15"><span class="block">{{i.shy}}</span></el-col>
 									</el-col>
 									<el-col :span="16">
 										<el-col :span="9"><span class="block">TA与其他伙伴好相处吗？</span></el-col>
-										<el-col :span="15"><span class="block">与小伙伴能够友好相处</span></el-col>
+										<el-col :span="15"><span class="block">{{i.friendly}}</span></el-col>
 									</el-col>
 									<el-col :span="16">
 										<el-col :span="9"><span class="block">需要寄养的时间</span></el-col>
-										<el-col :span="15"><span class="block">2018年11月30日-2018年11月30日</span></el-col>
+										<el-col :span="15"><span class="block">{{i.expiration}}</span></el-col>
 									</el-col>
 									<el-col :span="16">
 										<el-col :span="9"><span class="block">宠物简介：</span></el-col>
-										<el-col :span="15"><span class="block">我是一直狗我是一直狗我是一直狗我是一直狗我是一直狗我是一直狗</span></el-col>
+										<el-col :span="15"><span class="block">{{i.petDetails}}</span></el-col>
 									</el-col>
 								</el-col>
 							</transition>
@@ -170,7 +170,7 @@
 							<span style="color:red;font: 700 26px tahoma;">￥32.80</span>
 						</el-col>
 						<el-col style="margin: 10px 0">
-							<el-button type="danger" style="width: 100%">提交订单</el-button>
+							<el-button type="danger" style="width: 100%" @click.native="postOrder">提交订单</el-button>
 						</el-col>
 					</el-col>
 				</el-col>
@@ -183,6 +183,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
 	name: "OrderForm",
 	data(){
@@ -192,13 +193,52 @@ export default {
 				{id:2,details:false},
 				{id:3,details:false},
 			],
-			Active:false
+			Active:false,
+			order:{
+				userId:1,
+				payment:"电子支付",
+				delivery:[{way:"送宠到家",active:true},{way:"到店自提",active:false}],
+				orderDetails:[
+					{show:false,shopName:"爱宠社区",shopId:1214,shopMessage:"宠物寄养详细信息",details:"",price:150,num:1,nickName:"犇犇",sex:"male",
+					age:2,type:"小型犬",weight:20,expiration:7,sterilization:true,naughty:true,shy:true,friendly:null,
+					petDetails:"我是一只狗我是一只狗我是一只狗",id:1,image_names: ["hello","bye"]}
+				]
+			},
+			orderResponse:null
 		}
 	},
 	methods:{
 		changeClass(){
 			this.Active = !this.Active
+		},
+		postOrder(){
+			axios.post('/api/v0/order/trusteeship',{
+				species:this.order.orderDetails[0].type,
+				pet_name:this.order.orderDetails[0].nickName,
+				age:this.order.orderDetails[0].age,
+				weight:this.order.orderDetails[0].weight,
+				expiration:this.order.orderDetails[0].expiration,
+				sterilization:this.order.orderDetails[0].sterilization,
+				naughty:this.order.orderDetails[0].naughty,
+				shy:this.order.orderDetails[0].shy,
+				friendly:this.order.orderDetails[0].friendly,
+				comment:this.order.orderDetails[0].comment,
+				price:this.order.orderDetails[0].price,
+				agency_id:this.order.orderDetails[0].shopId,
+				image_names:this.order.orderDetails[0].image_names,
+			})
+				.then(response=>{
+					this.orderResponse = response.data
+					this.$message({
+						message: 'Congrats, this is a success message.',
+						type: 'success'
+					})
+				})
+				.catch(error=>{
+					this.$message.error(error.data)
+				})
 		}
+
 	}
 }
 </script>
