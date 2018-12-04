@@ -13,29 +13,29 @@
 </template>
 
 <script>
-export default {
-	name: "LoginStep3",
-	data (){
-		return {
+	export default {
+		name: "LoginStep4",
+		data (){
+			return {
 
+			}
+		},
+		methods:{
+			goto(){
+				this.$router.push({path:"/"})
+			}
+		},
+		created:function () {
+			setTimeout(this.goto,900)
 		}
-	},
-	methods:{
-		goto(){
-			this.$router.push({path:"/"})
-		}
-	},
-	created:function () {
-		setTimeout(this.goto,900)
 	}
-}
 </script>
 
 <style scoped>
-.success{
-	color: #67c23a;
-	font-size: 25px;
-	text-decoration: none;
-	margin: 5%;
-}
+	.success{
+		color: #67c23a;
+		font-size: 25px;
+		text-decoration: none;
+		margin: 5%;
+	}
 </style>

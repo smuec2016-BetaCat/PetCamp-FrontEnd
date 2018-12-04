@@ -1,21 +1,23 @@
 <template>
-	<div>
+	<div ref="son">
 		<el-row style="display: flex">
 			<el-col :span="10" style="margin: auto">
 				<el-col id="step">
 					<el-steps :space="200" :active="active" finish-status="success" align-center>
 						<el-step title="验证手机号"></el-step>
+						<el-step title="选择用户类别"></el-step>
 						<el-step title="填写账号信息"></el-step>
 						<el-step title="注册成功"></el-step>
 					</el-steps>
 				</el-col>
 				<el-col :span="20" :offset="2">
-					<router-view v-on:listen="changeActive"></router-view>
+					<transition name="slide-fade" mode="out-in">
+						<router-view v-on:listen="changeActive"></router-view>
+					</transition>
 				</el-col>
 			</el-col>
 		</el-row>
 	</div>
-
 </template>
 
 <script>
@@ -30,6 +32,7 @@ export default {
 	},
 	methods:{
 		changeActive:function (data) {
+			console.log(data)
 			this.active = data
 		}
 	}
@@ -39,5 +42,19 @@ export default {
 <style scoped>
 #step{
 	margin-top: 25%;
+}
+.slide-fade-enter-active {
+	transition: all .3s ease;
+}
+.slide-fade-leave-active {
+	transition: all .3s ease;
+}
+.slide-fade-enter {
+	transform: translateX(10px);
+	opacity: 0;
+}
+.slide-fade-leave-to{
+	transform: translateX(-10px);
+	opacity: 0;
 }
 </style>

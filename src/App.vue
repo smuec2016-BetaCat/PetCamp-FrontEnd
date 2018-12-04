@@ -11,9 +11,28 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #f0f3ef;
 }
 body{
-    margin:0
+    margin:0;
+  background-color: #f0f3ef;
+}
+.el-form-item__label {
+  text-align: left;
+  font-weight: 600;
+}
+.el-upload-dragger{
+  width: 100%;
+}
+.el-upload{
+  width: 100%;
+}
+.el-dialog__title {
+  font-size: 25px;
+}
+.el-input-number--mini .el-input__inner{
+  padding: 0;
+}
+.el-input-number--mini .el-input-number__decrease, .el-input-number--mini .el-input-number__increase{
+  width: 20px;
 }
 </style>

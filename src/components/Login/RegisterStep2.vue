@@ -1,46 +1,44 @@
 <template>
 	<el-form ref="form" :model="form" label-width="70px" style="margin-top: 5%">
-		<el-form-item label="用户名">
-			<el-input v-model="form.name"></el-input>
-		</el-form-item>
-		<el-form-item label="密码" prop="pass">
-			<el-input type="password"></el-input>
-		</el-form-item>
-		<el-form-item label="确认密码" prop="checkPass">
-			<el-input type="password"></el-input>
-		</el-form-item>
-		<el-form-item label="邮箱" prop="checkPass">
-			<el-input type="password"></el-input>
-		</el-form-item>
-		<el-button type="danger" style="width: 100%" @click="goto">立即注册</el-button>
+		<el-col>
+			<el-form-item label="用户类别" style="margin: 10% 0;">
+				<el-radio-group v-model="form.class">
+					<el-radio label="注册普通用户"></el-radio>
+					<el-radio label="注册机构/商户"></el-radio>
+				</el-radio-group>
+			</el-form-item>
+		</el-col>
+		<el-button type="danger" style="width: 100%" @click="goto">下一步</el-button>
 	</el-form>
 </template>
 
 <script>
 export default {
-	name: "LoginStep2",
-	data (){
-		return {
-			form: {
-				name: '',
-				region: '',
-				date1: '',
-				date2: '',
-				delivery: false,
-				type: [],
-				resource: '',
-				desc: ''
-			},
-			active:3
+	name: "RegisterStep2",
+	data(){
+		return{
+			active:2,
+			form:{
+				class:""
+			}
 		}
 	},
 	methods:{
 		goto(){
-			this.$emit("listen",this.active)
-			this.$router.push({path:"/Register/RegisterStep3"})
+			if(this.form.class === "注册普通用户"){
+				this.$router.push({path:"/Register/RegisterStep3a"})
+				this.$emit("listen",this.active)
+			}
+			else if (this.form.class === "注册机构/商户") {
+				this.$router.push({path:"/Register/RegisterStep3b"})
+				this.$emit("listen",this.active)
+
+			}
+			else {
+				this.$message.error('请选择您要注册的类别')
+			}
 		}
 	}
-
 }
 </script>
 

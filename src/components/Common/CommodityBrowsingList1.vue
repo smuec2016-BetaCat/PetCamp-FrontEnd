@@ -7,7 +7,7 @@
 				</el-tabs>
 			</el-row>
 			<!--店铺-->
-			<el-row style="border-bottom: 1px solid #dcdcdc;padding: 1% 0 2% 0" v-for="item in shopList" :key="i">
+			<el-row style="border-bottom: 1px solid #dcdcdc;padding: 1% 0 2% 0" v-for="item in shopList" :key="item.id">
 				<el-col>
 					<el-col :span="8">
 						<!--左侧图片-->
@@ -21,27 +21,27 @@
 						<!--店家/机构简介-->
 						<el-col :span="18" style="text-align: left;padding-left: 10%" id="info">
 							<el-col>
-								<router-link to="" style="text-decoration: none;color: #2c3e50;">寄养小屋</router-link>
+								<router-link to="" style="text-decoration: none;color: #2c3e50;" v-text="item.shopName"></router-link>
 							</el-col>
 							<el-col>
-								<el-rate v-model="value5" disabled show-score text-color="#ff9900"
+								<el-rate v-model="item.rates" disabled show-score text-color="#ff9900"
 									score-template="{value} points">
 								</el-rate>
 							</el-col>
 							<el-col>
 								<i class="el-icon-location-outline"></i>
-								<span>   江苏 南京</span>
+								<span v-text="item.place"></span>
 							</el-col>
 							<el-col>
-								<span>联系人：犇犇</span>
+								<span v-text="item.contacts"></span>
 							</el-col>
 						</el-col>
 						<el-col style="text-align: left;margin-top: 10%">
 							<el-col>
-								<span class="smallTitle">共可容纳5条狗狗</span>
+								<span class="smallTitle">共可容纳{{item.capacity}}条狗狗</span>
 							</el-col>
 							<el-col>
-								<span class="smallTitle">好评率100%</span>
+								<span class="smallTitle">好评度{{item.rates}}</span>
 							</el-col>
 
 						</el-col>
@@ -59,7 +59,7 @@
 										<div style="padding: 10px;overflow: hidden;">
 											<div style="float: right;position:relative;">
 												<span style="color: #fbc02d;font-size: 15px;">￥</span>
-												<span style="color: #fbc02d;font-size: 25px;">{{price}}</span>
+												<span style="color: #fbc02d;font-size: 25px;">{{i.price}}</span>
 												<strong>起/每晚</strong>
 											</div>
 										</div>
@@ -73,7 +73,6 @@
 			<el-row>
 				<el-col>
 					<div class="block" style="margin: 5% 0 2% 0">
-						<span class="demonstration">When you have few pages</span>
 						<el-pagination
 								layout="prev, pager, next"
 								:total="50">
@@ -94,28 +93,46 @@ export default {
 			activeName: 'first',
 			shopList:[
 				{
+					id:1,
+					// 店家头像图片
+					src:"",
+					shopName:"寄养小屋",
+					rates:3.7,
+					place:"江苏南京",
+					contacts:"犇犇",
+					capacity:5,
 					shop:[
-						{id:0,title:"铲屎官道具",show:false,src:""},
-						{id:1,title:"到底能不能遍历啊",show:false,src:""},
-						{id:2,title:"终于可以遍历了",show:false,src:""}
-					],
+						{id:1,title:"铲屎官道具",show:false,src:"",price: 100},
+						{id:2,title:"到底能不能遍历啊",show:false,src:"",price:100},
+						{id:3,title:"终于可以遍历了",show:false,src:"",price:100}
+					]
 
 				},
 				{
+					id:2,
+					shopName:"寄养小屋",
+					rates:3.7,
+					place:"江苏南京",
+					contacts:"犇犇",
+					capacity:5,
 					shop:[
-						{id:0,title:"铲屎官道具",show:false,src:""},
-						{id:1,title:"到底能不能遍历啊",show:false,src:""},
-						{id:2,title:"终于可以遍历了",show:false,src:""}
-					],
-
+						{id:1,title:"铲屎官道具",show:false,src:"",price: 100},
+						{id:2,title:"到底能不能遍历啊",show:false,src:"",price:100},
+						{id:3,title:"终于可以遍历了",show:false,src:"",price:100}
+					]
 				},
 				{
+					id:3,
+					shopName:"寄养小屋",
+					rates:3.7,
+					place:"江苏南京",
+					contacts:"犇犇",
+					capacity:5,
 					shop:[
-						{id:0,title:"铲屎官道具",show:false,src:""},
-						{id:1,title:"到底能不能遍历啊",show:false,src:""},
-						{id:2,title:"终于可以遍历了",show:false,src:""}
-					],
-
+						{id:1,title:"铲屎官道具",show:false,src:"",price: 100},
+						{id:2,title:"到底能不能遍历啊",show:false,src:"",price:100},
+						{id:3,title:"终于可以遍历了",show:false,src:"",price:100}
+					]
 				}
 
 			],

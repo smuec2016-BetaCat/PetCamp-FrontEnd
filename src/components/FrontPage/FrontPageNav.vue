@@ -25,7 +25,7 @@
 					</el-input>
 				</el-col>
 				<el-col :span="4" :offset="1">
-					<el-button id="cart" type="success">
+					<el-button id="cart" type="success" @click="gotocart">
 						<i class="el-icon-goods"></i>我的购物车
 					</el-button>
 				</el-col>
@@ -187,6 +187,9 @@ export default {
 		},
 		test(){
 			this.show = !this.show
+		},
+		gotocart(){
+			this.$router.push({path:`/ShoppingList`})
 		}
 	}
 }
