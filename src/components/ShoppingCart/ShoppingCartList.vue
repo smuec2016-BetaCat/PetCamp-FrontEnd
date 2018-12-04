@@ -305,11 +305,13 @@ export default {
 	},
 	mounted: function () {
 		this.$nextTick(function () {
-			window.addEventListener('scroll',this.showNav,true);
+			window.addEventListener('scroll',this.showNav);
 		})
 	},
-	beforeDestory:function () {
-		window.removeEventListener('scroll',this.showNav,true)
+	destroyed() {
+		this.$nextTick(function () {
+			window.removeEventListener('scroll',this.showNav);
+		})
 	}
 }
 </script>

@@ -201,7 +201,10 @@ export default {
 				orderDetails:[
 					{show:false,shopName:"爱宠社区",shopId:1214,shopMessage:"宠物寄养详细信息",details:"",price:150,num:1,nickName:"犇犇",sex:"male",
 					age:2,type:"小型犬",weight:20,expiration:7,sterilization:true,naughty:true,shy:true,friendly:null,
-					petDetails:"我是一只狗我是一只狗我是一只狗",id:1,image_names: ["hello","bye"]}
+					petDetails:"我是一只狗我是一只狗我是一只狗",id:1,image_names: ["hello","bye"]},
+					{show:false,shopName:"爱宠社区",shopId:1214,shopMessage:"宠物寄养详细信息",details:"",price:150,num:1,nickName:"犇犇",sex:"male",
+						age:2,type:"小",weight:20,expiration:7,sterilization:true,naughty:true,shy:true,friendly:null,
+						petDetails:"我是一只狗我是一只狗我是一只狗",id:2,image_names: ["hello","bye"]}
 				]
 			},
 			orderResponse:null
@@ -212,31 +215,34 @@ export default {
 			this.Active = !this.Active
 		},
 		postOrder(){
-			axios.post('/api/v0/order/trusteeship',{
-				species:this.order.orderDetails[0].type,
-				pet_name:this.order.orderDetails[0].nickName,
-				age:this.order.orderDetails[0].age,
-				weight:this.order.orderDetails[0].weight,
-				expiration:this.order.orderDetails[0].expiration,
-				sterilization:this.order.orderDetails[0].sterilization,
-				naughty:this.order.orderDetails[0].naughty,
-				shy:this.order.orderDetails[0].shy,
-				friendly:this.order.orderDetails[0].friendly,
-				comment:this.order.orderDetails[0].comment,
-				price:this.order.orderDetails[0].price,
-				agency_id:this.order.orderDetails[0].shopId,
-				image_names:this.order.orderDetails[0].image_names,
-			})
-				.then(response=>{
-					this.orderResponse = response.data
-					this.$message({
-						message: 'Congrats, this is a success message.',
-						type: 'success'
+			let a = this.order.orderDetails
+			for(let i = 0;i< a.length;i++){
+				axios.post('/api/v0/order/trusteeship',{
+					species:a[i].type,
+					pet_name:a[i].nickName,
+					age:a[i].age,
+					weight:a[i].weight,
+					expiration:a[i].expiration,
+					sterilization:a[i].sterilization,
+					naughty:a[i].naughty,
+					shy:a[i].shy,
+					friendly:a[i].friendly,
+					comment:a[i].comment,
+					price:a[i].price,
+					agency_id:a[i].shopId,
+					image_names:a[i].image_names,
+				})
+					.then(response=>{
+						this.orderResponse = response.data
+						this.$message({
+							message: 'Congrats, this is a success message.',
+							type: 'success'
+						})
 					})
-				})
-				.catch(error=>{
-					this.$message.error(error.data)
-				})
+					.catch(error=>{
+						this.$message.error(error.data)
+					})
+			}
 		}
 
 	}

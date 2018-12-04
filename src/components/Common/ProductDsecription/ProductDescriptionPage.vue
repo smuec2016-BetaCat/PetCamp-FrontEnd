@@ -124,8 +124,12 @@
 					<el-upload
 							class="upload-demo"
 							drag
-							action="https://jsonplaceholder.typicode.com/posts/"
+							action=""
+							:on-preview="handlePreview"
+							:before-remove="beforeRemove"
+							:on-change="handleChange"
 							:file-list="fileList"
+							:auto-upload="false"
 							multiple>
 						<i class="el-icon-upload"></i>
 						<div class="el-upload__text">拖动图片或 <em>点击上传宠物图片</em></div>
@@ -143,6 +147,7 @@
 
 <script>
 import PicZoom from 'vue-piczoom'
+import axios from 'axios'
 export default {
 	name: "ProductDescriptionPage",
 	components: { PicZoom },
@@ -163,7 +168,8 @@ export default {
 
 		},
 		formLabelWidth: '180px',
-		value4:""
+		value4:"",
+		fileList:[]
 		}
 	},
 	methods:{
@@ -172,6 +178,41 @@ export default {
 		},
 		initMyImage(){
 			this.myImgUrl = this.img[0].url
+		},
+		handlePreview(file) {
+			console.log(file);
+			console.log(this.fileList)
+		},
+		handleChange(file) {
+			let formData = new FormData()
+			formData.append("name",file.name)
+			formData.append("name",file)
+			axios.post('url',{formData})
+				.then(response=>{
+
+				})
+				.catch(error=>{this.$message.error(error.data)})
+		},
+		hello(event){
+			console.log(event)
+		},
+		beforeRemove(file, fileList) {
+			return this.$confirm(`确定移除 ${ file.name }？`);
+		},
+		reservation(){
+			axios.post('/',{
+
+			})
+				.then(response=>{
+
+					this.message({
+						message:response.data,
+						type:"success"
+					})
+				})
+				.catch(error=>{
+					this.$message.error(error.data)
+				})
 		}
 	},
 	created:function () {
