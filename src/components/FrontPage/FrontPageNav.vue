@@ -1,310 +1,165 @@
 <template>
-	<div>
-		<div class="hidden-sm-and-down" style="margin-bottom: 5%">
-			<!--顶部导航栏-->
-			<el-row id="FrontPageNav">
-				<el-col class="hidden-xs-only" :sm={span:3,offset:1} :md={span:3,offset:2}>
-					<div id="logo">
-						<span></span>
-					</div>
-				</el-col>
-				<el-col :xs={span:20,offset:2} :sm={span:20,offset:5} :md={span:17,offset:5}>
-					<ul>
-						<li  v-for="item in nav" :key="item.id">
-							<router-link v-text="item.msg" :to="item.url"></router-link>
-						</li>
-					</ul>
-				</el-col>
-			</el-row>
-			<!--logo和搜索栏-->
-			<el-row id="search">
-				<el-col :span="3" :offset="2"></el-col>
-				<el-col :span="10">
-					<el-input placeholder="Search for product or category type..." v-model="input">
-						<el-button slot="append" icon="el-icon-search" style="color: green;font-size: 15px"></el-button>
-					</el-input>
-				</el-col>
-				<el-col :span="4" :offset="1">
-					<el-button id="cart" type="success" @click="gotocart">
-						<i class="el-icon-goods"></i>我的购物车
-					</el-button>
-				</el-col>
-			</el-row>
-			<!--第二导航栏-->
-			<el-menu
-					:default-active="activeIndex2"
-					class="el-menu-demo"
-					mode="horizontal"
-					background-color="rgba(86,175,49)"
-					text-color="#fff"
-					active-text-color="gold">
-				<el-menu-item index="1" style="margin-left: 20%;">首页</el-menu-item>
-				<el-submenu index="2">
-					<template slot="title">宠物寄养</template>
-					<el-menu-item index="2-1">预约寄养</el-menu-item>
-					<el-menu-item index="2-2">待组团宠物信息</el-menu-item>
-					<el-menu-item index="2-3">发起组团</el-menu-item>
-				</el-submenu>
-				<el-submenu index="3">
-					<template slot="title">宠物领养</template>
-					<el-menu-item index="3-1">发起领养</el-menu-item>
-					<el-menu-item index="3-2">待领养宠物信息</el-menu-item>
-					<el-menu-item index="3-3">领养心愿单</el-menu-item>
-				</el-submenu>
-				<el-menu-item index="4" @click="goto">计数器|暂时给个入口</el-menu-item>
-				<el-menu-item index="5" @mouseenter.native="test">测试</el-menu-item>
-			</el-menu>
-			<!--dropdown导航栏-->
-			<transition name="fade">
-				<el-col v-if="show" class="myDropDown" :span="20" :offset="2" @mouseleave.native="test">
-					<el-col>
-						<el-col :span="4" style="padding: 10px 0 10px 20px;">
-							<div>
-								<span>热门分类</span>
-							</div>
-							<ul>
-								<li>test</li>
-								<li>test</li>
-								<li>test</li>
-								<li>test</li>
-								<li>test</li>
-							</ul>
-						</el-col>
-						<el-col :span="4" style="margin-top: 10px">
-							<div>
-								<span>其他分类</span>
-							</div>
-							<ul>
-								<li>test</li>
-								<li>test</li>
-								<li>test</li>
-								<li>test</li>
-								<li>test</li>
-
-							</ul>
-						</el-col>
-						<el-col :span="16" style="height: 100%">
-							<div style="padding: 10px;height: 100%">
-								<img src="../../assets/banner4.jpg" alt="" style="width: 100%;height: 100%;display:block;">
-							</div>
-						</el-col>
-					</el-col>
-				</el-col>
-			</transition>
-
-		</div>
-		<div class="hidden-md-and-up" style="margin-bottom: 5%">
-			<!--侧边导航栏-->
-			<el-row v-if="sidebar">
-				<el-col :sm={span:7,offset:0} :xs={span:15,offset:0} id="sidebar">
-					<br>
-					<el-col :span="20" :offset="2">
-						<!--搜索-->
-						<el-input placeholder="Search something" prefix-icon="el-icon-search" v-model="input"></el-input>
-						<!--第一导航栏-->
-						<ul>
-							<li v-for="item in nav" :key="item.id">
-								<router-link to="" v-text="item.msg"></router-link>
-							</li>
-							<li>
-								<router-link to="">购物车</router-link>
-							</li>
-
-						</ul>
-						<!--第二导航栏-->
-						<ul>
-							<li>
-								<router-link to="">首页</router-link>
-							</li>
-							<li>
-								<router-link to="">宠物寄养</router-link>
-								<ul>
-									<li>
-										<router-link to="">预约寄养</router-link>
-									</li>
-									<li>
-										<router-link to="">待组团信息</router-link>
-									</li>
-									<li>
-										<router-link to="">发起组团</router-link>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<router-link to="">宠物领养</router-link>
-								<ul>
-									<li>
-										<router-link to="">发起领养</router-link>
-									</li>
-									<li>
-										<router-link to="">待领养宠物信息</router-link>
-									</li>
-									<li>
-										<router-link to="">领养心愿单</router-link>
-									</li>
-								</ul>
-							</li>
-
-						</ul>
-					</el-col>
-				</el-col>
-			</el-row>
-			<el-row>
-				<el-col id="sidebarHead">
-					<el-button class="el-icon-tickets" @click="ShowSideBar"></el-button>
-				</el-col>
-			</el-row>
-		</div>
-	</div>
+  <div>
+    <div style="margin-bottom: 5%">
+      <top-bar></top-bar>
+      <!--logo and search box-->
+      <el-row class="logo-search-bar">
+        <el-col :xs="{span: 22, offset: 1}" :md="{span: 20, offset: 2}">
+          <el-col class="logo hidden-sm-and-down" :xs="24" :md="6">
+            <a href="#">
+              <img src="http://itsyuekao.com:5000/_uploads/IMAGE/logo.png" alt="logo">
+            </a>
+          </el-col>
+		  <el-col class="hidden-md-and-up" :span="3">
+			<i class="el-icon-menu toggle-side-bar"></i>
+		  </el-col>
+          <el-col class="search" :xs="21" :md="12">
+            <el-input class="search-box" placeholder="欢迎来到PetCamp" v-model="input">
+              <i class="el-icon-search" slot="suffix"></i>
+            </el-input>
+          </el-col>
+          <el-col class="cart hidden-sm-and-down" :xs="24" :md="6">
+            <el-button round icon="el-icon-goods">我的购物车</el-button>
+          </el-col>
+        </el-col>
+      </el-row>
+      <!--navigation-->
+      <el-row class="navigation-bar hidden-sm-and-down">
+        <el-col :span="20" :offset="2">
+          <div class="navigation">
+            <nav>
+              <ul>
+                <li v-for="item in navBarItem" :key="item.id">
+                  <router-link v-text="item.title" :to="item.url"></router-link>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+  </div>
 </template>
 
 <script>
+import TopBar from "@/components/Common/TopBar";
+
 export default {
-	name: "FrontPageNav",
-    data() {
-        return {
-            activeIndex: '1',
-            activeIndex2: '1',
-			input:'',
-			sidebar:false,
-			nav:[
-				{id:0,msg:"找一家商店",url:"/"},
-				{id:1,msg:"贵宾俱乐部",url:"/"},
-				{id:2,msg:"宠物保险",url:"/"},
-				{id:3,msg:"店内服务",url:"/"},
-				{id:4,msg:"投资者",url:"/"},
-				{id:5,msg:"品牌",url:"/"},
-                {id:6,msg:"请登录|注册",url:"/Login"}],
-			show:false
-        }
-    },
-	methods:{
-		goto(event){
-            this.$router.push({ path: `/Access/AccessDetails` })
-		},
-		ShowSideBar(){
-			this.sidebar = !this.sidebar
-		},
-		test(){
-			this.show = !this.show
-		},
-		gotocart(){
-			this.$router.push({path:`/ShoppingList`})
-		}
-	}
-}
+  name: "FrontPageNav",
+  components: { TopBar },
+  data() {
+    return {
+      input: "",
+      navBarItem: [
+        { id: 0, title: "营地首页", url: "/" },
+        { id: 1, title: "宠物寄养", url: "/" },
+        { id: 2, title: "宠物领养", url: "/" },
+        { id: 3, title: "宠物零售", url: "/" },
+        { id: 4, title: "关于我们", url: "/" }
+      ],
+    };
+  }
+};
 </script>
 
-<style scoped>
-#FrontPageNav{
-	background-color: #07601F;
-	text-align: left;
-	height: 30px;
+<style>
+.top-bar {
+  background-color: black;
+  height: 35px;
 }
-#FrontPageNav ul{
-	margin: 0;
-	color: #fff;
-	font-size: 12px;
-	padding-left: 0;
+.top-bar ul {
+  text-align: right !important;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  list-style-type: disc;
 }
-#FrontPageNav ul li{
-	list-style: none;
-	display: inline;
-	margin-right: 5%;
+.top-bar ul li {
+  display: inline-block;
+  margin: 0 15px;
 }
-#FrontPageNav ul li a{
-	color: #fff;
-	font-size: 12px;
-	list-style: none;
-	text-decoration: none;
-	line-height: 30px;
+.top-bar ul li a {
+  color: #fff;
+  font-size: 12px;
+  text-decoration: none;
+  line-height: 35px;
+  transition: color 0.3s;
 }
-#FrontPageNav ul li :hover{
-	color: gold;
-	font-size: 12px;
-	list-style: none;
-	text-decoration: none;
+.top-bar ul li :hover {
+  color: #abd373;
+  transition: color 0.3s;
 }
-#logo{
-	background-image: url("http://media.petsathome.com/wcsstore/pah-as01/images/creatives/logo.png");
-	width: 120px;
-	height: 120px;
-	display: flex;
-	z-index: 999;
-	position: absolute;
+
+.logo-search-bar {
+  height: 120px;
+  padding: 30px 0;
 }
-#logo span{
-	margin: auto;
+.logo-search-bar .logo {
+  height: 60px;
+  overflow: hidden;
 }
-#search{
-	display: flex;
-	height: 60px;
+.logo-search-bar .logo img {
+  height: 100%;
+  float: left;
 }
-#search .el-col{
-	display: flex;
+.logo-search-bar .search {
+  padding: 5px 0;
 }
-#search .el-col #cart{
-	margin: auto;
+.logo-search-bar .search .el-input__inner {
+  height: 50px;
+  border-radius: 60px;
+  font-size: 16px;
 }
-#search .el-col .el-input{
-	margin: auto;
+.logo-search-bar .search i {
+  font-size: 20px;
+  line-height: 50px;
+  margin-right: 10px;
 }
-#sidebarHead{
-	background-color: rgb(86, 175, 49);
-	height: 50px;
-	text-align: right;
+.logo-search-bar .cart .el-button {
+  margin: 5px 0;
+  height: 50px;
+  float: right;
+  font-size: 16px;
 }
-#sidebarHead button{
-	height: 45px;
-	margin: 5px;
+
+.navigation-bar .navigation {
+  text-align: center !important;
+  height: 60px;
+  box-shadow: 0px 7px 10px 5px #eeeeee;
 }
-#sidebar{
-	position: fixed;
-	z-index: 999;
-	background-color: white;
-	overflow-y: auto;
-	height: 100%;
+.navigation-bar nav {
+  height: 100%;
 }
-#sidebar li{
-	list-style: none;
-	text-align: left;
-	margin-top: 0.5em;
+.navigation-bar ul {
+  height: 100%;
+  list-style-type: disc;
 }
-#sidebar li ul{
-	padding-left: 20px;
+.navigation-bar li {
+  line-height: 40px;
+  list-style: none;
+  display: inline-block;
+  margin-right: 5%;
+  padding: 10px 0;
+  position: relative;
 }
-#sidebar a{
-	text-decoration: none;
-	color: #34495e;
+.navigation-bar a {
+  text-decoration: none;
+  color: #111111;
+  font-weight: 500;
+  transition: color 0.3s;
+  font-size: 18px;
 }
-#sidebar a:hover{
-	border-bottom: 3px solid #42b983;
+.navigation-bar a:hover {
+  color: #abd373;
+  transition: color 0.3s;
 }
-#sidebar ul{
-	padding-left: 0;
-	line-height: 1.5em;
-	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-}
-.myDropDown{
-	position: absolute;
-	z-index: 20;
-	background-color: rgb(86, 175, 49);
-	text-align: left;
-}
-.myDropDown ul{
-	padding-left: 0;
-}
-.myDropDown ul li{
-	list-style: none;
-	color: #fff;
-	font-size: 16px;
-	line-height: 30px;
-}
-.fade-enter-active, .fade-leave-active {
-	transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to{
-	opacity: 0;
+
+.toggle-side-bar {
+	display: block;
+	font-size: 30px;
+	padding: 15px 0;
+	margin-right: 10px;
+	color: #aaaaaa;
 }
 </style>
 

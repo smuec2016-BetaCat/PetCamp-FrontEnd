@@ -50,8 +50,7 @@
                 .then(resp => {
                     this.requestCount = resp.data.count
                 })
-        }
-    },
+        },
     mounted() {
         axios.get("http://itsyuekao.com:5000/api/v0/counter")
             .then(resp => {
