@@ -183,20 +183,17 @@ export default {
 			console.log(file);
 			console.log(this.fileList)
 		},
-		handleChange(file) {
-			let formData = new FormData()
-			formData.append("name",file.name)
-			formData.append("name",file)
-			// axios.post('url',{formData})
-			// 	.then(response=>{
-					
-			// 	})
-			// 	.catch(error=>{this.$message.error(error.data)})
-		},
-		hello(event){
-			console.log(event)
-		},
-		beforeRemove(file) {
+		// handleChange(file) {
+		// 	let formData = new FormData()
+		// 	formData.append("name",file.name)
+		// 	formData.append("name",file)
+		// 	axios.post('url',{formData})
+		// 		.then(response=>{
+		//
+		// 		})
+		// 		.catch(error=>{this.$message.error(error.data)})
+		// },
+		beforeRemove(file, fileList) {
 			return this.$confirm(`确定移除 ${ file.name }？`);
 		},
 		reservation(){
@@ -229,6 +226,7 @@ img{
 #zoom{
 	width: 400px;
 	height: 400px;
+	border:2px solid #e2e2e2;;
 }
 #introduce{
 	color: #555;

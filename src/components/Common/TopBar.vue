@@ -18,7 +18,7 @@ export default {
         { id: 0, title: "我的订单", url: "/" },
         { id: 1, title: "我的营地", url: "/" },
         { id: 2, title: "收藏夹", url: "/" },
-        { id: 3, title: "购物车", url: "/" },
+        { id: 3, title: "购物车", url: "/ShoppingList" },
         { id: 4, title: "请登录|注册", url: "/Login" }
       ]
     };

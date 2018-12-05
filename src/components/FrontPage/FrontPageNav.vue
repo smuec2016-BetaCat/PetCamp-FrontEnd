@@ -10,16 +10,16 @@
               <img src="http://itsyuekao.com:5000/_uploads/IMAGE/logo-fixed.png" alt="logo">
             </a>
           </el-col>
-        <el-col class="hidden-md-and-up" :span="3">
-            <i class="el-icon-menu toggle-side-bar"></i>
+          <el-col class="hidden-md-and-up" :xs="5" :md="3">
+            <i class="toggle-side-bar" :class="{'el-icon-menu': !sidebar ,'el-icon-back': sidebar}" @click="ShowSideBar"></i>
           </el-col>
-          <el-col class="search" :xs="21" :md="12">
+          <el-col class="search" :xs="18" :md="12">
             <el-input class="search-box" placeholder="欢迎来到PetCamp" v-model="input">
               <i class="el-icon-search" slot="suffix"></i>
             </el-input>
           </el-col>
           <el-col class="cart hidden-sm-and-down" :xs="24" :md="6">
-            <el-button round icon="el-icon-goods">我的购物车</el-button>
+            <el-button round icon="el-icon-goods" @click="shoppingcart">我的购物车</el-button>
           </el-col>
         </el-col>
       </el-row>
@@ -37,29 +37,65 @@
           </div>
         </el-col>
       </el-row>
+      <!--sidebar-->
+      <transition name="slide-fade" enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">
+        <el-row v-if="sidebar" style="position: relative;z-index: 20;height: 100%">
+          <el-col id="sidebar" ref="sidebar">
+            <nav>
+              <ul>
+                <li v-for="item in topBarItem" :key="item.id">
+                  <router-link v-text="item.title" :to="item.url"></router-link>
+                </li>
+              </ul>
+            </nav>
+            <nav>
+              <ul>
+                <li v-for="item in navBarItem" :key="item.id">
+                  <router-link v-text="item.title" :to="item.url"></router-link>
+                </li>
+              </ul>
+            </nav>
+          </el-col>
+        </el-row>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
 import TopBar from "@/components/Common/TopBar";
-
 export default {
   name: "FrontPageNav",
   components: { TopBar },
   data() {
     return {
       input: "",
+      topBarItem: [
+          { id: 0, title: "我的订单", url: "/" },
+          { id: 1, title: "我的营地", url: "/" },
+          { id: 2, title: "收藏夹", url: "/" },
+          { id: 3, title: "购物车", url: "/ShoppingList" },
+          { id: 4, title: "请登录|注册", url: "/Login" }
+      ],
       navBarItem: [
         { id: 0, title: "营地首页", url: "/" },
-        { id: 1, title: "宠物寄养", url: "/" },
-        { id: 2, title: "宠物领养", url: "/" },
-        { id: 3, title: "宠物零售", url: "/" },
+        { id: 1, title: "宠物寄养", url: "/CommodityBrowsing/CommodityBrowsingList1" },
+        { id: 2, title: "宠物领养", url: "/CommodityBrowsing/CommodityBrowsingList2" },
+        { id: 3, title: "宠物零售", url: "/CommodityBrowsing/CommodityBrowsingList3" },
         { id: 4, title: "关于我们", url: "/" }
-      ]
-    };
-  }
-};
+      ],
+      sidebar:false,
+    }
+  },
+    methods:{
+      shoppingcart(){
+        this.$router.push({path:"/shoppingList"})
+      },
+      ShowSideBar(){
+          this.sidebar = !this.sidebar
+      }
+    }
+}
 </script>
 
 <style>
@@ -126,7 +162,7 @@ export default {
 .navigation-bar .navigation {
   text-align: center !important;
   height: 60px;
-  box-shadow: 0px 7px 10px 5px #eeeeee;
+  box-shadow: 0 7px 10px 5px #eeeeee;
   margin-bottom: 30px;
 }
 .navigation-bar nav {
@@ -160,9 +196,43 @@ export default {
 .toggle-side-bar {
   display: block;
   font-size: 30px;
-  padding: 15px 0;
+  padding: 15px 15px;
   margin-right: 10px;
   color: #aaaaaa;
 }
+.toggle-side-bar:hover{
+  color:#6A3906;
+  transition: all 0.3s;
+}
+#sidebar{
+  position: absolute;
+  background-color: white;
+  width: 220px;
+  overflow: auto;
+  z-index: 100;
+  padding: 10px 10px 10px 20px;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+#sidebar ul{
+  padding-left: 15px;
+}
+#sidebar ul li{
+  list-style: none;
+  margin-top: 1em;
+}
+#sidebar ul li a{
+  text-decoration: none;
+  color: #34495e;
+  font-size: 15px;
+  padding-bottom: 3px;
+}
+#sidebar ul li a:hover{
+  color:#6A3906;
+  border-bottom: 2px solid #6A3906;
+  transition: all 0.3s;
+  font-size: 14px;
+}
+
 </style>
 
