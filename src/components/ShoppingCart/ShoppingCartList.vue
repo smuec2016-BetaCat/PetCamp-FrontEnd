@@ -145,7 +145,7 @@
 					<span>合计：</span><strong style="font-size: 22px">{{totalPrice.toFixed(2)}}</strong>
 				</el-col>
 				<el-col :span="8" style="display: flex">
-					<el-button type="warning" round style="width: 90%;margin: 5px 0">去结算</el-button>
+					<el-button type="warning" round style="width: 90%;margin: 5px 0" @click.native="pay">去结算</el-button>
 				</el-col>
 			</el-col>
 		</el-row>
