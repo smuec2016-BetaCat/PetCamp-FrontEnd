@@ -1,6 +1,4 @@
 <template>
-  <el-row>
-    <el-col :sm="{span:24}" :md="{span:16, offset:4}">
       <el-carousel :interval="10000" arrow="never" height="450px">
         <el-carousel-item v-for="item in CarouseMap" :key="item.id">
           <h3>
@@ -8,8 +6,6 @@
           </h3>
         </el-carousel-item>
       </el-carousel>
-    </el-col>
-  </el-row>
 </template>
 
 <script>
