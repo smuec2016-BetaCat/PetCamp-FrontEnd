@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<ShoppingCartNav></ShoppingCartNav>
+		<ShoppingCartNav class="hidden-xs-only"></ShoppingCartNav>
 		<ShoppingCartList></ShoppingCartList>
 	</div>
 </template>

@@ -1,132 +1,155 @@
 <template>
-	<el-row id="bug">
-		<el-col :span="18" :offset="3" style="background-color: white;border: 2px solid #e6e6e6;border-radius: 10px;">
-			<el-col id="thead">
-				<el-col :span="3">
-					<el-checkbox style="margin-left: 5px" v-model="allChecked" @click.native="checkAll">全选</el-checkbox>
-				</el-col>
-				<el-col :span="9">
-					<span>订单</span>
-				</el-col>
-				<el-col :span="3">
-					<span>单价</span>
-				</el-col>
-				<el-col :span="3">
-					<span>数量</span>
-				</el-col>
-				<el-col :span="3">
-					<span>小计</span>
-				</el-col>
-				<el-col :span="2">
-					<span>操作</span>
-				</el-col>
-			</el-col>
-			<el-col style="text-align: left;"  v-for="(item,index) in shoppingCartList" :key="item.shopId">
-				<el-col class="shop">
-					<el-col :span="22">
-						<el-checkbox v-model="item.shopChecked" @change.native="bothCheck(index)"></el-checkbox>
-						<span style="margin-left: 5px" v-text="item.name"></span>
+	<div>
+		<!--电脑端-->
+		<el-row id="bug" class="hidden-xs-only">
+			<el-col :span="18" :offset="3" style="background-color: white;border: 2px solid #e6e6e6;border-radius: 10px;">
+				<el-col id="thead">
+					<el-col :span="3">
+						<el-checkbox style="margin-left: 5px" v-model="allChecked" @click.native="checkAll">全选</el-checkbox>
 					</el-col>
-					<!--<el-col :span="1">-->
-						<!--<el-switch v-model="item.value" @click.native="showNav"></el-switch>-->
-					<!--</el-col>-->
+					<el-col :span="9">
+						<span>订单</span>
+					</el-col>
+					<el-col :span="3">
+						<span>单价</span>
+					</el-col>
+					<el-col :span="3">
+						<span>数量</span>
+					</el-col>
+					<el-col :span="3">
+						<span>小计</span>
+					</el-col>
+					<el-col :span="2">
+						<span>操作</span>
+					</el-col>
 				</el-col>
-				<el-col class="shopBody" v-if="item.value">
-					<el-col v-for="(i,ind) in item.shoppingList" :key="i.id" class="father">
-						<el-col class="cartItems">
-							<el-col :span="1">
-								<el-checkbox v-model="i.checked" @change.native="checkItems(index)"></el-checkbox>
-							</el-col>
-							<el-col :span="2">
-								<img src="../../assets/cat.jpg" alt="">
-							</el-col>
-							<el-col :span="5" style="padding: 5px">
-								<span v-text="i.title"></span>
-								<h5 v-text="i.msg"></h5>
-							</el-col>
-							<el-col :span="4" style="padding: 5px">
-								<span>备注</span>
-								<h5 v-text="i.details"></h5>
-							</el-col>
-							<el-col :span="3" style="padding: 5px">
-								<span v-text="`￥${i.price}`"></span>
-							</el-col>
-							<el-col :span="3" style="padding: 5px">
-								<el-col  :md={span:17} :sm="{span:20}" >
-									<el-input-number size="mini" v-model="i.num" :min="1" style="width: 100%"></el-input-number>
+				<el-col style="text-align: left;"  v-for="(item,index) in shoppingCartList" :key="item.shopId">
+					<el-col class="shop">
+						<el-col :span="22">
+							<el-checkbox v-model="item.shopChecked" @change.native="bothCheck(index)"></el-checkbox>
+							<span style="margin-left: 5px" v-text="item.name"></span>
+						</el-col>
+						<!--<el-col :span="1">-->
+						<!--<el-switch v-model="item.value" @click.native="showNav"></el-switch>-->
+						<!--</el-col>-->
+					</el-col>
+					<el-col class="shopBody" v-if="item.value">
+						<el-col v-for="(i,ind) in item.shoppingList" :key="i.id" class="father">
+							<el-col class="cartItems">
+								<el-col :span="1">
+									<el-checkbox v-model="i.checked" @change.native="checkItems(index)"></el-checkbox>
 								</el-col>
-							</el-col>
-							<el-col :span="3" style="padding: 5px">
-								<span v-text="`￥${(i.price*i.num).toFixed(2)}`"></span>
-							</el-col>
-							<el-col :span="2" style="padding: 5px">
-								<router-link to="" @click.native="deleteItem(index,ind)">删除</router-link>
+								<el-col :span="2">
+									<img src="../../assets/cat.jpg" alt="">
+								</el-col>
+								<el-col :span="5" style="padding: 5px">
+									<span v-text="i.title"></span>
+									<h5 v-text="i.msg"></h5>
+								</el-col>
+								<el-col :span="4" style="padding: 5px">
+									<span>备注</span>
+									<h5 v-text="i.details"></h5>
+								</el-col>
+								<el-col :span="3" style="padding: 5px">
+									<span v-text="`￥${i.price}`"></span>
+								</el-col>
+								<el-col :span="3" style="padding: 5px">
+									<el-col  :md={span:17} :sm="{span:20}" >
+										<el-input-number size="mini" v-model="i.num" :min="1" style="width: 100%"></el-input-number>
+									</el-col>
+								</el-col>
+								<el-col :span="3" style="padding: 5px">
+									<span v-text="`￥${(i.price*i.num).toFixed(2)}`"></span>
+								</el-col>
+								<el-col :span="2" style="padding: 5px">
+									<router-link to="" @click.native="deleteItem(index,ind)">删除</router-link>
+								</el-col>
 							</el-col>
 						</el-col>
 					</el-col>
 				</el-col>
-			</el-col>
-			<!--底部-->
-			<el-col id="footer">
-				<el-col :span="2">
-					<el-checkbox style="margin-left: 5px" v-model="allChecked" @click.native="checkAll">全选</el-checkbox>
+				<!--底部-->
+				<el-col id="footer">
+					<el-col :span="2">
+						<el-checkbox style="margin-left: 5px" v-model="allChecked" @click.native="checkAll">全选</el-checkbox>
+					</el-col>
+					<el-col :span="2">
+						<router-link to="" @click.native="dialogVisible1 = true" class="delAll">
+							一键删除
+						</router-link>
+					</el-col>
+					<el-col :span="3" style="float: right">
+						<el-button style="height: 100%" @click.native="pay">结算</el-button>
+					</el-col>
+					<el-col :span="6" style="float: right">
+						<span>合计：</span>
+						<strong style="font-size: 22px">{{totalPrice.toFixed(2)}}</strong>
+					</el-col>
+					<el-col :span="4" style="float: right">
+						<span>已选商品 <span style="font-size: 22px">{{totalItem}}</span>件</span>
+					</el-col>
 				</el-col>
-				<el-col :span="2">
-					<router-link to="" @click.native="dialogVisible1 = true" class="delAll">
-						一键删除
-					</router-link>
-				</el-col>
-				<el-col :span="3" style="float: right">
-					<el-button style="height: 100%" @click.native="pay">结算</el-button>
-				</el-col>
-				<el-col :span="6" style="float: right">
-					<span>合计：</span>
-					<strong style="font-size: 22px">{{totalPrice.toFixed(2)}}</strong>
-				</el-col>
-				<el-col :span="4" style="float: right">
-					<span>已选商品 <span style="font-size: 22px">{{totalItem}}</span>件</span>
-				</el-col>
-			</el-col>
-			<el-col>
-				<el-dialog title="删除宝贝？" :visible.sync="dialogVisible" width="30%">
-					<span>您确定要删除该宝贝？</span>
-					<span slot="footer" class="dialog-footer">
+				<el-col>
+					<el-dialog title="删除宝贝？" :visible.sync="dialogVisible" width="30%">
+						<span>您确定要删除该宝贝？</span>
+						<span slot="footer" class="dialog-footer">
 						<el-button @click="deleteI">确定删除</el-button>
 						<el-button type="primary" @click="dialogVisible = false">取消</el-button>
                      </span>
-				</el-dialog>
-			</el-col>
-			<el-col>
-				<el-dialog title="删除全部宝贝？" :visible.sync="dialogVisible1" width="30%">
-					<span>您确定要删除全部宝贝？</span>
-					<span slot="footer" class="dialog-footer">
+					</el-dialog>
+				</el-col>
+				<el-col>
+					<el-dialog title="删除全部宝贝？" :visible.sync="dialogVisible1" width="30%">
+						<span>您确定要删除全部宝贝？</span>
+						<span slot="footer" class="dialog-footer">
 						<el-button @click="deleteAll">确定删除</el-button>
 						<el-button type="primary" @click="dialogVisible1 = false">取消</el-button>
                      </span>
-				</el-dialog>
-			</el-col>
-		</el-col>
-		<el-col v-if="navVisiable" id="bottomNav" ref="nav">
-			<el-col :span="18" :offset="3">
-				<el-col :span="2">
-					<el-checkbox style="margin-left: 5px" v-model="allChecked" @click.native="checkAll">全选</el-checkbox>
-				</el-col>
-				<el-col :span="2">
-					<router-link to="" @click.native="dialogVisible1 = true" class="delAll">一键删除</router-link>
-				</el-col>
-				<el-col :span="3" style="float: right">
-					<el-button style="height: 100%" @click.native="pay">结算</el-button>
-				</el-col>
-				<el-col :span="6" style="float: right">
-					<span>合计：</span>
-					<strong style="font-size: 22px">{{totalPrice.toFixed(2)}}</strong>
-				</el-col>
-				<el-col :span="4" style="float: right">
-					<span>已选商品 <span style="font-size: 22px">{{totalItem}}</span>件</span>
+					</el-dialog>
 				</el-col>
 			</el-col>
-		</el-col>
-	</el-row>
+			<el-col v-if="navVisiable" id="bottomNav" ref="nav">
+				<el-col :span="18" :offset="3">
+					<el-col :span="2">
+						<el-checkbox style="margin-left: 5px" v-model="allChecked" @click.native="checkAll">全选</el-checkbox>
+					</el-col>
+					<el-col :span="2">
+						<router-link to="" @click.native="dialogVisible1 = true" class="delAll">一键删除</router-link>
+					</el-col>
+					<el-col :span="3" style="float: right">
+						<el-button style="height: 100%" @click.native="pay">结算</el-button>
+					</el-col>
+					<el-col :span="6" style="float: right">
+						<span>合计：</span>
+						<strong style="font-size: 22px">{{totalPrice.toFixed(2)}}</strong>
+					</el-col>
+					<el-col :span="4" style="float: right">
+						<span>已选商品 <span style="font-size: 22px">{{totalItem}}</span>件</span>
+					</el-col>
+				</el-col>
+			</el-col>
+		</el-row>
+		<!--手机端-->
+		<el-row class="hidden-sm-and-up">
+			<!--nav-->
+			<el-col class="cartNav">
+				<span>购物车</span>
+				<span class="cartNavEdit">编辑<i class="el-icon-setting"></i></span>
+			</el-col>
+			<!--bottom-->
+			<el-col class="cartBottom">
+				<el-col :span="6">
+					<el-checkbox style="margin-left: 20px" v-model="allChecked" @click.native="checkAll">全选</el-checkbox>
+				</el-col>
+				<el-col :span="10">
+					<span>合计：</span><strong style="font-size: 22px">{{totalPrice.toFixed(2)}}</strong>
+				</el-col>
+				<el-col :span="8" style="display: flex">
+					<el-button type="warning" round style="width: 90%;margin: 5px 0">去结算</el-button>
+				</el-col>
+			</el-col>
+		</el-row>
+	</div>
 </template>
 
 <script>
@@ -383,5 +406,30 @@ img{
 }
 .cartItems:hover{
 	background-color: rgb(242, 247, 255);
+}
+.cartNav{
+	box-shadow: 0 7px 10px 5px #eeeeee;
+	height: 50px;
+	line-height: 50px;
+	color: #2c3e50;
+	font-weight: bold;
+	position: relative;
+}
+.cartNavEdit{
+	position: absolute;
+	right: 20px;
+}
+.cartNavEdit:hover{
+	color:#6A3906;
+}
+.cartBottom{
+	position: fixed;
+	bottom: 0;
+	height: 50px;
+	line-height: 50px;
+	color: #2c3e50;
+	font-weight: bold;
+	text-align: left;
+	border: 1px solid #ebebeb;
 }
 </style>

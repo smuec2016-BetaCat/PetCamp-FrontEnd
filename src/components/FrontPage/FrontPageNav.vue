@@ -64,6 +64,7 @@
 
 <script>
 import TopBar from "@/components/Common/TopBar";
+
 export default {
   name: "FrontPageNav",
   components: { TopBar },
