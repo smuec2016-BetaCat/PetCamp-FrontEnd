@@ -7,7 +7,7 @@
 				</el-tabs>
 			</el-row>
 			<!--店铺-->
-			<el-row style="border-bottom: 1px solid #dcdcdc;padding: 1% 0 2% 0" v-for="item in shopList" :key="i">
+			<!-- <el-row style="border-bottom: 1px solid #dcdcdc;padding: 1% 0 2% 0" v-for="item in shopList" :key="i"> -->
 				<el-col>
 					<el-col :span="8">
 						<!--左侧图片-->
@@ -68,7 +68,7 @@
 						</el-row>
 					</el-col>
 				</el-col>
-			</el-row>
+			<!-- </el-row> -->
 			<el-row>
 				<el-col>
 					<div class="block" style="margin: 5% 0 2% 0">

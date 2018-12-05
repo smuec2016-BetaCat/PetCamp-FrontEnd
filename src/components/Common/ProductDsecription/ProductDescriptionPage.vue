@@ -187,16 +187,16 @@ export default {
 			let formData = new FormData()
 			formData.append("name",file.name)
 			formData.append("name",file)
-			axios.post('url',{formData})
-				.then(response=>{
-
-				})
-				.catch(error=>{this.$message.error(error.data)})
+			// axios.post('url',{formData})
+			// 	.then(response=>{
+					
+			// 	})
+			// 	.catch(error=>{this.$message.error(error.data)})
 		},
 		hello(event){
 			console.log(event)
 		},
-		beforeRemove(file, fileList) {
+		beforeRemove(file) {
 			return this.$confirm(`确定移除 ${ file.name }？`);
 		},
 		reservation(){
