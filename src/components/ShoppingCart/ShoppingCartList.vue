@@ -23,6 +23,9 @@
 						<span>操作</span>
 					</el-col>
 				</el-col>
+				<el-col style="margin-top: 50px;margin-bottom: 50px" v-if="nothing">
+					<span>购物车空空如也</span>
+				</el-col>
 				<el-col style="text-align: left;"  v-for="(item,index) in shoppingCartList" :key="item.shopId">
 					<el-col class="shop">
 						<el-col :span="22">
@@ -138,7 +141,7 @@
 				<span class="cartNavEdit" @click="edit" v-if="editStatus">完成<i class="el-icon-setting"></i></span>
 			</el-col>
 			<!--list-->
-			<el-col style="margin-bottom: 50px">
+			<el-col style="margin-bottom: 50px;margin-top: 50px">
 				<el-col style="margin-top: 50px" v-if="nothing">
 					<span>购物车空空如也</span>
 				</el-col>
@@ -349,16 +352,17 @@ export default {
 			}
 		},
 		deleteAll(){
-			this.shoppingCartList.forEach(function (value) {
-				value.shoppingList = []
-			})
+			for(let i = 0;i<this.shoppingCartList.length;i++){
+					this.shoppingCartList.splice(i,1)
+					i--
+				}
 			this.dialogVisible1 = false
 		},
 		deleteMobile(){
 			for(let i = 0;i<this.shoppingCartList.length;i++){
 				if(this.shoppingCartList[i].shopChecked){
 					this.shoppingCartList.splice(i,1)
-					i--;
+					i--
 				}
 				else {
 					for(let j = 0;j<this.shoppingCartList[i].shoppingList.length;j++){
@@ -498,9 +502,11 @@ img{
 	box-shadow: 0 7px 10px 5px #eeeeee;
 	height: 50px;
 	line-height: 50px;
+	background-color: white;
+	z-index: 20;
 	color: #2c3e50;
 	font-weight: bold;
-	position: relative;
+	position: fixed;
 }
 .cartNavEdit{
 	position: absolute;
