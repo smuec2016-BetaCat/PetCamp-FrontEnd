@@ -143,7 +143,8 @@
 			<!--list-->
 			<el-col style="margin-bottom: 50px;margin-top: 50px">
 				<el-col style="margin-top: 50px" v-if="nothing">
-					<span>购物车空空如也</span>
+					<span>购物车空空如也</span><br>
+					<router-link to="/">返回首页</router-link>
 				</el-col>
 				<el-col style="text-align: left;margin-top: 10px" v-for="(item,index) in shoppingCartList" :key="item.shopId">
 					<el-card class="shopCard" shadow="always" :body-style="{ padding: '10px' }">
