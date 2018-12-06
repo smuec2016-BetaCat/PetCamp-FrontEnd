@@ -139,6 +139,9 @@
 			</el-col>
 			<!--list-->
 			<el-col style="margin-bottom: 50px">
+				<el-col style="margin-top: 50px" v-if="nothing">
+					<span>购物车空空如也</span>
+				</el-col>
 				<el-col style="text-align: left;margin-top: 10px" v-for="(item,index) in shoppingCartList" :key="item.shopId">
 					<el-card class="shopCard" shadow="always" :body-style="{ padding: '10px' }">
 						<el-col class="shopMobile">
@@ -352,18 +355,20 @@ export default {
 			this.dialogVisible1 = false
 		},
 		deleteMobile(){
-			this.shoppingCartList.forEach((value,index) =>{
-				if (value.shopChecked){
-					this.shoppingCartList.splice(index,1)
+			for(let i = 0;i<this.shoppingCartList.length;i++){
+				if(this.shoppingCartList[i].shopChecked){
+					this.shoppingCartList.splice(i,1)
+					i--;
 				}
-			})
-			this.shoppingCartList.forEach((value1,index1)=> {
-				value1.shoppingList.forEach((value2,index2)=> {
-					if (value2.checked){
-						this.shoppingCartList[index1].shoppingList.splice(index2,1)
+				else {
+					for(let j = 0;j<this.shoppingCartList[i].shoppingList.length;j++){
+						if(this.shoppingCartList[i].shoppingList[j].checked){
+							this.shoppingCartList[i].shoppingList.splice(j,1)
+							j--;
+						}
 					}
-				})
-			})
+				}
+			}
 			this.dialogVisibleMobile = false
 		},
 		edit(){
@@ -401,6 +406,9 @@ export default {
 				})
 			})
 			return sum
+		},
+		nothing(){
+			return this.shoppingCartList.length === 0;
 		}
 	},
 	mounted: function () {
