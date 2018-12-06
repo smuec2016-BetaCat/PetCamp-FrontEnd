@@ -336,12 +336,19 @@ export default {
 		},
 		deleteI(){
 			this.shoppingCartList[this.cartList].shoppingList.splice(this.shopList,1)
+			this.$message.success("删除成功")
 			this.dialogVisible = false
 			//ajax请求删除后端数据
 			// axios.post()
 		},
 		pay(){
-			this.$router.push({path:`/Order`})
+			if (this.shoppingCartList.length === 0){
+				this.$message.error("请先加入商品")
+			}
+			else{
+				this.$router.push({path:`/Order`})
+			}
+
 		},
 		showNav(){
 			let visibleBottom = window.scrollY + document.documentElement.clientHeight
@@ -356,6 +363,7 @@ export default {
 					this.shoppingCartList.splice(i,1)
 					i--
 				}
+			this.$message.success("删除成功")
 			this.dialogVisible1 = false
 		},
 		deleteMobile(){
@@ -373,7 +381,9 @@ export default {
 					}
 				}
 			}
+			this.$message.success("删除成功")
 			this.dialogVisibleMobile = false
+			this.editStatus =  false
 		},
 		edit(){
 			this.editStatus = !this.editStatus
