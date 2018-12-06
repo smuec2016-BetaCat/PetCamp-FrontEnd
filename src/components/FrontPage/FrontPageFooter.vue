@@ -1,18 +1,17 @@
 <template>
-	<div>
-		<el-row>
-			<el-col :span="20" :offset="2">
+	<div class="footer">
+		<el-row class="links">
+			<el-col :span="16" :offset="4">
 				<el-row type="flex" justify="center">
 					<el-col v-for="item in foot" v-bind:key="item.id">
-						| <router-link to="" v-text="item.msg"></router-link> |
+						<router-link class="link" to="" v-text="item.msg"></router-link>
 					</el-col>
 				</el-row>
 			</el-col>
 		</el-row>
-		<br><br>
 		<el-row type="flex" class="row-bg" justify="center">
 			<el-col :span="10">
-				<span v-text="copyWrite"></span>
+				<span v-text="copyRight" class="copy-right"></span>
 			</el-col>
 		</el-row>
 	</div>
@@ -34,20 +33,26 @@ export default {
                 {id:8,msg:"爱宠讨论社区"},
                 {id:9,msg:"友情链接"}
 				],
-			copyWrite:"Copyright © 2018 Group BetaCat. All rights reserved."
+			copyRight:"Copyright © 2018 Group BetaCat. All rights reserved."
         }
     }
 }
 </script>
 
 <style scoped>
-a{
-	color:#666;
-	text-decoration: none;
-	font: 13px Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\5b8b\4f53,sans-serif;
+.footer {
+	background-color: black;
+	padding-top: 20px;
 }
-span{
-	color:#666;
-	font: 13px Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\5b8b\4f53,sans-serif;
+.links .link {
+	text-decoration: none;
+	color: white;
+}
+.row-bg {
+	margin-top: 30px;
+	padding-bottom: 10px;
+}
+.copy-right {
+	color: white;
 }
 </style>

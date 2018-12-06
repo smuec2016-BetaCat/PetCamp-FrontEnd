@@ -5,7 +5,7 @@
       <!--logo and search box-->
       <div class="space hidden-sm-and-down"></div>
       <el-row class="logo-search-bar">
-        <el-col :xs="{span: 22, offset: 1}" :md="{span: 16, offset: 4}">
+        <el-col :xs="{span: 22, offset: 1}" :md="{span: 14, offset: 5}">
           <el-col class="logo hidden-sm-and-down" :xs="24" :md="6">
             <a href="#">
               <img src="http://itsyuekao.com:5000/_uploads/IMAGE/logo-fixed.png" alt="logo">
@@ -29,7 +29,7 @@
       <div class="space hidden-sm-and-down"></div>
       <!--navigation-->
       <el-row class="navigation-bar hidden-sm-and-down">
-        <el-col :span="16" :offset="4">
+        <el-col :span="14" :offset="5">
           <div class="navigation">
             <nav>
               <ul>

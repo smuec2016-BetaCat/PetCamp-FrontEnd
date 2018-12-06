@@ -2,9 +2,9 @@
 	<div>
 		<FrontPageNav></FrontPageNav>
         <front-page-ads-bar></front-page-ads-bar>
-		<!-- <FrontPageDisplayBoard></FrontPageDisplayBoard>
-		<FrontPageFeatures></FrontPageFeatures>
-		<FrontPageFooter></FrontPageFooter> -->
+		<FrontPageDisplayBoard></FrontPageDisplayBoard>
+		<!-- <FrontPageFeatures></FrontPageFeatures> -->
+		<FrontPageFooter></FrontPageFooter>
 	</div>
 </template>
 
