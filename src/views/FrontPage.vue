@@ -1,17 +1,15 @@
 <template>
 	<div>
 		<FrontPageNav></FrontPageNav>
-		<!-- <FrontPageCarouselMap></FrontPageCarouselMap> -->
         <front-page-ads-bar></front-page-ads-bar>
-		<FrontPageDisplayBoard></FrontPageDisplayBoard>
+		<!-- <FrontPageDisplayBoard></FrontPageDisplayBoard>
 		<FrontPageFeatures></FrontPageFeatures>
-		<FrontPageFooter></FrontPageFooter>
+		<FrontPageFooter></FrontPageFooter> -->
 	</div>
 </template>
 
 <script>
 import FrontPageNav from "../components/FrontPage/FrontPageNav"
-import FrontPageCarouselMap from "../components/FrontPage/FrontPageCarouselMap"
 import FrontPageAdsBar from "@/components/FrontPage/FrontPageAdsBar"
 import FrontPageDisplayBoard from "../components/FrontPage/FrontPageDisplayBoard"
 import FrontPageFooter from "../components/FrontPage/FrontPageFooter"
@@ -21,7 +19,7 @@ import axios from "axios"
 export default {
 	name: "FrontPage",
     components: {
-        FrontPageFeatures, FrontPageFooter, FrontPageDisplayBoard, FrontPageCarouselMap, FrontPageNav, FrontPageAdsBar},
+        FrontPageFeatures, FrontPageFooter, FrontPageDisplayBoard, FrontPageNav, FrontPageAdsBar},
     data(){
         return {
             insertTime:null
