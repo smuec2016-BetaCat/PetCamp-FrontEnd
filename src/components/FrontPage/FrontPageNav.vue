@@ -20,7 +20,9 @@
             </el-input>
           </el-col>
           <el-col class="cart hidden-sm-and-down" :xs="24" :md="6">
-            <el-button round icon="el-icon-goods" @click="shoppingcart">我的购物车</el-button>
+            <el-badge :value="1" class="cart-badge">
+              <el-button round icon="el-icon-goods" @click="shoppingcart">我的购物车</el-button>
+            </el-badge>
           </el-col>
         </el-col>
       </el-row>
@@ -160,10 +162,14 @@ export default {
   margin-right: 10px;
 }
 .logo-search-bar .cart .el-button {
-  margin: 5px 20px 5px 0;
+  margin: 5px 0 5px 0;
   height: 50px;
   float: right;
   font-size: 16px;
+}
+.logo-search-bar .cart sup {
+  top: 10px;
+  right: 15px;
 }
 
 .navigation-bar .navigation {
