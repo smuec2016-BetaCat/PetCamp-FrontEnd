@@ -247,7 +247,7 @@ export default {
 		formLabelWidth: '180px',
 		fileList:[],
 		bottomList:["el-icon-service","el-icon-location-outline","el-icon-goods","el-icon-bell"],
-		myUrl:["/","/PurchasePage/ProductComments","/ShoppingList","/ShoppingList"]
+		myUrl:["/","/PurchasePage/ProductComments","/ShoppingList","/FosterPage"]
 		}
 
 	},

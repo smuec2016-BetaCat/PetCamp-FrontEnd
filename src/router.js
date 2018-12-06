@@ -23,6 +23,7 @@ import PurchasePage from './views/PurchasePage'
 import AdminTrustOrder from "./views/AdminPages/AdminTrustOrder"
 import ShoppingList from "./views/ShoppingList";
 import Order from "./views/Order";
+import FosterPage from "./views/FoseterPage";
 
 
 Vue.use(Router)
@@ -33,6 +34,11 @@ export default new Router({
             path: '/',
             name: 'FrontPage',
             component: FrontPage
+        },
+        {
+            path: '/FosterPage',
+            name: 'FosterPage',
+            component: FosterPage
         },
         {
             path: '/ShoppingList',
