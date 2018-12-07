@@ -7,7 +7,7 @@
 				</el-tabs>
 			</el-row>
 			<!--店铺-->
-			 <el-row style="border-bottom: 1px solid #dcdcdc;padding: 1% 0 2% 0" v-for="item in shopList" :key="i">
+			<el-row style="border-bottom: 1px solid #dcdcdc;padding: 1% 0 2% 0" v-for="item in shopList" :key="item.id">
 				<el-col>
 					<el-col :span="8">
 						<!--左侧图片-->
@@ -92,6 +92,7 @@ export default {
 			activeName: 'first',
 			shopList:[
 				{
+					id:1,
 					shop:[
 						{id:0,title:"铲屎官道具",show:false,src:""},
 						{id:1,title:"到底能不能遍历啊",show:false,src:""},
@@ -100,6 +101,7 @@ export default {
 
 				},
 				{
+					id:2,
 					shop:[
 						{id:0,title:"铲屎官道具",show:false,src:""},
 						{id:1,title:"到底能不能遍历啊",show:false,src:""},
@@ -108,6 +110,7 @@ export default {
 
 				},
 				{
+					id:3,
 					shop:[
 						{id:0,title:"铲屎官道具",show:false,src:""},
 						{id:1,title:"到底能不能遍历啊",show:false,src:""},

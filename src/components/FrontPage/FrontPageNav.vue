@@ -4,7 +4,7 @@
       <top-bar></top-bar>
       <!--logo and search box-->
       <div class="space hidden-sm-and-down"></div>
-      <el-row class="logo-search-bar">
+      <el-row class="logo-search-bar" :class="{'fixIt':!isPc}">
         <el-col :xs="{span: 22, offset: 1}" :md="{span: 14, offset: 5}">
           <el-col class="logo hidden-sm-and-down" :xs="24" :md="6">
             <a href="#">
@@ -25,7 +25,29 @@
             </el-badge>
           </el-col>
         </el-col>
+        <!--sidebar-->
+        <transition name="slide-fade" enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">
+          <el-row v-if="sidebar" style="position: relative;z-index: 20;height: 100%;margin-top: 80px;">
+            <el-col id="sidebar" ref="sidebar">
+              <nav>
+                <ul>
+                  <li v-for="item in topBarItem" :key="item.id">
+                    <router-link v-text="item.title" :to="item.url"></router-link>
+                  </li>
+                </ul>
+              </nav>
+              <nav>
+                <ul>
+                  <li v-for="item in navBarItem" :key="item.id">
+                    <router-link v-text="item.title" :to="item.url"></router-link>
+                  </li>
+                </ul>
+              </nav>
+            </el-col>
+          </el-row>
+        </transition>
       </el-row>
+      <el-row :class="{'fix2':!isPc}"></el-row>
       <div class="space hidden-sm-and-down"></div>
       <!--navigation-->
       <el-row class="navigation-bar hidden-sm-and-down">
@@ -41,27 +63,6 @@
           </div>
         </el-col>
       </el-row>
-      <!--sidebar-->
-      <transition name="slide-fade" enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">
-        <el-row v-if="sidebar" style="position: relative;z-index: 20;height: 100%">
-          <el-col id="sidebar" ref="sidebar">
-            <nav>
-              <ul>
-                <li v-for="item in topBarItem" :key="item.id">
-                  <router-link v-text="item.title" :to="item.url"></router-link>
-                </li>
-              </ul>
-            </nav>
-            <nav>
-              <ul>
-                <li v-for="item in navBarItem" :key="item.id">
-                  <router-link v-text="item.title" :to="item.url"></router-link>
-                </li>
-              </ul>
-            </nav>
-          </el-col>
-        </el-row>
-      </transition>
     </div>
   </div>
 </template>
@@ -99,7 +100,19 @@ export default {
       ShowSideBar(){
           this.sidebar = !this.sidebar
       }
+    },
+  computed:{
+    isPc() {
+      let [userAgentInfo,flag,Agents] = [navigator.userAgent,true,["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"]]
+      for (let v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+          flag = false
+          break
+        }
+      }
+      return flag
     }
+  }
 }
 </script>
 
@@ -138,6 +151,8 @@ export default {
 .logo-search-bar {
   height: 80px;
   padding: 10px 0;
+  width: 100%;
+  z-index: 40;
 }
 .logo-search-bar .logo {
   height: 60px;
@@ -219,13 +234,13 @@ export default {
 }
 #sidebar{
   position: absolute;
+  top:-9px;
   background-color: white;
   width: 220px;
   overflow: auto;
-  z-index: 100;
   padding: 10px 10px 10px 20px;
   text-align: left;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 1px rgba(0,0,0,0.2);
 }
 #sidebar ul{
   padding-left: 15px;
@@ -246,6 +261,14 @@ export default {
   transition: all 0.3s;
   font-size: 14px;
 }
-
+.fixIt{
+  position: fixed;
+  background-color: white;
+  z-index: 30;
+  box-shadow: 0 1px 1px 1px #eeeeee;
+}
+.fix2{
+  height: 100px;
+}
 </style>
 

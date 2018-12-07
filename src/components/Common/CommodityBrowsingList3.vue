@@ -75,7 +75,7 @@
 			</el-col>
 			<el-row>
 				<el-col :xs={span:24,offset:0} :sm={span:8,offset:0} :md={span:6,offset:0} v-for="item in PetSide" :key="item.id">
-					<el-button @click="goTo" @mouseenter.native="textChange(item)" @mouseleave.native="textChange(item)" style="padding:0;margin:5px">
+					<el-button @mouseenter.native="textChange(item)" @mouseleave.native="textChange(item)" style="padding:0;margin:5px">
 						<el-card :body-style="{ padding: '0px' }" shadow="hover">
 							<img src="../../assets/petSupplies.jpg" class="image" alt="img">
 							<div style="padding: 14px;">

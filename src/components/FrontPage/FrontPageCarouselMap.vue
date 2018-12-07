@@ -1,11 +1,11 @@
 <template>
-      <el-carousel :interval="10000" arrow="never" height="450px">
+    <el-carousel :interval="10000" arrow="never" height="450px">
         <el-carousel-item v-for="item in CarouseMap" :key="item.id">
-          <h3>
-            <img :src="item.img" alt="carousel">
-          </h3>
+            <h3>
+                <img :src="item.img" alt="carousel">
+            </h3>
         </el-carousel-item>
-      </el-carousel>
+    </el-carousel>
 </template>
 
 <script>
