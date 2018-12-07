@@ -24,6 +24,7 @@ import AdminTrustOrder from "./views/AdminPages/AdminTrustOrder"
 import ShoppingList from "./views/ShoppingList";
 import Order from "./views/Order";
 import FosterPage from "./views/FoseterPage";
+import MyOrder from "./views/MyOrder";
 
 
 Vue.use(Router)
@@ -54,6 +55,11 @@ export default new Router({
             path: '/Order',
             name: 'Order',
             component: Order,
+        },
+        {
+            path: '/MyOrder',
+            name: 'MyOrder',
+            component: MyOrder,
         },
         {
             path: '/CommodityBrowsing',

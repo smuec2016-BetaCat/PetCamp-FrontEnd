@@ -3,6 +3,7 @@
 		<!--手机端nav-->
 		<el-col class="hidden-sm-and-up orderNav">
 			<span>填写并核对订单信息</span>
+			<router-link to="/ShoppingList" class="OrderNavBack"><i class="el-icon-back"></i></router-link>
 		</el-col>
 		<el-col :md="{span:18,offset:3}" :xs="{span:22,offset:1}" style="text-align: left">
 			<el-col>
@@ -339,7 +340,11 @@ b {
 }
 #orderList span{
 	font-size: 0.95em;
-	color: #666;;
+	color: #666;
+}
+.OrderNavBack{
+	position: fixed;
+	left: 20px;
 }
 /*动画*/
 .slide-fade-enter-active {

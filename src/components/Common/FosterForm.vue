@@ -58,22 +58,18 @@
 					<el-form-item label="宠物简介" :label-width="formLabelWidth">
 						<el-input type="textarea" v-model="form.desc"></el-input>
 					</el-form-item>
-					<el-form-item>
-						<el-upload
-								class="upload-demo"
-								drag
-								action=""
-								:on-preview="handlePreview"
-								:before-remove="beforeRemove"
-								:on-change="handleChange"
-								:file-list="fileList"
-								:auto-upload="false"
-								multiple>
-							<i class="el-icon-upload"></i>
-							<div class="el-upload__text">拖动图片或 <em>点击上传宠物图片</em></div>
-							<div class="el-upload__tip" slot="tip" style="text-align: center">jpg/png图片小于500kb</div>
-						</el-upload>
-					</el-form-item>
+					<!--<el-form-item>-->
+						<!--<el-upload-->
+								<!--class="upload-demo"-->
+								<!--drag-->
+								<!--action=""-->
+								<!--:auto-upload="false"-->
+								<!--multiple>-->
+							<!--<i class="el-icon-upload"></i>-->
+							<!--<div class="el-upload__text">拖动图片或 <em>点击上传宠物图片</em></div>-->
+							<!--<div class="el-upload__tip" slot="tip" style="text-align: center">jpg/png图片小于500kb</div>-->
+						<!--</el-upload>-->
+					<!--</el-form-item>-->
 				</el-form>
 				<el-form :model="form" style="text-align:left;" class="hidden-sm-and-up">
 					<el-form-item label="宠物昵称" style="width: 70%">
@@ -135,10 +131,6 @@
 								class="upload-demo"
 								drag
 								action=""
-								:on-preview="handlePreview"
-								:before-remove="beforeRemove"
-								:on-change="handleChange"
-								:file-list="fileList"
 								:auto-upload="false"
 								multiple>
 							<i class="el-icon-upload"></i>

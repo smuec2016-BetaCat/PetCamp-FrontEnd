@@ -137,6 +137,7 @@
 			<!--nav-->
 			<el-col class="cartNav">
 				<span>购物车</span>
+				<router-link to="/" class="CartNavBack"><i class="el-icon-back"></i></router-link>
 				<span class="cartNavEdit" @click="edit" v-if="!editStatus">编辑<i class="el-icon-setting"></i></span>
 				<span class="cartNavEdit" @click="edit" v-if="editStatus">完成<i class="el-icon-setting"></i></span>
 			</el-col>
@@ -552,5 +553,9 @@ img{
 	padding-left: 10px;
 	position: absolute;
 	right: 20px;
+}
+.CartNavBack{
+	position: absolute;
+	left: 20px;
 }
 </style>
