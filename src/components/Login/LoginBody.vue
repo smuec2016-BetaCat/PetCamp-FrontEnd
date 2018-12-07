@@ -1,8 +1,5 @@
 <template>
-	<el-row>
-		<el-col style="display: flex;background-color: #780701">
-			<el-col id="banner" :span="19"></el-col>
-		</el-col>
+	<el-row style="display: flex">
 		<div id="LoginForm">
 			<el-col>
 				<div id="title">账户登录</div>
@@ -36,13 +33,13 @@
 					</template>
 				</error>
 				<el-col class="MyMargin">
-					<router-link to="" style="float: right">忘记密码</router-link>
+					<router-link to="" style="float: right;" class="link">忘记密码</router-link>
 				</el-col>
 				<el-col class="MyMargin">
-					<el-button type="danger" style="width: 100%" @click="login">登录</el-button>
+					<el-button type="warning" style="width: 100%" @click="login">登录</el-button>
 				</el-col>
 				<el-col class="MyMargin">
-					<router-link to="/Register/RegisterStep1" style="float: right">
+					<router-link to="/Register/RegisterStep1" style="float: right" class="link">
 						<i class="el-icon-caret-right"></i>立即注册
 					</router-link>
 				</el-col>
@@ -129,25 +126,26 @@ export default {
 <style scoped>
 #title{
 	font-weight: 700;
-	color: #e4393c;
+	color: #6A3906;
 	padding: 20px;
 	font-size: 22px;
 }
-#banner{
-	background: url(//img13.360buyimg.com/da/jfs/t28450/179/586923643/72805/d0fc7270/5bf76417N8cb09987.jpg) 0 0 no-repeat;
-	height: 475px;
-	margin: auto;
-}
 #LoginForm{
 	background-color: #fff;
-	width: 350px;
-	height:380px;
-	position: absolute;
+	width: 400px;
+	height:400px;
 	z-index: 20;
-	right: 10%;
-	margin: 48px 35px;
+	margin: auto;
+	opacity: 0.85;
 }
 .MyMargin{
 	margin-top: 15px;
+}
+.link{
+	text-decoration: none;
+}
+.link:hover{
+	text-decoration: #6A3906 underline;
+	color: #6A3906;
 }
 </style>

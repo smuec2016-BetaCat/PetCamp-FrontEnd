@@ -1,7 +1,7 @@
 <template>
 	<div ref="son">
 		<el-row style="display: flex">
-			<el-col :span="10" style="margin: auto">
+			<el-col :md="10" :xs="24" style="margin: auto">
 				<el-col id="step">
 					<el-steps :space="200" :active="active" finish-status="success" align-center>
 						<el-step title="验证手机号"></el-step>

@@ -18,7 +18,7 @@
 			</error>
 		</el-col>
 		<el-col class="MyMargin">
-			<el-button type="danger" style="width: 100%" @click="goto">下一步</el-button>
+			<el-button type="warning" style="width: 100%" @click="goto">下一步</el-button>
 		</el-col>
 	</el-col>
 </template>
@@ -63,7 +63,6 @@ export default {
 					.catch(error=>{
 						this.$message.error(error.message)
 					})
-
 				this.$emit("listen",this.active)
 				this.$router.push({path:"/Register/RegisterStep2"})
 			}

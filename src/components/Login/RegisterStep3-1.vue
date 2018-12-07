@@ -1,5 +1,5 @@
 <template>
-	<el-form ref="form" :model="form" label-width="70px" style="margin-top: 5%">
+	<el-form ref="form" :model="form" label-width="70px" style="margin: 5%">
 		<error>
 			<template slot="inputGroups">
 				<el-form-item label="用户名">
@@ -45,7 +45,7 @@
 				<div class="error" v-if="!$v.form.email.email">您必须填写正确的邮箱地址</div>
 			</template>
 		</error>
-		<el-button type="danger" style="width: 100%" @click="goto">立即注册</el-button>
+		<el-button type="warning" style="width: 100%;" @click="goto">立即注册</el-button>
 	</el-form>
 </template>
 

@@ -3,12 +3,12 @@
 		<el-col>
 			<el-form-item label="用户类别" style="margin: 10% 0;">
 				<el-radio-group v-model="form.class">
-					<el-radio label="注册普通用户"></el-radio>
-					<el-radio label="注册机构/商户"></el-radio>
+					<el-radio label="注册普通用户" style="width: 40%"></el-radio>
+					<el-radio label="注册机构/商户" style="width: 40%"></el-radio>
 				</el-radio-group>
 			</el-form-item>
 		</el-col>
-		<el-button type="danger" style="width: 100%" @click="goto">下一步</el-button>
+		<el-button type="warning" style="width: 100%" @click="goto">下一步</el-button>
 	</el-form>
 </template>
 

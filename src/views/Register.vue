@@ -1,5 +1,5 @@
 <template>
-	<div id="myBody" ref="myBody">
+	<div>
 		<RegisterNav></RegisterNav>
 		<RegisterBody></RegisterBody>
 	</div>
@@ -20,7 +20,4 @@ export default {
 </script>
 
 <style scoped>
-#myBody{
-	background-color: #f0f3ef;
-}
 </style>

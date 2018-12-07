@@ -242,7 +242,17 @@ export default {
 
 		dialogFormVisible: false,
 		form: {
-
+			name:"",
+			sex:"",
+			type:"",
+			age:"",
+			weight:"",
+			sterilization:"",
+			naughty:"",
+			timid:"",
+			friends:"",
+			date:"",
+			desc:""
 		},
 		formLabelWidth: '180px',
 		fileList:[],

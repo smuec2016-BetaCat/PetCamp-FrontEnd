@@ -1,5 +1,5 @@
 <template>
-	<el-form ref="form" :model="form" label-width="150px" style="margin-top: 5%">
+	<el-form ref="form" :model="form" label-width="150px" style="margin: 5% 0 10% 0">
 		<error>
 			<template slot="inputGroups">
 				<el-form-item label="用户名">
@@ -7,8 +7,8 @@
 				</el-form-item>
 			</template>
 			<template slot="errors">
-				<div class="error" v-if="!$v.form.name.required && $v.form.name.$anyDirty">您必须填写用户名</div>
-				<div class="error" v-if="!$v.form.name.minLength">账号至少{{ $v.form.name.$params.minLength.min }}位</div>
+				<div :class="{'error':isPc,'error1':!isPc}" v-if="!$v.form.name.required && $v.form.name.$anyDirty">您必须填写用户名</div>
+				<div :class="{'error':isPc,'error1':!isPc}" v-if="!$v.form.name.minLength">账号至少{{ $v.form.name.$params.minLength.min }}位</div>
 			</template>
 		</error>
 		<error>
@@ -18,7 +18,7 @@
 				</el-form-item>
 			</template>
 			<template slot="errors">
-				<div class="error" v-if="!$v.form.password1.required && $v.form.password1.$anyDirty">您必须填写密码</div>
+				<div :class="{'error':isPc,'error1':!isPc}" v-if="!$v.form.password1.required && $v.form.password1.$anyDirty">您必须填写密码</div>
 			</template>
 		</error>
 		<error>
@@ -28,7 +28,7 @@
 				</el-form-item>
 			</template>
 			<template slot="errors">
-				<div class="error"  v-if="!$v.form.password2.sameAsPassword && $v.form.password2.$anyDirty">密码不一致</div>
+				<div  :class="{'error':isPc,'error1':!isPc}"  v-if="!$v.form.password2.sameAsPassword && $v.form.password2.$anyDirty">密码不一致</div>
 			</template>
 		</error>
 		<error>
@@ -38,8 +38,8 @@
 				</el-form-item>
 			</template>
 			<template slot="errors">
-				<div class="error" v-if="!$v.form.email.required && $v.form.email.$anyDirty">您必须填写邮箱</div>
-				<div class="error" v-if="!$v.form.email.email">您必须填写正确的邮箱地址</div>
+				<div  :class="{'error':isPc,'error1':!isPc}" v-if="!$v.form.email.required && $v.form.email.$anyDirty">您必须填写邮箱</div>
+				<div  :class="{'error':isPc,'error1':!isPc}" v-if="!$v.form.email.email">您必须填写正确的邮箱地址</div>
 			</template>
 		</error>
 		<error>
@@ -65,18 +65,26 @@
 		<error>
 			<template slot="inputGroups">
 				<el-form-item label="寄养种类" prop="checkPass">
-					<el-checkbox v-model="form.value1">可寄养的猫猫容量 ：</el-checkbox>
-					<el-input-number size="mini" v-model="form.num1" :min="1" :disabled="!form.value1"></el-input-number>
-					<el-checkbox v-model="form.value2">可寄养的狗狗容量 ：</el-checkbox>
-					<el-input-number size="mini" v-model="form.num2" :min="1" :disabled="!form.value2"></el-input-number>
-					<el-checkbox v-model="form.value3">可寄养的乌龟容量 ：</el-checkbox>
-					<el-input-number size="mini" v-model="form.num3" :min="1" :disabled="!form.value3"></el-input-number>
-					<el-checkbox v-model="form.value4">可寄养的仓鼠容量 ：</el-checkbox>
-					<el-input-number size="mini" v-model="form.num4" :min="1" :disabled="!form.value4"></el-input-number>
+					<el-col>
+						<el-checkbox v-model="form.value1">可寄养的猫猫容量 ：</el-checkbox>
+						<el-input-number size="mini" v-model="form.num1" :min="1" :disabled="!form.value1"></el-input-number>
+					</el-col>
+					<el-col>
+						<el-checkbox v-model="form.value2">可寄养的狗狗容量 ：</el-checkbox>
+						<el-input-number size="mini" v-model="form.num2" :min="1" :disabled="!form.value2"></el-input-number>
+					</el-col>
+					<el-col>
+						<el-checkbox v-model="form.value3">可寄养的乌龟容量 ：</el-checkbox>
+						<el-input-number size="mini" v-model="form.num3" :min="1" :disabled="!form.value3"></el-input-number>
+					</el-col>
+					<el-col>
+						<el-checkbox v-model="form.value4">可寄养的仓鼠容量 ：</el-checkbox>
+						<el-input-number size="mini" v-model="form.num4" :min="1" :disabled="!form.value4"></el-input-number>
+					</el-col>
 				</el-form-item>
 			</template>
 			<template slot="errors">
-				<div class="error" v-if="!noClass && $v.form.desc.$anyDirty">您必须选择至少一种可寄养的宠物种类</div>
+				<div :class="{'error':isPc,'error1':!isPc}" v-if="!noClass && $v.form.desc.$anyDirty">您必须选择至少一种可寄养的宠物种类</div>
 			</template>
 		</error>
 		<error>
@@ -86,11 +94,11 @@
 				</el-form-item>
 			</template>
 			<template slot="errors">
-				<div class="error" v-if="!$v.form.desc.required && $v.form.desc.$anyDirty">请填写店铺介绍</div>
-				<div class="error" v-if="!$v.form.desc.minLength">店铺介绍至少需要{{ $v.form.desc.$params.minLength.min }}个字</div>
+				<div  :class="{'error':isPc,'error1':!isPc}" v-if="!$v.form.desc.required && $v.form.desc.$anyDirty">请填写店铺介绍</div>
+				<div  :class="{'error':isPc,'error1':!isPc}" v-if="!$v.form.desc.minLength">店铺介绍至少需要{{ $v.form.desc.$params.minLength.min }}个字</div>
 			</template>
 		</error>
-		<el-button type="danger" style="width: 100%" @click="goto">立即注册</el-button>
+		<el-button type="warning" style="width: 100%" @click="goto">立即注册</el-button>
 	</el-form>
 </template>
 
@@ -152,10 +160,9 @@ export default {
 		goto(){
 			if (this.$v.$invalid) {
 				this.$v.$touch()
-				this.noClass()
 			}
 			else {
-				axios.post("/api/v0/register", {
+				axios.post("/api/v0/agency", {
 					username:this.form.name,
 					password:this.form.password1,
 					email:this.form.email,
@@ -182,6 +189,16 @@ export default {
 	computed:{
 		noClass() {
 			return this.form.value1 || this.form.value2 || this.form.value3 || this.form.value4
+		},
+		isPc() {
+			let [userAgentInfo,flag,Agents] = [navigator.userAgent,true,["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"]]
+			for (let v = 0; v < Agents.length; v++) {
+				if (userAgentInfo.indexOf(Agents[v]) > 0) {
+					flag = false
+					break
+				}
+			}
+			return flag
 		}
 	}
 }
@@ -191,6 +208,11 @@ export default {
 .error{
 	position: absolute;
 	bottom: 20px;
-	margin-left: 15%;
+	margin-left: 60px;
+}
+.error1{
+	position: absolute;
+	bottom: 20px;
+	margin-left: 90px;
 }
 </style>
