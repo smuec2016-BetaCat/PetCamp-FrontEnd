@@ -1,6 +1,6 @@
 <template>
   <el-row class="top-bar hidden-sm-and-down">
-    <el-col :span="20" :offset="2">
+    <el-col :span="14" :offset="5">
       <ul>
         <li v-for="item in topBarItem" :key="item.id">
           <router-link v-text="item.title" :to="item.url"></router-link>

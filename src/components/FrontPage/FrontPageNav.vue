@@ -3,8 +3,9 @@
     <div>
       <top-bar></top-bar>
       <!--logo and search box-->
+      <div class="space hidden-sm-and-down"></div>
       <el-row class="logo-search-bar">
-        <el-col :xs="{span: 22, offset: 1}" :md="{span: 16, offset: 4}">
+        <el-col :xs="{span: 22, offset: 1}" :md="{span: 14, offset: 5}">
           <el-col class="logo hidden-sm-and-down" :xs="24" :md="6">
             <a href="#">
               <img src="http://itsyuekao.com:5000/_uploads/IMAGE/logo-fixed.png" alt="logo">
@@ -19,13 +20,16 @@
             </el-input>
           </el-col>
           <el-col class="cart hidden-sm-and-down" :xs="24" :md="6">
-            <el-button round icon="el-icon-goods" @click="shoppingcart">我的购物车</el-button>
+            <el-badge :value="1" class="cart-badge">
+              <el-button round icon="el-icon-goods" @click="shoppingcart">我的购物车</el-button>
+            </el-badge>
           </el-col>
         </el-col>
       </el-row>
+      <div class="space hidden-sm-and-down"></div>
       <!--navigation-->
       <el-row class="navigation-bar hidden-sm-and-down">
-        <el-col :span="16" :offset="4">
+        <el-col :span="14" :offset="5">
           <div class="navigation">
             <nav>
               <ul>
@@ -100,6 +104,10 @@ export default {
 </script>
 
 <style>
+.space {
+  height: 20px;
+}
+
 .top-bar {
   background-color: black;
   height: 35px;
@@ -128,8 +136,8 @@ export default {
 }
 
 .logo-search-bar {
-  height: 120px;
-  padding: 30px 0;
+  height: 80px;
+  padding: 10px 0;
 }
 .logo-search-bar .logo {
   height: 60px;
@@ -154,10 +162,14 @@ export default {
   margin-right: 10px;
 }
 .logo-search-bar .cart .el-button {
-  margin: 5px 20px 5px 0;
+  margin: 5px 0 5px 0;
   height: 50px;
   float: right;
   font-size: 16px;
+}
+.logo-search-bar .cart sup {
+  top: 10px;
+  right: 15px;
 }
 
 .navigation-bar .navigation {
