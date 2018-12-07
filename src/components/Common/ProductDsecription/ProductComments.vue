@@ -1,18 +1,18 @@
 <template>
 	<div>
 		<el-col>
-			<el-col :span="5" id="CommentPercent">
+			<el-col :md="5" :xs="24" id="CommentPercent">
 				<span>好评度：</span>
 				<div>{{rate}}%</div>
 			</el-col>
-			<el-col :span="19" id="tag">
-				<el-button v-for="i in 14" :key="i" style="padding: 0">
-					<el-tag type="info">遍历出14个tag</el-tag>
+			<el-col :md="19" :xs="24" id="tag">
+				<el-button v-for="i in 6" :key="i" style="padding: 0">
+					<el-tag type="info">遍历出6个tag</el-tag>
 				</el-button>
 			</el-col>
 		</el-col>
 		<el-col style="border-bottom: 1px solid #ddd;padding: 15px" v-for="i in 10" :key="i">
-			<el-col :span="5">
+			<el-col :md="5" :xs="12">
 				<div class="UserComments" style="display: flex">
 					<img src="https://misc.360buyimg.com/user/myjd-2015/css/i/peisong.jpg"
 						width="25px" height="25px" alt="UsrName" style="border-radius: 50%;margin-right: 5px;">
@@ -23,7 +23,7 @@
 					<span style="margin: auto">vip1</span>
 				</div>
 			</el-col>
-			<el-col :span="19" id="comments">
+			<el-col :md="19" :xs="24" id="comments">
 				<el-rate
 						v-model="value5"
 						disabled
@@ -40,7 +40,7 @@
 			</el-col>
 		</el-col>
 		<el-col style="margin: 5% 0">
-			<el-col :span="5">
+			<el-col :md="5" :xs="12">
 				<div class="UserComments" style="display: flex">
 					<img src="https://misc.360buyimg.com/user/myjd-2015/css/i/peisong.jpg"
 						width="25px" height="25px" alt="UsrName" style="border-radius: 50%;margin-right: 5px;">
@@ -51,20 +51,23 @@
 					<span style="margin: auto">vip1</span>
 				</div>
 			</el-col>
-			<el-col :span="19" style="text-align: left">
+			<el-col :span="19"  :xs="24" style="text-align: left">
 				<el-col style="margin: 0 0 10px 0">
-					<el-col :span="4">
+					<el-col :md="4" :xs="6">
 						<span>选择评分</span>
 					</el-col>
-					<el-col :span="14">
+					<el-col :md="14" :xs="18">
 						<el-rate v-model="commentRate" :colors="['#99A9BF', '#F7BA2A', '#FF9900']"></el-rate>
 					</el-col>
 				</el-col>
 				<el-col>
-					<el-col :span="18">
+					<el-col :md="18"  :xs="24">
 						<textarea rows="3" v-model="comment" placeholder="在此添加您的评论" id="myComment"></textarea>
 					</el-col>
-					<el-col :span="4" style="float: right">
+					<el-col :md="4" style="float: right" class="hidden-xs-only">
+						<el-button style="height: 100%" type="primary" @click="raiseComment">发表评论</el-button>
+					</el-col>
+					<el-col :span="10" class="hidden-sm-and-up" style="margin: 20px 0 70px 0">
 						<el-button style="height: 100%" type="primary" @click="raiseComment">发表评论</el-button>
 					</el-col>
 				</el-col>

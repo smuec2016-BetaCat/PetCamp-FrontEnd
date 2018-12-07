@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<OrderNav></OrderNav>
+		<OrderNav class="hidden-xs-only"></OrderNav>
 		<OrderForm></OrderForm>
 	</div>
 

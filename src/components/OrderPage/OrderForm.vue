@@ -1,6 +1,10 @@
 <template>
 	<el-row>
-		<el-col :span="18" :offset="3" style="text-align: left">
+		<!--手机端nav-->
+		<el-col class="hidden-sm-and-up orderNav">
+			<span>填写并核对订单信息</span>
+		</el-col>
+		<el-col :md="{span:18,offset:3}" :xs="{span:22,offset:1}" style="text-align: left">
 			<el-col>
 				<h3>填写并核对订单信息</h3>
 			</el-col>
@@ -11,10 +15,10 @@
 						<h5>用户地址信息</h5>
 					</el-col>
 					<el-col>
-						<el-col :span="6">
+						<el-col :md="6" :xs="24">
 							<el-button class="consignee-item"><span>{{order.userId}}</span><b></b></el-button>
 						</el-col>
-						<el-col :span="18">
+						<el-col :md="18" :xs="24">
 							<div class="consignee-msg">
 								<span>上海 浦东新区 南汇新城镇 上海海事大学（临港校区）</span>
 							</div>
@@ -27,7 +31,7 @@
 						<h5>支付方式</h5>
 					</el-col>
 					<el-col>
-						<el-col :span="6">
+						<el-col :md="6">
 							<el-button class="consignee-item"><span>{{order.payment}}</span><b></b></el-button>
 						</el-col>
 					</el-col>
@@ -38,12 +42,12 @@
 						<h5>领宠方式</h5>
 					</el-col>
 					<el-col>
-						<el-col :span="5">
+						<el-col :md="5" :xs="12">
 							<el-button v-bind:class="{'consignee-item' : Active,'consignee-item1':true}" @click.native="changeClass">
 								<span>{{order.delivery[0].way}}</span><b v-if="Active"></b>
 							</el-button>
 						</el-col>
-						<el-col :span="4">
+						<el-col :md="4" :xs="12">
 							<el-button v-bind:class="{'consignee-item' : !Active,'consignee-item1':true}" @click.native="changeClass">
 								<span>{{order.delivery[1].way}}</span><b v-if="!Active"></b>
 							</el-button>
@@ -56,7 +60,8 @@
 						<h5>订单详情</h5>
 					</el-col>
 					<el-col style="background-color:#f2f7ff;padding: 5px 15px;margin-bottom: 10px" v-for="i in order.orderDetails" :key="i.id">
-						<el-col class="bottomBoder" style="padding-bottom: 0">
+						<!--pc-->
+						<el-col class="bottomBoder hidden-sm-and-down" style="padding-bottom: 0">
 							<el-col :span="3" style="padding: 5px">
 								<span>店铺/机构</span>
 							</el-col>
@@ -79,7 +84,7 @@
 								<el-switch v-model="i.show" active-color="#13ce66"></el-switch>
 							</el-col>
 						</el-col>
-						<el-col>
+						<el-col class="hidden-sm-and-down">
 							<el-col :span="3" style="padding: 5px">
 								<span>{{i.shopName}}</span>
 							</el-col>
@@ -99,10 +104,36 @@
 								<span>￥{{i.price}}</span>
 							</el-col>
 						</el-col>
+						<!--移动-->
+						<el-col class="bottomBoder hidden-sm-and-up" style="padding-bottom: 0">
+							<el-col :span="7" style="padding: 5px">
+								<span>店铺/机构</span>
+							</el-col>
+							<el-col :span="9" style="padding: 5px">
+								<span>详情</span>
+							</el-col>
+							<el-col :span="5" style="padding: 5px">
+								<span>总价</span>
+							</el-col>
+							<el-col :span="1" style="padding: 5px">
+								<el-switch v-model="i.show" active-color="#13ce66"></el-switch>
+							</el-col>
+						</el-col>
+						<el-col class="hidden-sm-and-up">
+							<el-col :span="7" style="padding: 5px">
+								<span>{{i.shopName}}</span>
+							</el-col>
+							<el-col :span="9" style="padding: 5px">
+								<span>{{i.shopMessage}}</span>
+							</el-col>
+							<el-col :span="5" style="padding: 5px">
+								<span>￥{{i.price}}</span>
+							</el-col>
+						</el-col>
 						<el-col style="padding: 5px">
 							<transition name="slide-fade">
 								<el-col v-if="i.show" style="border-top: 1px solid #e6e6e6;padding-top: 5px">
-									<el-col :span="4">
+									<el-col :md="4" :xs="8">
 										<span class="block">宠物昵称：</span>
 										<span class="block">宠物性别：</span>
 										<span class="block">宠物类型：</span>
@@ -110,7 +141,7 @@
 										<span class="block">宠物体重：</span>
 										<span class="block">是否绝育：</span>
 									</el-col>
-									<el-col :span="4">
+									<el-col :md="4" :xs="16">
 										<span class="block">{{i.nickName}}</span>
 										<span class="block">{{i.sex}}</span>
 										<span class="block">{{i.type}}</span>
@@ -118,29 +149,28 @@
 										<span class="block">{{i.weight}}KG</span>
 										<span class="block">已绝育</span>
 									</el-col>
-									<el-col :span="16">
-										<el-col :span="9"><span class="block">TA是不是调皮鬼？</span></el-col>
-										<el-col :span="15"><span class="block">{{i.naughty}}</span></el-col>
+									<el-col :md="16" :xs="24">
+										<el-col :span="12"><span class="block">TA是不是调皮鬼？</span></el-col>
+										<el-col :span="12"><span class="block">{{i.naughty}}</span></el-col>
 									</el-col>
-									<el-col :span="16">
-										<el-col :span="9"><span class="block">TA胆子特别小吗？</span></el-col>
-										<el-col :span="15"><span class="block">{{i.shy}}</span></el-col>
+									<el-col :md="16" :xs="24">
+										<el-col :span="12"><span class="block">TA胆子特别小吗？</span></el-col>
+										<el-col :span="12"><span class="block">{{i.shy}}</span></el-col>
 									</el-col>
-									<el-col :span="16">
-										<el-col :span="9"><span class="block">TA与其他伙伴好相处吗？</span></el-col>
-										<el-col :span="15"><span class="block">{{i.friendly}}</span></el-col>
+									<el-col :md="16" :xs="24">
+										<el-col :span="12"><span class="block">TA与其他伙伴好相处吗？</span></el-col>
+										<el-col :span="12"><span class="block">{{i.friendly}}</span></el-col>
 									</el-col>
-									<el-col :span="16">
-										<el-col :span="9"><span class="block">需要寄养的时间</span></el-col>
-										<el-col :span="15"><span class="block">{{i.expiration}}</span></el-col>
+									<el-col :md="16" :xs="24">
+										<el-col :span="12"><span class="block">需要寄养的时间</span></el-col>
+										<el-col :span="12"><span class="block">{{i.expiration}}</span></el-col>
 									</el-col>
-									<el-col :span="16">
-										<el-col :span="9"><span class="block">宠物简介：</span></el-col>
-										<el-col :span="15"><span class="block">{{i.petDetails}}</span></el-col>
+									<el-col :md="16" :xs="24">
+										<el-col :span="12"><span class="block">宠物简介：</span></el-col>
+										<el-col :span="12"><span class="block">{{i.petDetails}}</span></el-col>
 									</el-col>
 								</el-col>
 							</transition>
-
 						</el-col>
 					</el-col>
 				</el-col>
@@ -164,13 +194,13 @@
 				</el-col>
 				<!--付款-->
 				<el-col>
-					<el-col :span="5" style="float: right">
+					<el-col :md="5" :xs="10" style="float: right">
 						<el-col style="margin: 10px 0">
 							<span>实际付款：</span>
 							<span style="color:red;font: 700 26px tahoma;">￥32.80</span>
 						</el-col>
 						<el-col style="margin: 10px 0">
-							<el-button type="danger" style="width: 100%" @click.native="postOrder">提交订单</el-button>
+							<el-button type="warning" round plain style="width: 100%" @click.native="postOrder">提交订单</el-button>
 						</el-col>
 					</el-col>
 				</el-col>
@@ -195,7 +225,7 @@ export default {
 			],
 			Active:false,
 			order:{
-				userId:1,
+				userId:"某某先生",
 				payment:"电子支付",
 				delivery:[{way:"送宠到家",active:true},{way:"到店自提",active:false}],
 				orderDetails:[
@@ -250,6 +280,16 @@ export default {
 </script>
 
 <style scoped>
+.orderNav{
+	box-shadow: 0 7px 10px 5px #eeeeee;
+	height: 50px;
+	line-height: 50px;
+	background-color: white;
+	z-index: 20;
+	color: #2c3e50;
+	font-weight: bold;
+	position: fixed;
+}
 .block{
 	display: block;
 	padding: 2px 5px 2px 0;

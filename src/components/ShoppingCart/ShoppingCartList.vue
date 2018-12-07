@@ -23,6 +23,9 @@
 						<span>操作</span>
 					</el-col>
 				</el-col>
+				<el-col style="margin-top: 50px;margin-bottom: 50px" v-if="nothing">
+					<span>购物车空空如也</span>
+				</el-col>
 				<el-col style="text-align: left;"  v-for="(item,index) in shoppingCartList" :key="item.shopId">
 					<el-col class="shop">
 						<el-col :span="22">
@@ -134,7 +137,51 @@
 			<!--nav-->
 			<el-col class="cartNav">
 				<span>购物车</span>
-				<span class="cartNavEdit">编辑<i class="el-icon-setting"></i></span>
+				<span class="cartNavEdit" @click="edit" v-if="!editStatus">编辑<i class="el-icon-setting"></i></span>
+				<span class="cartNavEdit" @click="edit" v-if="editStatus">完成<i class="el-icon-setting"></i></span>
+			</el-col>
+			<!--list-->
+			<el-col style="margin-bottom: 50px;margin-top: 50px">
+				<el-col style="margin-top: 50px" v-if="nothing">
+					<span>购物车空空如也</span><br>
+					<router-link to="/">返回首页</router-link>
+				</el-col>
+				<el-col style="text-align: left;margin-top: 10px" v-for="(item,index) in shoppingCartList" :key="item.shopId">
+					<el-card class="shopCard" shadow="always" :body-style="{ padding: '10px' }">
+						<el-col class="shopMobile">
+							<el-col :span="22">
+								<el-checkbox v-model="item.shopChecked" @change.native="bothCheck(index)"></el-checkbox>
+								<span style="margin-left: 5px" v-text="item.name"></span>
+							</el-col>
+						</el-col>
+						<el-col class="shopBodyMobile" v-if="item.value">
+							<el-col v-for="i in item.shoppingList" :key="i.id" class="father">
+								<el-col class="cartItems" style="display: flex">
+									<el-col :span="1" style="margin: auto 0;padding-right:20px;">
+										<el-checkbox v-model="i.checked" @change.native="checkItems(index)"></el-checkbox>
+									</el-col>
+									<el-col :span="6" style="margin: auto 0">
+										<img src="../../assets/cat.jpg" alt="">
+									</el-col>
+									<el-col :span="16">
+										<el-col style="padding: 5px">
+											<span v-text="i.title"></span><br>
+											<span v-text="i.msg"></span>
+										</el-col>
+										<el-col style="padding: 5px">
+											<el-col :span="16">
+												<span v-text="`￥${(i.price*i.num).toFixed(2)}`"></span>
+											</el-col>
+											<el-col :span="8">
+												<el-input-number size="mini" v-model="i.num" :min="1" style="width: 100%"></el-input-number>
+											</el-col>
+										</el-col>
+									</el-col>
+								</el-col>
+							</el-col>
+						</el-col>
+					</el-card>
+				</el-col>
 			</el-col>
 			<!--bottom-->
 			<el-col class="cartBottom">
@@ -144,9 +191,21 @@
 				<el-col :span="10">
 					<span>合计：</span><strong style="font-size: 22px">{{totalPrice.toFixed(2)}}</strong>
 				</el-col>
-				<el-col :span="8" style="display: flex">
+				<el-col :span="8" style="display: flex" v-if="!editStatus">
 					<el-button type="warning" round style="width: 90%;margin: 5px 0" @click.native="pay">去结算</el-button>
 				</el-col>
+				<el-col :span="8" style="display: flex" v-if="editStatus">
+					<el-button type="warning" round style="width: 90%;margin: 5px 0" @click.native="dialogVisibleMobile = true">删除</el-button>
+				</el-col>
+			</el-col>
+			<el-col>
+				<el-dialog title="删除宝贝？" :visible.sync="dialogVisibleMobile" width="100%" style="margin-top: 10vh">
+					<span>您确定要删除选中的宝贝？</span>
+					<span slot="footer" class="dialog-footer">
+						<el-button @click="deleteMobile">确定删除</el-button>
+						<el-button type="primary" @click="dialogVisibleMobile = false">取消</el-button>
+                     </span>
+				</el-dialog>
 			</el-col>
 		</el-row>
 	</div>
@@ -161,10 +220,12 @@ export default {
 			allChecked:true,
 			dialogVisible: false,
 			dialogVisible1: false,
+			dialogVisibleMobile:false,
 			cartList:0,
 			shopList:0,
 			navVisiable:true,
 			value1:"",
+			editStatus:false,
 			shoppingCartList:[
 				{
 					shopId:1,
@@ -173,9 +234,7 @@ export default {
 					value:true,
 					shoppingList:[
 						{id:1,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:32.80,num:1},
-						{id:2,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:55.80,num:1},
-						{id:3,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:62.48,num:1},
-						{id:4,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:62.48,num:1}
+						{id:2,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:55.80,num:1}
 					]
 				},
 				{
@@ -194,9 +253,7 @@ export default {
 					shopChecked:true,
 					value:true,
 					shoppingList:[
-						{id:1,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:32.80,num:1},
-						{id:2,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:55.80,num:1},
-						{id:3,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:62.48,num:1}
+						{id:1,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:32.80,num:1}
 					]
 				}
 			]
@@ -280,12 +337,19 @@ export default {
 		},
 		deleteI(){
 			this.shoppingCartList[this.cartList].shoppingList.splice(this.shopList,1)
+			this.$message.success("删除成功")
 			this.dialogVisible = false
 			//ajax请求删除后端数据
 			// axios.post()
 		},
 		pay(){
-			this.$router.push({path:`/Order`})
+			if (this.shoppingCartList.length === 0){
+				this.$message.error("请先加入商品")
+			}
+			else{
+				this.$router.push({path:`/Order`})
+			}
+
 		},
 		showNav(){
 			let visibleBottom = window.scrollY + document.documentElement.clientHeight
@@ -296,10 +360,43 @@ export default {
 			}
 		},
 		deleteAll(){
-			this.shoppingCartList.forEach(function (value) {
-				value.shoppingList = []
-			})
+			for(let i = 0;i<this.shoppingCartList.length;i++){
+					this.shoppingCartList.splice(i,1)
+					i--
+				}
+			this.$message.success("删除成功")
 			this.dialogVisible1 = false
+		},
+		deleteMobile(){
+			for(let i = 0;i<this.shoppingCartList.length;i++){
+				if(this.shoppingCartList[i].shopChecked){
+					this.shoppingCartList.splice(i,1)
+					i--
+				}
+				else {
+					for(let j = 0;j<this.shoppingCartList[i].shoppingList.length;j++){
+						if(this.shoppingCartList[i].shoppingList[j].checked){
+							this.shoppingCartList[i].shoppingList.splice(j,1)
+							j--;
+						}
+					}
+				}
+			}
+			this.$message.success("删除成功")
+			this.dialogVisibleMobile = false
+			this.editStatus =  false
+		},
+		edit(){
+			this.editStatus = !this.editStatus
+			this.allChecked = false
+			this.shoppingCartList.forEach(function (value) {
+				value.shopChecked = false
+			})
+			this.shoppingCartList.forEach(function (value) {
+				value.shoppingList.forEach(function (value) {
+					value.checked = false
+				})
+			})
 		}
 	},
 	computed:{
@@ -324,6 +421,9 @@ export default {
 				})
 			})
 			return sum
+		},
+		nothing(){
+			return this.shoppingCartList.length === 0;
 		}
 	},
 	mounted: function () {
@@ -357,8 +457,10 @@ h5{
 	margin: 10px 0;
 }
 img{
-	width: 100%;
-	height: 100%;
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
 }
 #thead{
 	display: block;
@@ -411,9 +513,11 @@ img{
 	box-shadow: 0 7px 10px 5px #eeeeee;
 	height: 50px;
 	line-height: 50px;
+	background-color: white;
+	z-index: 20;
 	color: #2c3e50;
 	font-weight: bold;
-	position: relative;
+	position: fixed;
 }
 .cartNavEdit{
 	position: absolute;
@@ -424,6 +528,7 @@ img{
 }
 .cartBottom{
 	position: fixed;
+	background-color: white;
 	bottom: 0;
 	height: 50px;
 	line-height: 50px;
@@ -431,5 +536,21 @@ img{
 	font-weight: bold;
 	text-align: left;
 	border: 1px solid #ebebeb;
+	z-index: 20;
+}
+.shopMobile{
+
+}
+.shopBodyMobile{
+	position: relative;
+}
+.shopCard{
+	margin: 5px 5%;
+	border-radius: 15px;
+}
+.delMobile{
+	padding-left: 10px;
+	position: absolute;
+	right: 20px;
 }
 </style>
