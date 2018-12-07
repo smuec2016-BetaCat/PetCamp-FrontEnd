@@ -103,29 +103,37 @@ export default {
 			this.rate = parseInt(Math.random()*100)
 		},
 		raiseComment(){
-			this.$message.warning("正在上传")
 			let num = this.comments[this.comments.length-1].id + 1
-			axios.post('/',{
-				comment:this.comment,
-				commentRate:this.commentRate
-			})
-					.then(response=>{
-						this.comments.push({
-							id:num,
-							userName:"我真是聪明",
-							userClass:"VIP1",
-							message:this.comment,
-							date: new Date(),
-							commentRate:this.commentRate
-						})
-						this.$message({
-							message:response+"上传成功",
-							type:"success"
-						})
-					})
-					.catch(error=>{
-						this.$message.error(error)
-					})
+            if (this.comment === null || this.comment === ""){
+                this.$message.warning("请输入评论内容")
+            }
+            else if (this.commentRate === null || this.commentRate === 0){
+                this.$message.warning("请您评分")
+            }
+            else{
+                this.$message.warning("正在上传")
+                axios.post('/',{
+                    comment:this.comment,
+                    commentRate:this.commentRate
+                })
+                    .then(response=>{
+                        this.comments.push({
+                            id:num,
+                            userName:"我真是聪明",
+                            userClass:"VIP1",
+                            message:this.comment,
+                            date: new Date(),
+                            commentRate:this.commentRate
+                        })
+                        this.$message({
+                            message:response+"上传成功",
+                            type:"success"
+                        })
+                    })
+                    .catch(error=>{
+                        this.$message.error(error.message)
+                    })
+            }
 		}
 	}
 }
