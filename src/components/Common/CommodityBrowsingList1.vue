@@ -50,7 +50,7 @@
 					<el-col :span="16">
 						<el-row>
 							<el-col :xs={span:24,offset:0} :sm={span:8,offset:0} :md={span:8,offset:0} v-for="i in item.shop" :key="i.id">
-								<el-button style="padding:0;margin: 0 5px;" @mouseenter.native="intoTheHouse(i)" @mouseleave.native="intoTheHouse(i)">
+								<el-button style="padding:0;margin: 0 5px;" @mouseenter.native="intoTheHouse(i)" @mouseleave.native="intoTheHouse(i)" @click.native="goto">
 									<el-card :body-style="{ padding: '0px' }" shadow="hover">
 										<div v-if="i.show" class="intoTheHouse">
 											<span>进入店家</span>
@@ -143,6 +143,9 @@ export default {
 	methods:{
 		intoTheHouse(i){
 			i.show = !i.show
+		},
+		goto(){
+			this.$router.push({path:"/PurchasePage/ProductComments"})
 		}
 	}
 }

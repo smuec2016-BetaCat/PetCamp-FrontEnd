@@ -192,13 +192,13 @@
 					<el-input type="textarea" v-model="form.desc"></el-input>
 				</el-form-item>
 				<el-form-item>
+					<!--缺少:on-change="handleChange"-->
 					<el-upload
 							class="upload-demo"
 							drag
 							action=""
 							:on-preview="handlePreview"
 							:before-remove="beforeRemove"
-							:on-change="handleChange"
 							:file-list="fileList"
 							:auto-upload="false"
 							multiple>

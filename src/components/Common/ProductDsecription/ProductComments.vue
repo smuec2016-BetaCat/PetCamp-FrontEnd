@@ -11,34 +11,35 @@
 				</el-button>
 			</el-col>
 		</el-col>
-		<el-col style="border-bottom: 1px solid #ddd;padding: 15px" v-for="i in 10" :key="i">
+		<el-col style="border-bottom: 1px solid #ddd;padding: 15px" v-for="i in comments" :key="i.id">
 			<el-col :md="5" :xs="12">
 				<div class="UserComments" style="display: flex">
 					<img src="https://misc.360buyimg.com/user/myjd-2015/css/i/peisong.jpg"
 						width="25px" height="25px" alt="UsrName" style="border-radius: 50%;margin-right: 5px;">
-					<span style="margin: auto">UserName</span>
+					<span style="margin: auto" v-text="i.userName"></span>
 				</div>
 				<div style="display: flex;">
 					<div style="width: 25px"></div>
-					<span style="margin: auto">vip1</span>
+					<span style="margin: auto" v-text="i.UserClass"></span>
 				</div>
 			</el-col>
 			<el-col :md="19" :xs="24" id="comments">
 				<el-rate
-						v-model="value5"
+						v-model="i.commentRate"
 						disabled
 						show-score
 						text-color="#ff9900"
 						score-template="{value} points">
 				</el-rate>
 				<el-col>
-					<span>真的很不错，很放心的领养，很放心的寄养，很可爱的宠物</span>
+					<span v-text="i.message"></span>
 				</el-col>
 				<el-col>
-					<span style="margin: 0">评论时间：{{date}}</span>
+					<span style="margin: 0">评论时间：{{i.date}}</span>
 				</el-col>
 			</el-col>
 		</el-col>
+		<!--comment-->
 		<el-col style="margin: 5% 0">
 			<el-col :md="5" :xs="12">
 				<div class="UserComments" style="display: flex">
@@ -84,10 +85,17 @@ export default {
 	data(){
 		return {
 			rate: parseInt(Math.random()*100),
-			value5:5,
 			date: new Date(),
 			comment: null,
-			commentRate:null
+			commentRate:null,
+			comments:[
+				{id:1,userName:"我是一只羊",userClass:"VIP1",message:"我觉得这个很不错，很可惜现在页面只能写死",date:"1997年11月22日",commentRate:5},
+				{id:2,userName:"这里的数据需要从后端来",userClass:"VIP2",message:"我觉得这个很不错，很可惜现在页面只能写死",date:"1997年7月22日",commentRate:4},
+				{id:3,userName:"后端需要给我点数据",userClass:"VIP1",message:"我觉得这个很不错，很可惜现在页面只能写死",date:"1997年11月29日",commentRate:3},
+				{id:4,userName:"我会给后端发送请求",userClass:"VIP3",message:"我觉得这个很不错，很可惜现在页面只能写死",date:"1997年5月22日",commentRate:5},
+				{id:5,userName:"我真是聪明",userClass:"VIP1",message:"我觉得这个很不错，很可惜现在页面只能写死",date:"2008年11月22日",commentRate:2},
+
+			]
 		}
 	},
 	methods:{
@@ -95,19 +103,29 @@ export default {
 			this.rate = parseInt(Math.random()*100)
 		},
 		raiseComment(){
+			this.$message.warning("正在上传")
+			let num = this.comments[this.comments.length-1].id + 1
 			axios.post('/',{
 				comment:this.comment,
 				commentRate:this.commentRate
 			})
-				.then(response=>{
-					this.$message({
-						message:response+"上传成功",
-						type:"success"
+					.then(response=>{
+						this.comments.push({
+							id:num,
+							userName:"我真是聪明",
+							userClass:"VIP1",
+							message:this.comment,
+							date: new Date(),
+							commentRate:this.commentRate
+						})
+						this.$message({
+							message:response+"上传成功",
+							type:"success"
+						})
 					})
-				})
-				.catch(error=>{
-					this.$message.error(error)
-				})
+					.catch(error=>{
+						this.$message.error(error)
+					})
 		}
 	}
 }
@@ -131,7 +149,7 @@ export default {
 	line-height: 110%;
 	font-size: 45px;
 	color: #f7ba2a;
-	font-family: arial;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 #tag{
 	text-align: left;
