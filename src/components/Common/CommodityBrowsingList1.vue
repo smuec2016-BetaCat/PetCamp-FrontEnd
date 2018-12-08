@@ -131,61 +131,6 @@ export default {
 			activeName: 'first',
 			shopList:[
 				{
-					id:1,
-					// 店家头像图片
-					src:"",
-					shopName:"疯狂的小狗旗舰店",
-					rates:3.7,
-					place:"江苏南京",
-					contacts:"犇犇",
-					capacity:5,
-					shop:[
-						{id:1,title:"铲屎官道具",show:false,src:"",price: 100},
-						{id:2,title:"到底能不能遍历啊",show:false,src:"",price:100},
-						{id:3,title:"终于可以遍历了",show:false,src:"",price:100}
-					]
-
-				},
-				{
-					id:2,
-					shopName:"皇家宠物食品旗舰店",
-					rates:3.7,
-					place:"江苏南京",
-					contacts:"犇犇",
-					capacity:5,
-					shop:[
-						{id:1,title:"铲屎官道具",show:false,src:"",price: 100},
-						{id:2,title:"到底能不能遍历啊",show:false,src:"",price:100},
-						{id:3,title:"终于可以遍历了",show:false,src:"",price:100}
-					]
-				},
-				{
-					id:3,
-					shopName:"寄养小屋",
-					rates:3.7,
-					place:"江苏南京",
-					contacts:"犇犇",
-					capacity:5,
-					shop:[
-						{id:1,title:"铲屎官道具",show:false,src:"",price: 100},
-						{id:2,title:"到底能不能遍历啊",show:false,src:"",price:100},
-						{id:3,title:"终于可以遍历了",show:false,src:"",price:100}
-					]
-				},
-				{
-					id:5,
-					shopName:"寄养小屋",
-					rates:3.7,
-					place:"江苏南京",
-					contacts:"犇犇",
-					capacity:5,
-					shop:[
-						{id:1,title:"铲屎官道具",show:false,src:"",price: 100},
-						{id:2,title:"到底能不能遍历啊",show:false,src:"",price:100},
-						{id:3,title:"终于可以遍历了",show:false,src:"",price:100}
-					]
-				},
-				{
 					id:4,
 					shopName:"寄养小屋",
 					rates:3.7,

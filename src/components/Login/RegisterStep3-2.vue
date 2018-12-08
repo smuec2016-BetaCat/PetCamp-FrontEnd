@@ -33,6 +33,17 @@
 		</error>
 		<error>
 			<template slot="inputGroups">
+				<el-form-item label="机构名称">
+					<el-input v-model.trim="$v.form.shopName.$model"></el-input>
+				</el-form-item>
+			</template>
+			<template slot="errors">
+				<div :class="{'error':isPc,'error1':!isPc}" v-if="!$v.form.shopName.required && $v.form.shopName.$anyDirty">您必须填写机构名</div>
+				<div :class="{'error':isPc,'error1':!isPc}" v-if="!$v.form.shopName.minLength">机构名至少{{ $v.form.shopName.$params.minLength.min }}位</div>
+			</template>
+		</error>
+		<error>
+			<template slot="inputGroups">
 				<el-form-item label="邮箱" prop="checkPass">
 					<el-input v-model="$v.form.email.$model"></el-input>
 				</el-form-item>
@@ -114,6 +125,7 @@ export default {
 		return {
 			form: {
 				name: '',
+				shopName:"",
 				password1:"",
 				password2:"",
 				email:"",
@@ -137,6 +149,10 @@ export default {
 	validations:{
 		form:{
 			name:{
+				required,
+				minLength:minLength(6)
+			},
+			shopName:{
 				required,
 				minLength:minLength(6)
 			},
@@ -164,7 +180,7 @@ export default {
 			}
 			else {
 				let a = {
-					name:this.form.name,
+					username:this.form.name,
 					password:this.form.password1,
 					phone:this.tel,
 					email:this.form.email
@@ -172,6 +188,23 @@ export default {
 				axios.post("/api/v0/register",a)
 						.then(response=> {
 							this.response = response
+							this.$message({
+								message: 'Congrats, this is a success message.'+this.status,
+								type: 'success'
+							})
+						})
+						.catch(error=> {
+							this.$message.error(error.response.data.error+"请检查您填写的信息是否完整，如果确实是个bug请联系我")
+						})
+				let b = {
+					name:this.form.shopName,
+					introduction:this.form.desc,
+					city:this.form.city,
+					address:this.form.address,
+					phone:this.tel
+				}
+				axios.post("/api/v0/agency",b)
+						.then(response=> {
 							this.$message({
 								message: 'Congrats, this is a success message.'+this.status,
 								type: 'success'
