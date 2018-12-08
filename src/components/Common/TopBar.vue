@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       topBarItem: [
-        { id: 0, title: "我的订单", url: "/" },
+        { id: 0, title: "我的订单", url: "/MyOrder" },
         { id: 1, title: "我的营地", url: "/" },
         { id: 2, title: "收藏夹", url: "/" },
         { id: 3, title: "购物车", url: "/ShoppingList" },

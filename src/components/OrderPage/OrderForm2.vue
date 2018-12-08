@@ -9,7 +9,7 @@
             <el-col class="checkout-steps">
                 <el-col style=" border-bottom: 1px solid #e6e6e6;padding: 5px 0">
                     <el-col :span="18">
-                        <h3 style="margin: 0">订单1</h3>
+                        <h3 style="margin: 0">订单编号：{{order.num}}</h3>
                     </el-col>
                     <el-col :span="6" style="position: relative">
                         <h3 class="success" style="margin: 0">交易成功</h3>
@@ -229,18 +229,16 @@
                 Active:false,
                 order:{
                     userId:"某某先生",
+                    num:2016000001,
                     payment:"电子支付",
                     delivery:[{way:"送宠到家",active:true},{way:"到店自提",active:false}],
                     orderDetails:[
                         {show:false,shopName:"爱宠社区",shopId:1214,shopMessage:"宠物寄养详细信息",details:"",price:150,num:1,nickName:"犇犇",sex:"male",
                             age:2,type:"小型犬",weight:20,expiration:7,sterilization:true,naughty:true,shy:true,friendly:null,
-                            petDetails:"我是一只狗我是一只狗我是一只狗",id:1,image_names: ["hello","bye"]},
-                        {show:false,shopName:"爱宠社区",shopId:1214,shopMessage:"宠物寄养详细信息",details:"",price:150,num:1,nickName:"犇犇",sex:"male",
-                            age:2,type:"小",weight:20,expiration:7,sterilization:true,naughty:true,shy:true,friendly:null,
-                            petDetails:"我是一只狗我是一只狗我是一只狗",id:2,image_names: ["hello","bye"]}
+                            petDetails:"我是一只狗我是一只狗我是一只狗",id:1,image_names: ["hello","bye"]}
                     ]
                 },
-                orderResponse:null
+                orderResponse:null,
             }
         },
         methods:{
@@ -248,17 +246,23 @@
                 this.Active = !this.Active
             },
             getOrders(){
-                axios.get("",{
-
+                axios.get("/api/v0/order/trusteeship",{
+                    params: {
+                        user_id:this.order.userId
+                    }
                 })
                     .then(response=>{
-                        this.order.orderDetails = response.data.order
+
+
                     })
                     .catch(error=>{
                         this.$message.error(error.message)
                     })
             }
 
+        },
+        created:function () {
+            this.getOrders()
         }
     }
 </script>

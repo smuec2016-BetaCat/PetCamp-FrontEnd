@@ -56,16 +56,18 @@ import { required, minLength, email, sameAs } from 'vuelidate/lib/validators'
 export default {
 	name: "LoginStep3-1",
 	components: {Error},
+	props:['tel'],
 	data (){
 		return {
 			form: {
 				name: '',
 				password1:"",
 				password2:"",
-				email:""
+				email:"",
+				active:4
 			},
-			active:4,
-			status:""
+			status:"",
+			response:null
 		}
 	},
 	validations:{
@@ -93,21 +95,24 @@ export default {
 				this.$v.$touch()
 			}
 			else{
-				axios.post("/api/v0/register", {
-					username:this.name,
-					password:this.password1
-				})
+				let a = {
+					username:this.form.name,
+					password:this.form.password1,
+					phone:this.tel,
+					email:this.form.email
+				}
+				axios.post("/api/v0/register",a)
 					.then(response=> {
-						this.status = response.status
+						this.response = response
 						this.$message({
-							message: 'Congrats, this is a success message.',
+							message: 'Congrats, this is a success message.'+this.status,
 							type: 'success'
 						})
 						this.$router.push({path:"/Register/RegisterStep4"})
-						this.$emit("listen",this.active)
+						this.$emit("listen",this.form)
 					})
 					.catch(error=> {
-						this.$message.error(error.message);
+						this.$message.error(error.response.data.error+"请检查您填写的信息是否完整，如果确实是个bug请联系我")
 					})
 			}
 

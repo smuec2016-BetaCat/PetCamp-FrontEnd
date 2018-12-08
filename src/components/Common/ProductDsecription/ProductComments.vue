@@ -16,26 +16,26 @@
 				<div class="UserComments" style="display: flex">
 					<img src="https://misc.360buyimg.com/user/myjd-2015/css/i/peisong.jpg"
 						width="25px" height="25px" alt="UsrName" style="border-radius: 50%;margin-right: 5px;">
-					<span style="margin: auto" v-text="i.userName"></span>
+					<span style="margin: auto" v-text="i.user_id"></span>
 				</div>
 				<div style="display: flex;">
 					<div style="width: 25px"></div>
-					<span style="margin: auto" v-text="i.UserClass"></span>
+					<span style="margin: auto"></span>
 				</div>
 			</el-col>
 			<el-col :md="19" :xs="24" id="comments">
 				<el-rate
-						v-model="i.commentRate"
+						v-model="i.rank"
 						disabled
 						show-score
 						text-color="#ff9900"
 						score-template="{value} points">
 				</el-rate>
 				<el-col>
-					<span v-text="i.message"></span>
+					<span v-text="i.content"></span>
 				</el-col>
 				<el-col>
-					<span style="margin: 0">评论时间：{{i.date}}</span>
+					<span style="margin: 0">评论时间：{{i.create_time}}</span>
 				</el-col>
 			</el-col>
 		</el-col>
@@ -88,14 +88,7 @@ export default {
 			date: new Date(),
 			comment: null,
 			commentRate:null,
-			comments:[
-				{id:1,userName:"我是一只羊",userClass:"VIP1",message:"我觉得这个很不错，很可惜现在页面只能写死",date:"1997年11月22日",commentRate:5},
-				{id:2,userName:"这里的数据需要从后端来",userClass:"VIP2",message:"我觉得这个很不错，很可惜现在页面只能写死",date:"1997年7月22日",commentRate:4},
-				{id:3,userName:"后端需要给我点数据",userClass:"VIP1",message:"我觉得这个很不错，很可惜现在页面只能写死",date:"1997年11月29日",commentRate:3},
-				{id:4,userName:"我会给后端发送请求",userClass:"VIP3",message:"我觉得这个很不错，很可惜现在页面只能写死",date:"1997年5月22日",commentRate:5},
-				{id:5,userName:"我真是聪明",userClass:"VIP1",message:"我觉得这个很不错，很可惜现在页面只能写死",date:"2008年11月22日",commentRate:2},
-
-			]
+			comments:[]
 		}
 	},
 	methods:{
@@ -103,7 +96,6 @@ export default {
 			this.rate = parseInt(Math.random()*100)
 		},
 		raiseComment(){
-			let num = this.comments[this.comments.length-1].id + 1
             if (this.comment === null || this.comment === ""){
                 this.$message.warning("请输入评论内容")
             }
@@ -112,29 +104,43 @@ export default {
             }
             else{
                 this.$message.warning("正在上传")
-                axios.post('/',{
-                    comment:this.comment,
-                    commentRate:this.commentRate
-                })
-                    .then(response=>{
-                        this.comments.push({
-                            id:num,
-                            userName:"我真是聪明",
-                            userClass:"VIP1",
-                            message:this.comment,
-                            date: new Date(),
-                            commentRate:this.commentRate
-                        })
-                        this.$message({
-                            message:response+"上传成功",
-                            type:"success"
-                        })
-                    })
-                    .catch(error=>{
-                        this.$message.error(error.message)
-                    })
+                axios.post('/api/v0/agency/comments',{
+					content:this.comment,
+					rank:this.commentRate,
+					user_id:1,
+					agency_id:1
+				})
+						.then(response=>{
+							this.$message({
+								message:response+"上传成功",
+								type:"success"
+							})
+						})
+						.catch(error=>{
+							this.$message.error(error.message)
+						})
+				this.comments.push({
+					content:this.comment,
+					rank:this.commentRate,
+					user_id:1,
+					agency_id:1,
+					create_time:this.date
+				})
             }
+		},
+		getComment(){
+			axios.get('/api/v0/agency/comments',{
+				params: {
+					agency_id: 1
+				}
+			})
+					.then(responese=>{
+				this.comments = responese.data.comments
+			})
 		}
+	},
+	created:function () {
+		this.getComment()
 	}
 }
 </script>

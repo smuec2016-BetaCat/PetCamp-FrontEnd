@@ -109,6 +109,7 @@ import Error from "@/components/Login/error";
 export default {
 	name: "RegisterStep3-2",
 	components: {Error},
+	props:['tel'],
 	data (){
 		return {
 			form: {
@@ -126,9 +127,9 @@ export default {
 				value1:false,
 				value2:false,
 				value3:false,
-				value4:false
+				value4:false,
+				active:5,
 			},
-			active:5,
 			status:"",
 			value: '',
 		}
@@ -162,26 +163,25 @@ export default {
 				this.$v.$touch()
 			}
 			else {
-				axios.post("/api/v0/agency", {
-					username:this.form.name,
+				let a = {
+					name:this.form.name,
 					password:this.form.password1,
-					email:this.form.email,
-					city:this.form.city,
-					address:this.form.address,
-					desc:this.form.desc
-				})
-					.then(response=> {
-						this.status = response.data.msg
-						this.$message({
-							message: 'Congrats, this is a success message.',
-							type: 'success'
+					phone:this.tel,
+					email:this.form.email
+				}
+				axios.post("/api/v0/register",a)
+						.then(response=> {
+							this.response = response
+							this.$message({
+								message: 'Congrats, this is a success message.'+this.status,
+								type: 'success'
+							})
+							this.$router.push({path:"/Register/RegisterStep4"})
+							this.$emit("listen",this.form)
 						})
-						this.$router.push({path:"/Register/RegisterStep4"})
-						this.$emit("listen",this.active)
-					})
-					.catch(error=> {
-						this.$message.error(error.message);
-					})
+						.catch(error=> {
+							this.$message.error(error.response.data.error+"请检查您填写的信息是否完整，如果确实是个bug请联系我")
+						})
 			}
 
 		}

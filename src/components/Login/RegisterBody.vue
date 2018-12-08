@@ -12,7 +12,7 @@
 				</el-col>
 				<el-col :span="20" :offset="2">
 					<transition name="slide-fade" mode="out-in">
-						<router-view v-on:listen="changeActive"></router-view>
+						<router-view v-on:listen="changeActive" :tel=this.tel></router-view>
 					</transition>
 				</el-col>
 			</el-col>
@@ -27,13 +27,14 @@ export default {
 		return {
 			active:0,
 			select: '+86',
-			input5: ''
+			input5: '',
+			tel:null
 		}
 	},
 	methods:{
 		changeActive:function (data) {
-			console.log(data)
-			this.active = data
+			this.active = data.active
+			this.tel = data.tel
 		}
 	}
 }

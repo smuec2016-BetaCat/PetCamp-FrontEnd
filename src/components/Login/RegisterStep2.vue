@@ -15,23 +15,26 @@
 <script>
 export default {
 	name: "RegisterStep2",
+	props:['tel'],
 	data(){
 		return{
-			active:2,
 			form:{
-				class:""
+				class:"",
+				active:2,
+				tel:null
 			}
 		}
 	},
 	methods:{
 		goto(){
+			this.form.tel = this.tel
 			if(this.form.class === "注册普通用户"){
 				this.$router.push({path:"/Register/RegisterStep3a"})
-				this.$emit("listen",this.active)
+				this.$emit("listen",this.form)
 			}
 			else if (this.form.class === "注册机构/商户") {
 				this.$router.push({path:"/Register/RegisterStep3b"})
-				this.$emit("listen",this.active)
+				this.$emit("listen",this.form)
 
 			}
 			else {
