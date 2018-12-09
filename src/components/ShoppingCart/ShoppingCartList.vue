@@ -213,6 +213,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
 	name: "ShoppingCartList",
 	data(){
@@ -340,8 +341,15 @@ export default {
 			this.shoppingCartList[this.cartList].shoppingList.splice(this.shopList,1)
 			this.$message.success("删除成功")
 			this.dialogVisible = false
-			//ajax请求删除后端数据
-			// axios.post()
+			axios.delete('/api/v0/cart',{
+				ord_num:this.shoppingCartList[0].shoppingList[this.shoppingList].ord_num
+			})
+				.then(response=>{
+					this.$message.success(response.data.msg)
+				})
+				.catch(error=>{
+					this.$message.error(error.message)
+				})
 		},
 		pay(){
 			if (this.shoppingCartList.length === 0){
@@ -378,6 +386,17 @@ export default {
 					for(let j = 0;j<this.shoppingCartList[i].shoppingList.length;j++){
 						if(this.shoppingCartList[i].shoppingList[j].checked){
 							this.shoppingCartList[i].shoppingList.splice(j,1)
+							if (i===1){
+								axios.delete('/api/v0/cart',{
+									ord_num:this.shoppingCartList[0].shoppingList[j].ord_num
+								})
+									.then(response=>{
+										this.$message.success(response.data.msg)
+									})
+									.catch(error=>{
+										this.$message.error(error.message)
+									})
+							}
 							j--;
 						}
 					}
@@ -398,6 +417,17 @@ export default {
 					value.checked = false
 				})
 			})
+		},
+		getShoppingList(){
+			axios.get('/api/v0/cart',{
+				"checked":true
+			})
+				.then(response=>{
+					this.shoppingList = response.data.message
+				})
+				.catch((error=>{
+					this.$message.error(error.message)
+				}))
 		}
 	},
 	computed:{
@@ -430,6 +460,7 @@ export default {
 	mounted: function () {
 		this.$nextTick(function () {
 			window.addEventListener('scroll',this.showNav);
+			this.getShoppingList()
 		})
 	},
 	destroyed() {

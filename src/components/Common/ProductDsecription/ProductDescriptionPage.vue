@@ -138,7 +138,7 @@
 		<el-dialog title="预约寄养" :visible.sync="dialogFormVisible">
 			<el-form :model="form" style="text-align:left;margin: 0 5%">
 				<el-form-item label="宠物昵称" :label-width="formLabelWidth" style="width: 70%">
-					<el-input v-model="form.name" autocomplete="off"></el-input>
+					<el-input v-model="form.pet_name" autocomplete="off"></el-input>
 				</el-form-item>
 				<el-form-item label="宠物性别" :label-width="formLabelWidth">
 					<el-radio-group v-model="form.sex">
@@ -147,9 +147,9 @@
 					</el-radio-group>
 				</el-form-item>
 				<el-form-item label="宠物类型" :label-width="formLabelWidth" style="width: 70%">
-					<el-select v-model="form.type" placeholder="Please select a zone" style="width: 100%">
-						<el-option label="狗" value="shanghai"></el-option>
-						<el-option label="猫" value="beijing"></el-option>
+					<el-select v-model="form.species" placeholder="Please select a zone" style="width: 100%">
+						<el-option label="狗" value="狗"></el-option>
+						<el-option label="猫" value="猫"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item label="宠物年龄" :label-width="formLabelWidth" style="width: 70%">
@@ -160,36 +160,33 @@
 				</el-form-item>
 				<el-form-item label="是否绝育" :label-width="formLabelWidth">
 					<el-radio-group v-model="form.sterilization">
-						<el-radio label="是"></el-radio>
-						<el-radio label="否"></el-radio>
+						<el-radio label=true></el-radio>
+						<el-radio label=false></el-radio>
 					</el-radio-group>
 				</el-form-item>
 				<el-form-item label="TA是调皮鬼吗？" :label-width="formLabelWidth">
 					<el-radio-group v-model="form.naughty">
-						<el-radio label="是"></el-radio>
-						<el-radio label="不是"></el-radio>
-						<el-radio label="不确定"></el-radio>
+						<el-radio label=true></el-radio>
+						<el-radio label=false></el-radio>
 					</el-radio-group>
 				</el-form-item>
 				<el-form-item label="TA胆子特别小吗？" :label-width="formLabelWidth">
-					<el-radio-group v-model="form.timid">
-						<el-radio label="是"></el-radio>
-						<el-radio label="不是"></el-radio>
-						<el-radio label="不确定"></el-radio>
+					<el-radio-group v-model="form.shy">
+						<el-radio label=true></el-radio>
+						<el-radio label=false></el-radio>
 					</el-radio-group>
 				</el-form-item>
 				<el-form-item label="TA与其他伙伴好相处吗？" :label-width="formLabelWidth">
-					<el-radio-group v-model="form.friends">
-						<el-radio label="是"></el-radio>
-						<el-radio label="不是"></el-radio>
-						<el-radio label="不确定"></el-radio>
+					<el-radio-group v-model="form.friendly">
+						<el-radio label=true></el-radio>
+						<el-radio label=false></el-radio>
 					</el-radio-group>
 				</el-form-item>
 				<el-form-item label="请选择需要寄养的时间" :label-width="formLabelWidth">
 					<el-date-picker style="width: 100%" v-model="form.date" type="datetimerange" range-separator="To" start-placeholder="Start date" end-placeholder="End date"></el-date-picker>
 				</el-form-item>
 				<el-form-item label="宠物简介" :label-width="formLabelWidth">
-					<el-input type="textarea" v-model="form.desc"></el-input>
+					<el-input type="textarea" v-model="form.comment"></el-input>
 				</el-form-item>
 				<el-form-item>
 					<!--缺少:on-change="handleChange"-->
@@ -210,7 +207,7 @@
 			</el-form>
 			<span slot="footer" class="dialog-footer">
 				<el-button @click="dialogFormVisible = false">取消</el-button>
-				<el-button type="primary" @click="dialogFormVisible = false">立即寄养</el-button>
+				<el-button type="primary" @click="addToCart">立即寄养</el-button>
 			</span>
 		</el-dialog>
 	</div>
@@ -242,17 +239,20 @@ export default {
 
 		dialogFormVisible: false,
 		form: {
-			name:"",
-			sex:"",
-			type:"",
-			age:"",
-			weight:"",
-			sterilization:"",
-			naughty:"",
-			timid:"",
-			friends:"",
+			species: "",
+			pet_name: "",
+			age:null,
+			weight: null,
 			date:"",
-			desc:""
+			sterilization: null,
+			naughty:null,
+			shy: null,
+			friendly: null,
+			comment: "aaaaaaa",
+			agency_id: 1,
+			user_id: 1,
+			image_names: ["order_test1"],
+			sex:""
 		},
 		formLabelWidth: '180px',
 		fileList:[],
@@ -285,20 +285,43 @@ export default {
 		beforeRemove(file, fileList) {
 			return this.$confirm(`确定移除 ${ file.name }？`);
 		},
-		reservation(){
-			axios.post('/',{
-
-			})
+		addToCart(){
+			let a = {
+				species:this.form.species,
+				pet_name: this.form.pet_name,
+				age: this.form.age,
+				weight :this.form.weight,
+				expiration: (this.form.date[1]-this.form.date[0])/360000/24,
+				sterilization: this.form.sterilization,
+				naughty:this.form.naughty,
+				shy:this.form.shy,
+				friendly: this.form.friendly,
+				comment: this.form.comment,
+				price: 1000,
+				agency_id: 1,
+				user_id: 1,
+				image_names: ["order_test1"]
+			}
+			let map = {
+				"true" : true,
+				"false" : false,
+				"null" : null
+			}
+			for(let arg of ["naughty","shy","friendly","sterilization"]){
+				if (a[arg] in map){
+					a[arg] = map[a[arg]]
+				}
+			}
+			axios.post('/api/v0/cart',a)
 				.then(response=>{
-
-					this.message({
-						message:response.data,
-						type:"success"
-					})
+					this.ord_num = response.data.ord_num
+					this.$message.success("your ord_num is " + this.ord_num)
+					this.$router.push({path:'/shoppingList'})
 				})
 				.catch(error=>{
-					this.$message.error(error.data)
+					this.$message.success("please contact with me"+error.message.data.error)
 				})
+			this.dialogVisible = false
 		}
 	},
 	created:function () {

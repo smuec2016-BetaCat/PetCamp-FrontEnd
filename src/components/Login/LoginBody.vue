@@ -91,7 +91,7 @@ export default {
 						this.$router.push({path:"/"})
 					})
 					.catch(error=>{
-						this.$message.error(error.response.data.error+"，如有问题，请联系我")
+						this.$message.error("如有问题，请联系我")
 					})
 			}
 		}

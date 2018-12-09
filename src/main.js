@@ -9,8 +9,8 @@ import router from './router'
 import axios from "axios"
 import Vuelidate from 'vuelidate'
 import animated from 'animate.css'
-import qs from 'qs';
-Vue.prototype.$qs = qs;
+// import qs from 'qs';
+// Vue.prototype.$qs = qs;
 axios.defaults.baseURL = "http://itsyuekao.com:5000"
 // axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
 

@@ -245,37 +245,58 @@ export default {
 		changeClass(){
 			this.Active = !this.Active
 		},
-		postOrder(){
-			let a = this.order.orderDetails
-			for(let i = 0;i< a.length;i++){
-				axios.post('/api/v0/order/trusteeship',{
-					species:a[i].type,
-					pet_name:a[i].nickName,
-					age:a[i].age,
-					weight:a[i].weight,
-					expiration:a[i].expiration,
-					sterilization:a[i].sterilization,
-					naughty:a[i].naughty,
-					shy:a[i].shy,
-					friendly:a[i].friendly,
-					comment:a[i].comment,
-					price:a[i].price,
-					agency_id:a[i].shopId,
-					image_names:a[i].image_names,
-				})
-					.then(response=>{
-						this.orderResponse = response.data
-						this.$message({
-							message: 'Congrats, this is a success message.',
-							type: 'success'
-						})
-					})
-					.catch(error=>{
-						this.$message.error(error.data)
-					})
-			}
-		}
+		getorder(){
+			axios.get('/api/v0/cart',{
 
+			})
+				.then(response=>{
+					this.order.orderDetails = response.data.orders
+				})
+				.catch(error=>{
+					this.$message.error(error.message)
+				})
+		},
+		postOrder(){
+			// let a = this.order.orderDetails
+			// for(let i = 0;i< a.length;i++){
+			// 	axios.post('/api/v0/order/trusteeship',{
+			// 		species:a[i].type,
+			// 		pet_name:a[i].nickName,
+			// 		age:a[i].age,
+			// 		weight:a[i].weight,
+			// 		expiration:a[i].expiration,
+			// 		sterilization:a[i].sterilization,
+			// 		naughty:a[i].naughty,
+			// 		shy:a[i].shy,
+			// 		friendly:a[i].friendly,
+			// 		comment:a[i].comment,
+			// 		price:a[i].price,
+			// 		agency_id:a[i].shopId,
+			// 		image_names:a[i].image_names,
+			// 	})
+			// 		.then(response=>{
+			// 			this.orderResponse = response.data
+			// 			this.$message({
+			// 				message: 'Congrats, this is a success message.',
+			// 				type: 'success'
+			// 			})
+			// 		})
+			// 		.catch(error=>{
+			// 			this.$message.error(error.data)
+			// 		})
+			axios.put("/api/v0/order/alipay",{
+				ord_num: "20181208222020126642",
+				subject: "测试用订单",
+				return_url: "http://www.itsyuekao.com"
+			})
+				.then(response=>{
+					// console.log(response.data.alipay_url)
+					window.location.href=response.data.alipay_url
+				})
+				.catch(error=>{
+					this.$message.error(error.message)
+				})
+			}
 	}
 }
 </script>
