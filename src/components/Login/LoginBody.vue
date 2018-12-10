@@ -9,7 +9,7 @@
 					<template slot="inputGroups">
 						<el-input placeholder="邮箱/用户名/已验证手机" v-model.trim="$v.UserName.$model" class="MyMargin">
 							<template slot="prepend">
-								<i class="el-icon-loading"></i>
+								<v-svg-icon name="check-circle"></v-svg-icon>
 							</template>
 						</el-input>
 					</template>
@@ -20,7 +20,7 @@
 				</error>
 				<error style="margin-bottom: 10%">
 					<template slot="inputGroups">
-						<el-input placeholder="密码" v-model.trim="$v.Password.$model" class="MyMargin">
+						<el-input placeholder="密码" type="password" v-model.trim="$v.Password.$model" class="MyMargin" @keyup.enter="login">
 							<template slot="prepend">
 								<i class="el-icon-loading"></i>
 							</template>
@@ -32,9 +32,9 @@
 						</div>
 					</template>
 				</error>
-				<el-col class="MyMargin">
-					<router-link to="" style="float: right;" class="link">忘记密码</router-link>
-				</el-col>
+				<!--<el-col class="MyMargin">-->
+					<!--<router-link to="" style="float: right;" class="link">忘记密码</router-link>-->
+				<!--</el-col>-->
 				<el-col class="MyMargin">
 					<el-button type="warning" style="width: 100%" @click="login">登录</el-button>
 				</el-col>
@@ -83,15 +83,20 @@ export default {
 					password:this.Password
 				})
 					.then(response=>{
-						this.token = response.data.token
-						this.message({
-							message:"login succeed",
+						this.$global.setToken(response.data.token)
+						axios.defaults.headers={
+							Authorization:"Bearer "+this.$global.token
+						}
+						this.$global.setUser(response.data.user)
+						this.$message({
+							message:"登录成功！",
 							type:"success"
 						})
 						this.$router.push({path:"/"})
+						console.log(this.$global.username)
 					})
 					.catch(error=>{
-						this.$message.error("如有问题，请联系我")
+						this.$message.error("如有问题，请联系我"+error)
 					})
 			}
 		}
@@ -133,7 +138,7 @@ export default {
 #LoginForm{
 	background-color: #fff;
 	width: 400px;
-	height:400px;
+	height:360px;
 	z-index: 20;
 	margin: auto;
 	opacity: 0.85;
@@ -141,11 +146,16 @@ export default {
 .MyMargin{
 	margin-top: 15px;
 }
+.MyMargin a{
+	color: #000;
+	transition:all 0.3s;
+}
 .link{
 	text-decoration: none;
 }
 .link:hover{
-	text-decoration: #6A3906 underline;
+	text-decoration:none;
 	color: #6A3906;
+	transition:all 0.5s;
 }
 </style>

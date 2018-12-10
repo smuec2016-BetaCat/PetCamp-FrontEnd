@@ -25,6 +25,7 @@ import ShoppingList from "./views/ShoppingList";
 import Order from "./views/Order";
 import FosterPage from "./views/FoseterPage";
 import MyOrder from "./views/MyOrder";
+import PaySucceed from "@/components/Common/PaySucceed";
 
 
 Vue.use(Router)
@@ -35,6 +36,11 @@ export default new Router({
             path: '/',
             name: 'FrontPage',
             component: FrontPage
+        },
+        {
+            path: '/PaySucceed',
+            name: 'PaySucceed',
+            component: PaySucceed
         },
         {
             path: '/FosterPage',

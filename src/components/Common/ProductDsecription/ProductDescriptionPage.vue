@@ -22,12 +22,12 @@
 					<el-col :span="20" :offset="4" style="color:#6A3906;">
 						<el-col style="padding-left: 10px">
 							<strong id="introduce">PetCamp</strong>
-							<span style="font-size: 20px" v-text="message.shopName"></span>
+							<span style="font-size: 20px" v-text="message.name"></span>
 						</el-col>
 						<el-col style="padding-left: 10px">
 							<el-col :span="12" style="margin-bottom: 0">
 								<el-rate
-										v-model="message.value"
+										v-model="value1"
 										disabled
 										show-score
 										text-color="#ff9900"
@@ -35,7 +35,8 @@
 								</el-rate>
 							</el-col>
 							<el-col :span="12" style="margin-bottom: 0">
-								<span v-text="message.num" style="margin-right: 10px"></span>
+								<span v-if="count===-1"><i class="el-icon-loading"></i></span>
+								<span v-else v-text="count" style="margin-right: 10px"></span>
 								<span>位顾客已浏览</span>
 							</el-col>
 						</el-col>
@@ -45,12 +46,12 @@
 									<el-col :span="14" style="margin: auto">
 										<h4 style="margin:10px 0 10px 10px">寄养服务</h4>
 									</el-col>
-									<el-col :span="10" style="margin: auto">
-										<span>
-											<i class="el-icon-circle-check-outline"></i>
-											剩余{{message.capacity}}条狗狗的寄养空间
-										</span>
-									</el-col>
+									<!--<el-col :span="10" style="margin: auto">-->
+										<!--<span>-->
+											<!--<i class="el-icon-circle-check-outline"></i>-->
+											<!--剩余{{message.capacity}}条狗狗的寄养空间-->
+										<!--</span>-->
+									<!--</el-col>-->
 								</el-col>
 								<el-col :span="6" style="padding-left: 10px">
 									<h4 style="margin: 10px 0">小型犬</h4>
@@ -222,19 +223,10 @@ export default {
 	components: {NavBottomButton, PicZoom },
 	data (){
 	return {
+		value1:4.5,
+		count:-1,
 		message:{
-			shopName:"宠物训练营",
-			capacity:5,
-			num:10482084,
-			value:3.5,
-			introduction:"欢迎来到宠物训练营，在这里您可以放心寄养您的宠物，他们会在这里得到细心的照料。他们会找到可以一起玩耍的伙伴，在这里度过一个愉快的假期。我们会给他们按摩，洗澡，训练，不让他们感到孤单失落。",
-			myImgUrl: "",
-			img:[
-				{id:0,url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg"},
-				{id:1,url:"https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike60%2C5%2C5%2C60%2C20/sign=4058d79e0ef41bd5ce5ee0a630b3eaae/730e0cf3d7ca7bcb3700f79abe096b63f624a80f.jpg"},
-				{id:2,url:"https://imgsa.baidu.com/baike/pic/item/00e93901213fb80e2f604bc43dd12f2eb938946b.jpg"},
-				{id:3,url:"https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=1fbc3a8edaa20cf4529df68d17602053/1ad5ad6eddc451dac7f5b1e2bcfd5266d01632b3.jpg"}
-			],
+
 		},
 
 		dialogFormVisible: false,
@@ -324,7 +316,14 @@ export default {
 			this.dialogVisible = false
 		}
 	},
-	created:function () {
+	mounted () {
+		this.message =  this.$global.shopList
+		axios.post('/api/v0/counter',{
+			agency_id:this.$global.shopList.id
+		})
+			.then(response=>{
+			this.count = response.data.count
+		})
 		this.initMyImage()
 	}
 }

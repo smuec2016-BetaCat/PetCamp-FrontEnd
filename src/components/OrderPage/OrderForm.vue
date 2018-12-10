@@ -287,16 +287,28 @@ export default {
 			axios.put("/api/v0/order/alipay",{
 				ord_num: "20181208222020126642",
 				subject: "测试用订单",
-				return_url: "http://www.itsyuekao.com"
+				return_url: "http://www.itsyuekao.com/PaySucceed",
+				wap:!this.isPc
 			})
 				.then(response=>{
-					// console.log(response.data.alipay_url)
 					window.location.href=response.data.alipay_url
 				})
 				.catch(error=>{
 					this.$message.error(error.message)
 				})
 			}
+	},
+	computed:{
+		isPc() {
+			let [userAgentInfo,flag,Agents] = [navigator.userAgent,true,["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"]]
+			for (let v = 0; v < Agents.length; v++) {
+				if (userAgentInfo.indexOf(Agents[v]) > 0) {
+					flag = false
+					break
+				}
+			}
+			return flag
+		}
 	}
 }
 </script>

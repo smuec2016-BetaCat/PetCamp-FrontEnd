@@ -104,8 +104,9 @@ export default {
 				axios.post("/api/v0/register",a)
 					.then(response=> {
 						this.response = response
+						this.$global.setUser(this.response.data.user)
 						this.$message({
-							message: 'Congrats, this is a success message.'+this.status,
+							message: '注册成功',
 							type: 'success'
 						})
 						this.$router.push({path:"/Register/RegisterStep4"})

@@ -9,16 +9,24 @@ import router from './router'
 import axios from "axios"
 import Vuelidate from 'vuelidate'
 import animated from 'animate.css'
-// import qs from 'qs';
-// Vue.prototype.$qs = qs;
-axios.defaults.baseURL = "http://itsyuekao.com:5000"
-// axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+import global from './global'
+import VueIconfont from 'vue-iconfont'
+import '../font/iconfont'
 
+axios.defaults.baseURL = "http://192.168.1.114:5000"
 
+Vue.use(VueIconfont,[
+    {
+        tag:'v-svg-icon',
+        prefix:'v-icon',
+        type:'svg'
+    }
+])
 Vue.use(animated)
 Vue.use(Vuelidate)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
+Vue.prototype.$global = global
 
 new Vue({
     router,

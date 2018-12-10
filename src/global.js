@@ -1,0 +1,16 @@
+export default {
+	user:{},
+	token: '',
+	shopList:{},
+	setUser (object) {
+		this.user = object
+	},
+	setToken(newToken) {
+		this.token = newToken
+	},
+	setShopList (object){
+		console.log("old shopList: "+this.shopList)
+		this.shopList = object
+		console.log("new shopList: "+this.shopList)
+	}
+}

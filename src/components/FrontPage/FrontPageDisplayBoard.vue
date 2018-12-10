@@ -19,7 +19,7 @@
               <div class="text">
                 <span>获得宠物保姆，为您的爱宠提供家庭住宿</span>
                 <div class="bottom clearfix">
-                  <el-button round class="button">前往宠物寄养</el-button>
+                  <el-button round class="button" @click="goto">前往宠物寄养</el-button>
                 </div>
               </div>
             </el-card>
@@ -35,7 +35,7 @@
               <div class="text">
                 <span>奉献爱心，送给这些小动物一个温暖家庭</span>
                 <div class="bottom clearfix">
-                  <el-button round class="button">前往宠物领养</el-button>
+                  <el-button round class="button" disabled>前往宠物领养</el-button>
                 </div>
               </div>
             </el-card>
@@ -51,7 +51,7 @@
               <div class="text">
                 <span>无所不有，这里的一切都为您的爱宠准备</span>
                 <div class="bottom clearfix">
-                  <el-button round class="button">前往宠物零售</el-button>
+                  <el-button round class="button" disabled>前往宠物零售</el-button>
                 </div>
               </div>
             </el-card>
@@ -64,7 +64,12 @@
 
 <script>
 export default {
-  name: "FrontPageDisplayBoard"
+  name: "FrontPageDisplayBoard",
+    methods:{
+  	  goto(){
+  	  	this.$router.push({path:"/CommodityBrowsing/CommodityBrowsingList1"})
+      }
+    }
 };
 </script>
 

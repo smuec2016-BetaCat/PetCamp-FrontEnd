@@ -45,7 +45,7 @@
 				<div class="UserComments" style="display: flex">
 					<img src="https://misc.360buyimg.com/user/myjd-2015/css/i/peisong.jpg"
 						width="25px" height="25px" alt="UsrName" style="border-radius: 50%;margin-right: 5px;">
-					<span style="margin: auto">UserName</span>
+					<span style="margin: auto">{{this.$global.username}}</span>
 				</div>
 				<div style="display: flex;">
 					<div style="width: 25px"></div>
@@ -107,7 +107,7 @@ export default {
                 axios.post('/api/v0/agency/comments',{
 					content:this.comment,
 					rank:this.commentRate,
-					user_id:1,
+					user_id:this.$global.user.id,
 					agency_id:1
 				})
 						.then(response=>{
@@ -122,8 +122,8 @@ export default {
 				this.comments.push({
 					content:this.comment,
 					rank:this.commentRate,
-					user_id:1,
-					agency_id:1,
+					user_id:this.$global.user.username,
+					agency_id:this.$global.shopList.id,
 					create_time:this.date
 				})
             }
@@ -131,7 +131,7 @@ export default {
 		getComment(){
 			axios.get('/api/v0/agency/comments',{
 				params: {
-					agency_id: 1
+					agency_id: this.$global.shopList.id
 				}
 			})
 					.then(responese=>{

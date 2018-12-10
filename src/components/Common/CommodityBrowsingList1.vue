@@ -7,7 +7,7 @@
 				</el-tabs>
 			</el-row>
 			<!--店铺-->
-			<el-row style="padding: 1% 0 2% 0" v-for="item in shopList" :key="item.id">
+			<el-row style="padding: 1% 0 2% 0" v-for="(item,index) in shopList" :key="item.id">
 				<!--mobile-->
 				<el-col class="hidden-sm-and-up">
 					<el-col>
@@ -28,19 +28,19 @@
 					<el-col>
 						<el-row>
 							<el-col :xs={span:8,offset:0} v-for="i in item.shop" :key="i.id">
-								<el-button style="padding:0;border-radius: 5px" @mouseenter.native="intoTheHouse(i)" @mouseleave.native="intoTheHouse(i)" @click.native="goto">
+								<el-button style="padding:0;border-radius: 5px" @mouseenter.native="intoTheHouse(i)" @mouseleave.native="intoTheHouse(i)" @click.native="goto(index)">
 									<el-card :body-style="{ padding: '0px' }" shadow="hover">
 										<div v-if="i.show" class="intoTheHouse">
 											<span>进入店家</span>
 										</div>
 										<img src="http://viptail.image.alimmdn.com/files/official_web/img/sh002-f.jpg" class="image">
-										<div style="padding: 10px;overflow: hidden;">
-											<div style="float: right;position:relative;">
-												<span style="color: #fbc02d;font-size: 15px;">￥</span>
-												<span style="color: #fbc02d;font-size: 25px;">{{i.price}}</span>
-												<strong>起/每晚</strong>
-											</div>
-										</div>
+										<!--<div style="padding: 10px;overflow: hidden;">-->
+											<!--<div style="float: right;position:relative;">-->
+												<!--<span style="color: #fbc02d;font-size: 15px;">￥</span>-->
+												<!--<span style="color: #fbc02d;font-size: 25px;">{{i.price}}</span>-->
+												<!--<strong>起/每晚</strong>-->
+											<!--</div>-->
+										<!--</div>-->
 									</el-card>
 								</el-button>
 							</el-col>
@@ -61,45 +61,48 @@
 						<!--店家/机构简介-->
 						<el-col :span="18" style="text-align: left;padding-left: 10%" id="info">
 							<el-col>
-								<router-link to="" style="text-decoration: none;color: #2c3e50;" v-text="item.shopName"></router-link>
+								<router-link to="" style="text-decoration: none;color: #2c3e50;" v-text="item.name"></router-link>
 							</el-col>
-							<el-col>
-								<el-rate v-model="item.rates" disabled show-score text-color="#ff9900" score-template="{value} points"></el-rate>
-							</el-col>
+							<!--<el-col>-->
+								<!--<el-rate v-model="item.rates" disabled show-score text-color="#ff9900" score-template="{value} points"></el-rate>-->
+							<!--</el-col>-->
 							<el-col>
 								<i class="el-icon-location-outline"></i>
-								<span v-text="item.place"></span>
+								<span v-text="item.city"></span>
 							</el-col>
 							<el-col>
-								<span v-text="item.contacts"></span>
+								<span v-text="item.address"></span>
+							</el-col>
+							<el-col>
+								<span v-text="item.owner"></span>
 							</el-col>
 						</el-col>
 						<el-col style="text-align: left;margin-top: 10%">
-							<el-col>
-								<span class="smallTitle">共可容纳{{item.capacity}}条狗狗</span>
-							</el-col>
-							<el-col>
-								<span class="smallTitle">好评度{{item.rates}}</span>
-							</el-col>
+							<!--<el-col>-->
+								<!--<span class="smallTitle">共可容纳{{item.capacity}}条狗狗</span>-->
+							<!--</el-col>-->
+							<!--<el-col>-->
+								<!--<span class="smallTitle">好评度{{item.rates}}</span>-->
+							<!--</el-col>-->
 						</el-col>
 					</el-col>
 					<!--寄养地方预览-->
 					<el-col :md="16">
 						<el-row>
-							<el-col :xs={span:24,offset:0} :sm={span:8,offset:0} :md={span:8,offset:0} v-for="i in item.shop" :key="i.id">
-								<el-button style="padding:0;margin:5px;" @mouseenter.native="intoTheHouse(i)" @mouseleave.native="intoTheHouse(i)" @click.native="goto">
+							<el-col :xs={span:24,offset:0} :sm={span:8,offset:0} :md={span:8,offset:0} v-for="i in item.img_list" :key="i.id">
+								<el-button style="padding:0;margin:5px;" @mouseenter.native="intoTheHouse(i)" @mouseleave.native="intoTheHouse(i)" @click.native="goto(index)">
 									<el-card :body-style="{ padding: '0px' }" shadow="hover">
 										<div v-if="i.show" class="intoTheHouse">
 											<span>进入店家</span>
 										</div>
-										<img src="http://viptail.image.alimmdn.com/files/official_web/img/sh002-f.jpg" class="image">
-										<div style="padding: 10px;overflow: hidden;">
-											<div style="float: right;position:relative;">
-												<span style="color: #fbc02d;font-size: 15px;">￥</span>
-												<span style="color: #fbc02d;font-size: 25px;">{{i.price}}</span>
-												<strong>起/每晚</strong>
-											</div>
-										</div>
+										<img src="" class="image">
+										<!--<div style="padding: 10px;overflow: hidden;">-->
+											<!--<div style="float: right;position:relative;">-->
+												<!--<span style="color: #fbc02d;font-size: 15px;">￥</span>-->
+												<!--<span style="color: #fbc02d;font-size: 25px;">{{i.price}}</span>-->
+												<!--<strong>起/每晚</strong>-->
+											<!--</div>-->
+										<!--</div>-->
 									</el-card>
 								</el-button>
 							</el-col>
@@ -113,7 +116,7 @@
 					<div class="block" style="margin: 5% 0 2% 0">
 						<el-pagination
 								layout="prev, pager, next"
-								:total="50">
+								:total="10">
 						</el-pagination>
 					</div>
 				</el-col>
@@ -123,29 +126,14 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
 	name: "CommodityBrowsingList",
 	data(){
 		return {
 			price: Math.round(Math.random()*1000),
 			activeName: 'first',
-			shopList:[
-				{
-					id:4,
-					shopName:"寄养小屋",
-					rates:3.7,
-					place:"江苏南京",
-					contacts:"犇犇",
-					capacity:5,
-					shop:[
-						{id:1,title:"铲屎官道具",show:false,src:"",price: 100},
-						{id:2,title:"到底能不能遍历啊",show:false,src:"",price:100},
-						{id:3,title:"终于可以遍历了",show:false,src:"",price:100}
-					]
-				}
-
-			],
-
+			shopList:[],
 			value5:4
 		}
 	},
@@ -153,8 +141,19 @@ export default {
 		intoTheHouse(i){
 			i.show = !i.show
 		},
-		goto(){
+		goto(index){
+
+			this.$global.setShopList(this.shopList[index])
 			this.$router.push({path:"/PurchasePage/ProductComments"})
+		},
+		getAgencyList(){
+			axios.get('/api/v0/agency')
+				.then(response=>{
+					this.shopList = response.data.agency_list
+				})
+				.catch(error=>{
+					this.$message.error(error)
+				})
 		}
 	},
 	computed:{
@@ -168,6 +167,9 @@ export default {
 			}
 			return flag
 		}
+	},
+	created:function () {
+		this.getAgencyList()
 	}
 }
 </script>

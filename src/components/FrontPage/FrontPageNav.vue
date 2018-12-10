@@ -15,7 +15,7 @@
             <i class="toggle-side-bar" :class="{'el-icon-menu': !sidebar ,'el-icon-back': sidebar}" @click="ShowSideBar"></i>
           </el-col>
           <el-col class="search" :xs="18" :md="12">
-            <el-input class="search-box" placeholder="欢迎来到PetCamp" v-model="input">
+            <el-input class="search-box" placeholder="欢迎来到PetCamp" v-model="input" @change.native="search">
               <i class="el-icon-search" slot="suffix"></i>
             </el-input>
           </el-col>
@@ -32,14 +32,14 @@
               <nav>
                 <ul>
                   <li v-for="item in topBarItem" :key="item.id">
-                    <router-link v-text="item.title" :to="item.url"></router-link>
+                    <router-link v-text="item.title" :to="item.url" :class="{'text-danger':item.disabled}"></router-link>
                   </li>
                 </ul>
               </nav>
               <nav>
                 <ul>
                   <li v-for="item in navBarItem" :key="item.id">
-                    <router-link v-text="item.title" :to="item.url"></router-link>
+                    <router-link v-text="item.title" :to="item.url" :class="{'text-danger':item.disabled}"></router-link>
                   </li>
                 </ul>
               </nav>
@@ -56,7 +56,7 @@
             <nav>
               <ul>
                 <li v-for="item in navBarItem" :key="item.id">
-                  <router-link v-text="item.title" :to="item.url"></router-link>
+                  <router-link v-text="item.title" :to="item.url" :class="{'text-danger':item.disabled}"></router-link>
                 </li>
               </ul>
             </nav>
@@ -77,18 +77,18 @@ export default {
     return {
       input: "",
       topBarItem: [
-          { id: 0, title: "我的订单", url: "/MyOrder"},
-          { id: 1, title: "我的营地", url: "/" },
-          { id: 2, title: "收藏夹", url: "/" },
-          { id: 3, title: "购物车", url: "/ShoppingList" },
-          { id: 4, title: "请登录|注册", url: "/Login" }
+          { id: 0, title: "我的订单", url: "/MyOrder", disabled: false},
+          { id: 1, title: "我的营地", url: "/", disabled: true},
+          { id: 2, title: "收藏夹", url: "/", disabled: true},
+          { id: 3, title: "购物车", url: "/ShoppingList", disabled: false},
+          { id: 4, title: "请登录|注册", url: "/Login", disabled: false}
       ],
       navBarItem: [
         { id: 0, title: "营地首页", url: "/" },
-        { id: 1, title: "宠物寄养", url: "/CommodityBrowsing/CommodityBrowsingList1" },
-        { id: 2, title: "宠物领养", url: "/CommodityBrowsing/CommodityBrowsingList2" },
-        { id: 3, title: "宠物零售", url: "/CommodityBrowsing/CommodityBrowsingList3" },
-        { id: 4, title: "关于我们", url: "/" }
+        { id: 1, title: "宠物寄养", url: "/CommodityBrowsing/CommodityBrowsingList1", disabled: false},
+        { id: 2, title: "宠物领养", url: "/CommodityBrowsing/CommodityBrowsingList2", disabled: true},
+        { id: 3, title: "宠物零售", url: "/CommodityBrowsing/CommodityBrowsingList3", disabled: true},
+        { id: 4, title: "关于我们", url: "/", disabled: true }
       ],
       sidebar:false,
     }
@@ -99,6 +99,9 @@ export default {
       },
       ShowSideBar(){
           this.sidebar = !this.sidebar
+      },
+      search(){
+        this.$router.push({path:'/CommodityBrowsing/CommodityBrowsingList1'})
       }
     },
   computed:{
@@ -120,7 +123,9 @@ export default {
 .space {
   height: 20px;
 }
-
+.text-danger{
+  pointer-events:none;
+}
 .top-bar {
   background-color: black;
   height: 35px;

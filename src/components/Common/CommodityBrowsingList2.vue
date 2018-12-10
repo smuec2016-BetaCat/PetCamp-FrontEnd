@@ -74,7 +74,7 @@
 					<div class="block" style="margin: 5% 0 2% 0">
 						<el-pagination
 								layout="prev, pager, next"
-								:total="50">
+								:total="10">
 						</el-pagination>
 					</div>
 				</el-col>
