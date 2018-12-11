@@ -74,7 +74,7 @@
 				</el-col>
 			</el-row>
 		</div>
-		<div style="height: 50px"></div>
+		<div :style="isPc? {'height': '10px'}: {'height': '50px'}"></div>
 	</div>
 </template>
 
@@ -295,8 +295,8 @@
 
 	#sidebar {
 		position: absolute;
-		top: -30px;
-		background-color: white;
+		top: -20px;
+		background-color: rgba(255, 255, 255, 0.9);
 		width: 220px;
 		overflow: auto;
 		padding: 10px 10px 10px 20px;
@@ -334,21 +334,21 @@
 		box-shadow: 0 1px 1px 1px #eeeeee;
 	}
 	.nav{
-		height: 50px;
-		line-height: 50px;
-		background-color: white;
+		height: 60px;
+		line-height: 60px;
+		background-color: rgba(255, 255, 255, 0.9);
 		z-index: 20;
-		font-weight: bold;
+		/* font-weight: bold; */
 		position: fixed;
-		box-shadow: 0 1px 5px 5px #eeeeee;
+		/* box-shadow: 0 1px 5px 5px #eeeeee; */
 	}
 	.nav i{
 		margin: auto;
-		color: #6A3906;
+		color: black;
 		position: absolute;
 		left: 30px;
 		font-size: 30px;
-		line-height: 50px;
+		/* line-height: 60px; */
 	}
 </style>
 

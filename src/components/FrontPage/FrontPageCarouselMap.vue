@@ -32,7 +32,7 @@ export default {
 .el-carousel {
   width: 100%;
   height: 0;
-  padding-bottom: 75%;
+  padding-bottom: 56.25%;
   overflow: hidden;
 }
 .el-carousel .el-carousel__container {

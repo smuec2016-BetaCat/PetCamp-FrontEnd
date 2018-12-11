@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style>
-.advertisement .ad-box {
+/* .advertisement .ad-box {
   background: url("http://itsyuekao.com:5000/_uploads/IMAGE/ad.jpg") no-repeat
     center center;
   background-size: 100% auto;
@@ -35,7 +35,7 @@ export default {
   cursor: pointer;
   opacity: 0.9;
   transition: all 0.3s;
-}
+} */
 </style>
 
 
