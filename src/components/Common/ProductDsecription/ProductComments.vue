@@ -16,7 +16,7 @@
 				<div class="UserComments" style="display: flex">
 					<img src="https://misc.360buyimg.com/user/myjd-2015/css/i/peisong.jpg"
 						width="25px" height="25px" alt="UsrName" style="border-radius: 50%;margin-right: 5px;">
-					<span style="margin: auto" v-text="i.user_id"></span>
+					<span style="margin: auto" v-text="i.user_name"></span>
 				</div>
 				<div style="display: flex;">
 					<div style="width: 25px"></div>
@@ -45,7 +45,7 @@
 				<div class="UserComments" style="display: flex">
 					<img src="https://misc.360buyimg.com/user/myjd-2015/css/i/peisong.jpg"
 						width="25px" height="25px" alt="UsrName" style="border-radius: 50%;margin-right: 5px;">
-					<span style="margin: auto">{{this.$global.username}}</span>
+					<span style="margin: auto">{{$global.user.username}}</span>
 				</div>
 				<div style="display: flex;">
 					<div style="width: 25px"></div>
@@ -122,7 +122,7 @@ export default {
 				this.comments.push({
 					content:this.comment,
 					rank:this.commentRate,
-					user_id:this.$global.user.username,
+					user_name:this.$global.user.username,
 					agency_id:this.$global.shopList.id,
 					create_time:this.date
 				})

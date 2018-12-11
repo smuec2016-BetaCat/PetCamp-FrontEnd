@@ -1,0 +1,19 @@
+
+@font-face {font-family: "v-icon";
+  src: url('iconfont.eot?t=1544442754535'); /* IE9*/
+  src: url('iconfont.eot?t=1544442754535#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAREAAsAAAAABngAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFY980lvY21hcAAAAYAAAABLAAABcOiluiFnbHlmAAABzAAAAIYAAACU3jwjHWhlYWQAAAJUAAAALwAAADYTiC0BaGhlYQAAAoQAAAAcAAAAJAfeA4NobXR4AAACoAAAAAgAAAAICAAAAGxvY2EAAAKoAAAABgAAAAYASgAAbWF4cAAAArAAAAAgAAAAIAEPADduYW1lAAAC0AAAAUsAAAJVuVIIiXBvc3QAAAQcAAAAJQAAADZCCjY/eJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkYWCcwMDKwMHUyXSGgYGhH0IzvmYwYuRgYGBiYGVmwAoC0lxTGBye1z6vZW7438AQw9zA0AAUZgTJAQDw1wzfeJxjYGBgZWBgYAZiHSBmYWBgDGFgZAABP6AoI1icmYELLM7CoARWwwISf177/z+MBPJZwCQDIxvDKOABkzJQHjisIJiBEQBdGQthAHicY2BmYPh/gPkAswODEIMcgxYDA6OyEj+jupq6shKbPKOYkbmwmRozHyO7HKO4HaO5HiOzHqM6kAHk8jEy7dYX4JrrziWgz8rCXMMlz32JmeXAvr+srH/3Qch5l1hYLs0Dk0zyvLeSeRg5Wdby8jKqsHIwKsJV7fv75yJMGZBkAACsuyk8AAB4nGNgZGBgAOJNqbP3xPPbfGXgZmEAgRsmJU0I+v8BFgZmByCXg4EJJAoAMSkKMwB4nGNgZGBgbvjfwBDDwgACQJKRARUwAQBHCAJrBAAAAAQAAAAAAAAAAEoAAAABAAAAAgArAAMAAAAAAAIAAAAKAAoAAAD/AAAAAAAAeJxdkD1OAzEQhd/mD7FBFCBoaCwKhEDZ/HSkoYiU1KRIn2y8m0T7J68TKQXn4QCcgANwABquwAFoeNkdEIktj755fuMZGcAZPuGgXBc8JTtoMCu5giNcCVepXwvXyLfCdTThCTe4H4Rd3ONRuIlzrPiCUztmdodnYQcneBGu4BSvwlXqb8I18rtwHZf4EG5Q/xJ2McG3cBM3zpM7MHpq9VzNtmrpp0mQJtbdtHY41uE6mpoyKeNEm3yZJqrrdUphpBNtfuvzTdizNlCBSWM15EM6ilKVmXSlfestrM367XYguuenMccZwEBjCss4h8IMW8YlfKRIEBTR0rdB608d0xtijYh1Zu/mP0/oMsiZ7zKFLj+/s+cY0ZEUrsP+OX0helQtZ1A8hhUxaSgTaXaPyApZcbei4lP3sCiqMvTR5g4O/F7RO/4BlAdnWgB4nGNgYoAALgbsgImRiZGZgSc5IzU5Wzc5syg5J5WBAQAqogS/AAAA') format('woff'),
+  url('iconfont.ttf?t=1544442754535') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1544442754535#v-icon') format('svg'); /* iOS 4.1- */
+}
+
+.v-icon {
+  font-family:"v-icon" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.v-icon-check-circle:before { content: "\e77d"; }
+

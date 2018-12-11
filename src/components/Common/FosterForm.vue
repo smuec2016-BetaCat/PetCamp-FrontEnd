@@ -182,8 +182,8 @@ export default {
 				friendly: this.form.friendly,
 				comment: this.form.comment,
 				price: 1000,
-				agency_id: 1,
-				user_id: 1,
+				agency_id: this.$global.shopList.id,
+				user_id: this.$global.user.username,
 				image_names: ["order_test1"]
 			}
 			let map = {

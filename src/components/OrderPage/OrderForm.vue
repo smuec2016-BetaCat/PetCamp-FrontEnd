@@ -257,33 +257,6 @@ export default {
 				})
 		},
 		postOrder(){
-			// let a = this.order.orderDetails
-			// for(let i = 0;i< a.length;i++){
-			// 	axios.post('/api/v0/order/trusteeship',{
-			// 		species:a[i].type,
-			// 		pet_name:a[i].nickName,
-			// 		age:a[i].age,
-			// 		weight:a[i].weight,
-			// 		expiration:a[i].expiration,
-			// 		sterilization:a[i].sterilization,
-			// 		naughty:a[i].naughty,
-			// 		shy:a[i].shy,
-			// 		friendly:a[i].friendly,
-			// 		comment:a[i].comment,
-			// 		price:a[i].price,
-			// 		agency_id:a[i].shopId,
-			// 		image_names:a[i].image_names,
-			// 	})
-			// 		.then(response=>{
-			// 			this.orderResponse = response.data
-			// 			this.$message({
-			// 				message: 'Congrats, this is a success message.',
-			// 				type: 'success'
-			// 			})
-			// 		})
-			// 		.catch(error=>{
-			// 			this.$message.error(error.data)
-			// 		})
 			axios.put("/api/v0/order/alipay",{
 				ord_num: "20181208222020126642",
 				subject: "测试用订单",

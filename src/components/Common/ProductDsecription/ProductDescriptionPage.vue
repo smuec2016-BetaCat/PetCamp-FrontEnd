@@ -3,7 +3,7 @@
 		<!--这个组件存在bug，需要纯手撸-->
 		<!--pc-->
 		<div style="margin-bottom: 5%;overflow: hidden" class="hidden-xs-only">
-			<div style="margin-left: 8.333333%;width: 400px;float: left">
+			<div style="margin-left: 15%;width: 400px;float: left">
 				<div id="zoom">
 					<pic-zoom :url="message.myImgUrl" :scale="2.5"></pic-zoom>
 				</div>
@@ -17,7 +17,7 @@
 					</el-col>
 				</el-row>
 			</div>
-			<div style="margin-right: 8.333333%;float: left;width:43.66666%">
+			<div style="float: left;width:43.66666%">
 				<el-row style="text-align: left" id="right">
 					<el-col :span="20" :offset="4" style="color:#6A3906;">
 						<el-col style="padding-left: 10px">
@@ -41,7 +41,7 @@
 							</el-col>
 						</el-col>
 						<el-col>
-							<el-card shadow="always" style="border-radius: 10px;background-color:rgba(245,222,179,0.18);color: #6A3906" :body-style="{ padding: '0px' }">
+							<el-card shadow="always" style="border-radius: 10px;background-color:rgba(245,222,179,0.18);color: #6A3906;margin-right: 20%" :body-style="{ padding: '0px' }">
 								<el-col style="display: flex;box-shadow: rgba(215,178,130,0.49) 1px 1px 1px">
 									<el-col :span="14" style="margin: auto">
 										<h4 style="margin:10px 0 10px 10px">寄养服务</h4>
@@ -91,12 +91,12 @@
 						<el-col style="margin: auto">
 							<h4 style="margin:10px 0 10px 10px">寄养服务</h4>
 						</el-col>
-						<el-col style="margin: auto">
-							<span>
-								<i class="el-icon-circle-check-outline"></i>
-								剩余{{message.capacity}}条狗狗的寄养空间
-							</span>
-						</el-col>
+						<!--<el-col style="margin: auto">-->
+							<!--<span>-->
+								<!--<i class="el-icon-circle-check-outline"></i>-->
+								<!--剩余{{message.capacity}}条狗狗的寄养空间-->
+							<!--</span>-->
+						<!--</el-col>-->
 					</el-col>
 					<el-col :span="6" style="padding-left: 10px">
 						<h4 style="margin: 10px 0">小型犬</h4>
@@ -240,7 +240,7 @@ export default {
 			naughty:null,
 			shy: null,
 			friendly: null,
-			comment: "aaaaaaa",
+			comment: "",
 			agency_id: 1,
 			user_id: 1,
 			image_names: ["order_test1"],
@@ -290,8 +290,8 @@ export default {
 				friendly: this.form.friendly,
 				comment: this.form.comment,
 				price: 1000,
-				agency_id: 1,
-				user_id: 1,
+				agency_id: this.$global.shopList.id,
+				user_id: this.$global.user.username,
 				image_names: ["order_test1"]
 			}
 			let map = {
@@ -313,7 +313,7 @@ export default {
 				.catch(error=>{
 					this.$message.success("please contact with me"+error.message.data.error)
 				})
-			this.dialogVisible = false
+			this.dialogFormVisible = false
 		}
 	},
 	mounted () {

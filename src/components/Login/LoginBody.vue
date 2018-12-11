@@ -96,7 +96,7 @@ export default {
 						console.log(this.$global.username)
 					})
 					.catch(error=>{
-						this.$message.error("如有问题，请联系我"+error)
+						this.$message.error(error.response.data.error+"如有问题，请联系我")
 					})
 			}
 		}

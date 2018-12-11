@@ -358,7 +358,6 @@ export default {
 			else{
 				this.$router.push({path:`/Order`})
 			}
-
 		},
 		showNav(){
 			let visibleBottom = window.scrollY + document.documentElement.clientHeight

@@ -17,23 +17,23 @@
 								<img src="../../assets/cat.jpg" alt="">
 							</el-col>
 							<el-col :span="16" style="margin-left: 20px">
-								<h6 style="margin: 0;line-height: 35px" v-text="item.shopName"></h6>
+								<h6 style="margin: 0;line-height: 35px" v-text="item.name"></h6>
 							</el-col>
 							<el-col :span="2" >
-								<el-button type="warning" plain round size="mini" @click="goto">进店</el-button>
+								<el-button type="warning" plain round size="mini" @click="goto(index)">进店</el-button>
 							</el-col>
 						</el-col>
 					</el-col>
 					<!--寄养地方预览-->
 					<el-col>
 						<el-row>
-							<el-col :xs={span:8,offset:0} v-for="i in item.shop" :key="i.id">
+							<el-col :xs={span:8,offset:0} v-for="i in item.img_list" :key="i.id">
 								<el-button style="padding:0;border-radius: 5px" @mouseenter.native="intoTheHouse(i)" @mouseleave.native="intoTheHouse(i)" @click.native="goto(index)">
 									<el-card :body-style="{ padding: '0px' }" shadow="hover">
 										<div v-if="i.show" class="intoTheHouse">
 											<span>进入店家</span>
 										</div>
-										<img src="http://viptail.image.alimmdn.com/files/official_web/img/sh002-f.jpg" class="image">
+										<img :src="i.src" alt="" class="image">
 										<!--<div style="padding: 10px;overflow: hidden;">-->
 											<!--<div style="float: right;position:relative;">-->
 												<!--<span style="color: #fbc02d;font-size: 15px;">￥</span>-->
@@ -95,7 +95,7 @@
 										<div v-if="i.show" class="intoTheHouse">
 											<span>进入店家</span>
 										</div>
-										<img src="" class="image">
+										<img :src="i.src" class="image">
 										<!--<div style="padding: 10px;overflow: hidden;">-->
 											<!--<div style="float: right;position:relative;">-->
 												<!--<span style="color: #fbc02d;font-size: 15px;">￥</span>-->
@@ -142,7 +142,6 @@ export default {
 			i.show = !i.show
 		},
 		goto(index){
-
 			this.$global.setShopList(this.shopList[index])
 			this.$router.push({path:"/PurchasePage/ProductComments"})
 		},

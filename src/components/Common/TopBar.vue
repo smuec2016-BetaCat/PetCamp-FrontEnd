@@ -31,6 +31,7 @@ export default {
   },
   methods:{
     logout(){
+      console.log(this.$global.user.username)
       let conf = confirm("您确定要注销吗？")
       if (!conf){
         return 0
@@ -42,7 +43,7 @@ export default {
   },
   computed:{
     ifLogin(){
-        return this.username !== ""
+        return !(this.username === undefined || this.username === "");
     }
   }
 }

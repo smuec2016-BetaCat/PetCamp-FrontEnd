@@ -13,7 +13,7 @@ import global from './global'
 import VueIconfont from 'vue-iconfont'
 import '../font/iconfont'
 
-axios.defaults.baseURL = "http://192.168.1.114:5000"
+axios.defaults.baseURL = "http://itsyuekao.com:5000"
 
 Vue.use(VueIconfont,[
     {

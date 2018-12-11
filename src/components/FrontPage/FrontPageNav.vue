@@ -34,6 +34,12 @@
                   <li v-for="item in topBarItem" :key="item.id">
                     <router-link v-text="item.title" :to="item.url" :class="{'text-danger':item.disabled}"></router-link>
                   </li>
+                  <li v-if="!ifLogin">
+                    <router-link to="/Login">请登录|注册</router-link>
+                  </li>
+                  <li v-if="ifLogin">
+                    <router-link to="" @click.native="logout">欢迎回来 {{username}} | 注销</router-link>
+                  </li>
                 </ul>
               </nav>
               <nav>
@@ -80,8 +86,7 @@ export default {
           { id: 0, title: "我的订单", url: "/MyOrder", disabled: false},
           { id: 1, title: "我的营地", url: "/", disabled: true},
           { id: 2, title: "收藏夹", url: "/", disabled: true},
-          { id: 3, title: "购物车", url: "/ShoppingList", disabled: false},
-          { id: 4, title: "请登录|注册", url: "/Login", disabled: false}
+          { id: 3, title: "购物车", url: "/ShoppingList", disabled: false}
       ],
       navBarItem: [
         { id: 0, title: "营地首页", url: "/" },
@@ -91,6 +96,7 @@ export default {
         { id: 4, title: "关于我们", url: "/", disabled: true }
       ],
       sidebar:false,
+      username:this.$global.user.username
     }
   },
     methods:{
@@ -102,6 +108,16 @@ export default {
       },
       search(){
         this.$router.push({path:'/CommodityBrowsing/CommodityBrowsingList1'})
+      },
+      logout(){
+          console.log(this.$global.user.username)
+          let conf = confirm("您确定要注销吗？")
+          if (!conf){
+              return 0
+          }
+          this.$global.setUser({})
+          this.$global.setToken("")
+          this.username = ""
       }
     },
   computed:{
@@ -114,6 +130,9 @@ export default {
         }
       }
       return flag
+    },
+    ifLogin(){
+        return !(this.username === undefined || this.username === "");
     }
   }
 }

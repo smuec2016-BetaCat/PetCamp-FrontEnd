@@ -1,17 +1,17 @@
 <template>
-	<el-row>
-		<el-col :span="18" :offset="3">
-			<el-col id="logo">
-				<div id="myLogo">Here has a logo</div>
-				<h3>购物车</h3>
-			</el-col>
-		</el-col>
-	</el-row>
+	<LogoNav>
+		<template slot="title">支付结算</template>
+		<template slot="line">
+			<div style="border-bottom: white solid 1px;box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.5);"></div>
+		</template>
+	</LogoNav>
 </template>
 
 <script>
+import LogoNav from "../Common/logoNav";
 export default {
-	name: "ShoppingCartNav"
+	name: "ShoppingCartNav",
+	components: {LogoNav}
 }
 </script>
 
