@@ -37,7 +37,7 @@
 						<!--</el-col>-->
 					</el-col>
 					<el-col class="shopBody" v-if="item.value">
-						<el-col v-for="(i,ind) in item.shoppingList" :key="i.id" class="father">
+						<el-col v-for="(i,ind) in item.shoppingList" :key="i.user_id" class="father">
 							<el-col class="cartItems">
 								<el-col :span="1">
 									<el-checkbox v-model="i.checked" @change.native="checkItems(index)"></el-checkbox>
@@ -46,23 +46,23 @@
 									<img src="../../assets/cat.jpg" alt="">
 								</el-col>
 								<el-col :span="5" style="padding: 5px">
-									<span v-text="i.title"></span>
-									<h5 v-text="i.msg"></h5>
+									<span v-text="i.agency_name"></span>
+									<h5 v-text="i.comment"></h5>
 								</el-col>
 								<el-col :span="4" style="padding: 5px">
-									<span>备注</span>
-									<h5 v-text="i.details"></h5>
+									<span>宠物名</span>
+									<h5 v-text="i.pet_name"></h5>
 								</el-col>
 								<el-col :span="3" style="padding: 5px">
 									<span v-text="`￥${i.price}`"></span>
 								</el-col>
 								<el-col :span="3" style="padding: 5px">
 									<el-col  :md={span:17} :sm="{span:20}" >
-										<el-input-number size="mini" v-model="i.num" :min="1" style="width: 100%"></el-input-number>
+										<el-input-number size="mini" v-model="num" :min="1" :max="1" style="width: 100%"></el-input-number>
 									</el-col>
 								</el-col>
 								<el-col :span="3" style="padding: 5px">
-									<span v-text="`￥${(i.price*i.num).toFixed(2)}`"></span>
+									<span v-text="`￥${i.price}`"></span>
 								</el-col>
 								<el-col :span="2" style="padding: 5px">
 									<router-link to="" @click.native="deleteItem(index,ind)">删除</router-link>
@@ -166,15 +166,15 @@
 									</el-col>
 									<el-col :span="16">
 										<el-col style="padding: 5px">
-											<span v-text="i.title"></span><br>
-											<span v-text="i.msg"></span>
+											<span v-text="i.agency_name"></span><br>
+											<span v-text="i.comment"></span>
 										</el-col>
 										<el-col style="padding: 5px">
 											<el-col :span="16">
-												<span v-text="`￥${(i.price*i.num).toFixed(2)}`"></span>
+												<span v-text="`￥${(i.price*num).toFixed(2)}`"></span>
 											</el-col>
 											<el-col :span="8">
-												<el-input-number size="mini" v-model="i.num" :min="1" style="width: 100%"></el-input-number>
+												<el-input-number size="mini" v-model="num" :min="1" style="width: 100%"></el-input-number>
 											</el-col>
 										</el-col>
 									</el-col>
@@ -234,29 +234,7 @@ export default {
 					name:"宠物寄养",
 					shopChecked:true,
 					value:true,
-					shoppingList:[
-						{id:1,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:32.80,num:1},
-						{id:2,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:55.80,num:1}
-					]
-				},
-				{
-					shopId:2,
-					name:"宠物领养",
-					shopChecked:true,
-					value:true,
-					shoppingList:[
-						{id:1,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:32.80,num:1},
-						{id:2,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:55.80,num:1}
-					]
-				},
-				{
-					shopId:3,
-					name:"宠物周边",
-					shopChecked:true,
-					value:true,
-					shoppingList:[
-						{id:1,checked:true,title:"寄养小屋",msg:"寄养小屋具体信息",details:"",price:32.80,num:1}
-					]
+					shoppingList:[]
 				}
 			]
 		}
@@ -422,7 +400,7 @@ export default {
 				"checked":true
 			})
 				.then(response=>{
-					this.shoppingList = response.data.message
+					this.shoppingCartList[0].shoppingList = response.data.orders
 				})
 				.catch((error=>{
 					this.$message.error(error.message)
@@ -435,7 +413,7 @@ export default {
 			this.shoppingCartList.forEach(function (value) {
 				value.shoppingList.forEach(function (value) {
 					if (value.checked){
-						sum += value.price*value.num
+						sum += value.price*1
 					}
 				})
 			})

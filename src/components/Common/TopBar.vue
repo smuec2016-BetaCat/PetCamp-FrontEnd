@@ -39,6 +39,7 @@ export default {
       this.$global.setUser({})
       this.$global.setToken("")
       this.username = ""
+      this.$router.push({path:"/Login"})
     }
   },
   computed:{

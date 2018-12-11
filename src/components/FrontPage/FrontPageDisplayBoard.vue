@@ -1,20 +1,19 @@
 <template>
-  <el-row class="explore">
+  <el-row :class="{'explore1':!isPc,'explore':isPc}">
     <el-row class="title">
       <el-col :span="24">
         <span>探索营地</span>
       </el-col>
     </el-row>
     <el-row class="container">
-      <el-col :span="16" :offset="4">
+      <el-col :md="{span:18,offset:3}" :xs="{span:24,offset:0}">
         <el-row :gutter="30">
-          <el-col :span="8">
-            <el-card :body-style="{ padding: '0px' }">
+          <el-col :md="8" :xs="24" style="margin-bottom: 10px">
+            <el-card :body-style="{ padding:'0px' }">
               <div class="img-box">
                 <img
                   src="http://itsyuekao.com:5000/_uploads/IMAGE/20160301003554.jpg"
-                  class="image"
-                >
+                  class="image">
               </div>
               <div class="text">
                 <span>获得宠物保姆，为您的爱宠提供家庭住宿</span>
@@ -24,7 +23,7 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :span="8">
+          <el-col :md="8" :xs="24" style="margin-bottom: 10px">
             <el-card :body-style="{ padding: '0px' }">
               <div class="img-box">
                 <img
@@ -40,13 +39,12 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :span="8">
+          <el-col :md="8" :xs="24">
             <el-card :body-style="{ padding: '0px' }">
               <div class="img-box">
                 <img
                   src="http://itsyuekao.com:5000/_uploads/IMAGE/20160301003554.jpg"
-                  class="image"
-                >
+                  class="image">
               </div>
               <div class="text">
                 <span>无所不有，这里的一切都为您的爱宠准备</span>
@@ -69,6 +67,18 @@ export default {
   	  goto(){
   	  	this.$router.push({path:"/CommodityBrowsing/CommodityBrowsingList1"})
       }
+    },
+    computed:{
+	    isPc(){
+		    let [userAgentInfo,flag,Agents] = [navigator.userAgent,true,["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"]]
+		    for (let v = 0; v < Agents.length; v++) {
+			    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+				    flag = false
+				    break
+			    }
+		    }
+		    return flag
+	    }
     }
 };
 </script>
@@ -77,16 +87,32 @@ export default {
 .explore {
   margin: 50px;
   background: #f8f8fa;
-  height: 1000px;
+}
+.explore1 {
+  background: #f8f8fa;
 }
 .explore .title {
   margin-top: 100px;
   font-size: 60px;
 }
+.explore1 .title{
+  margin-top: 100px;
+  font-size: 60px;
+}
 .explore .container {
-  margin-top: 50px;
+  margin: 50px 0;
+}
+.explore1 .container{
+  margin: 50px 10px;
 }
 .explore .container .text {
+  padding: 30px;
+  font-size: 22px;
+  line-height: 40px;
+  margin-top: 20px;
+  transition: all 0.3s;
+}
+.explore1 .container .text{
   padding: 30px;
   font-size: 22px;
   line-height: 40px;
@@ -98,7 +124,11 @@ export default {
   transition: all 0.3s;
   cursor: pointer;
 }
-
+.explore1 .container .text:hover{
+  color: #6a3906;
+  transition: all 0.3s;
+  cursor: pointer;
+}
 .bottom {
   margin-top: 40px;
   line-height: 12px;

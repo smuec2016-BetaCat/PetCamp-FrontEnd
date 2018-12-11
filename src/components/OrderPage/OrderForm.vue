@@ -17,7 +17,7 @@
 					</el-col>
 					<el-col>
 						<el-col :md="6" :xs="24">
-							<el-button class="consignee-item"><span>{{order.userId}}</span><b></b></el-button>
+							<el-button class="consignee-item"><span>{{$global.user.username}}</span><b></b></el-button>
 						</el-col>
 						<el-col :md="18" :xs="24">
 							<div class="consignee-msg">
@@ -87,19 +87,19 @@
 						</el-col>
 						<el-col class="hidden-sm-and-down">
 							<el-col :span="3" style="padding: 5px">
-								<span>{{i.shopName}}</span>
+								<span>{{i.agency_name}}</span>
 							</el-col>
 							<el-col :span="7" style="padding: 5px">
-								<span>{{i.shopMessage}}</span>
+								<span>{{i.pet_name}}</span>
 							</el-col>
 							<el-col :span="4" style="padding: 5px">
-								<span>{{i.details}}</span>
+								<span>{{i.comment}}</span>
 							</el-col>
 							<el-col :span="3" style="padding: 5px">
 								<span>￥{{i.price}}</span>
 							</el-col>
 							<el-col :span="3" style="padding: 5px">
-								<span>{{i.num}}</span>
+								<span>1</span>
 							</el-col>
 							<el-col :span="3" style="padding: 5px">
 								<span>￥{{i.price}}</span>
@@ -122,10 +122,10 @@
 						</el-col>
 						<el-col class="hidden-sm-and-up">
 							<el-col :span="7" style="padding: 5px">
-								<span>{{i.shopName}}</span>
+								<span>{{i.agency_name}}</span>
 							</el-col>
 							<el-col :span="9" style="padding: 5px">
-								<span>{{i.shopMessage}}</span>
+								<span>{{i.comment}}</span>
 							</el-col>
 							<el-col :span="5" style="padding: 5px">
 								<span>￥{{i.price}}</span>
@@ -143,24 +143,24 @@
 										<span class="block">是否绝育：</span>
 									</el-col>
 									<el-col :md="4" :xs="16">
-										<span class="block">{{i.nickName}}</span>
-										<span class="block">{{i.sex}}</span>
-										<span class="block">{{i.type}}</span>
+										<span class="block">{{i.pet_name}}</span>
+										<span class="block">公</span>
+										<span class="block">{{i.species}}</span>
 										<span class="block">{{i.age}}岁</span>
 										<span class="block">{{i.weight}}KG</span>
-										<span class="block">已绝育</span>
+										<span class="block">{{i.sterilization? "已绝育": "未绝育"}}</span>
 									</el-col>
 									<el-col :md="16" :xs="24">
 										<el-col :span="12"><span class="block">TA是不是调皮鬼？</span></el-col>
-										<el-col :span="12"><span class="block">{{i.naughty}}</span></el-col>
+										<el-col :span="12"><span class="block">{{i.naughty?"调皮":"不调皮"}}</span></el-col>
 									</el-col>
 									<el-col :md="16" :xs="24">
 										<el-col :span="12"><span class="block">TA胆子特别小吗？</span></el-col>
-										<el-col :span="12"><span class="block">{{i.shy}}</span></el-col>
+										<el-col :span="12"><span class="block">{{i.shy?"内向":"外向"}}</span></el-col>
 									</el-col>
 									<el-col :md="16" :xs="24">
 										<el-col :span="12"><span class="block">TA与其他伙伴好相处吗？</span></el-col>
-										<el-col :span="12"><span class="block">{{i.friendly}}</span></el-col>
+										<el-col :span="12"><span class="block">{{i.friendly?"友好":"独立"}}</span></el-col>
 									</el-col>
 									<el-col :md="16" :xs="24">
 										<el-col :span="12"><span class="block">需要寄养的时间</span></el-col>
@@ -168,7 +168,7 @@
 									</el-col>
 									<el-col :md="16" :xs="24">
 										<el-col :span="12"><span class="block">宠物简介：</span></el-col>
-										<el-col :span="12"><span class="block">{{i.petDetails}}</span></el-col>
+										<el-col :span="12"><span class="block">{{i.comment}}</span></el-col>
 									</el-col>
 								</el-col>
 							</transition>
@@ -198,10 +198,10 @@
 					<el-col :md="5" :xs="10" style="float: right">
 						<el-col style="margin: 10px 0">
 							<span>实际付款：</span>
-							<span style="color:red;font: 700 26px tahoma;">￥32.80</span>
+							<span style="color:#e6a23c;font: 700 26px tahoma;">￥{{totalPrice}}</span>
 						</el-col>
 						<el-col style="margin: 10px 0">
-							<el-button type="warning" round plain style="width: 100%" @click.native="postOrder">提交订单</el-button>
+							<el-button type="primary" style="width: 100%" @click.native="postOrder">提交订单</el-button>
 						</el-col>
 					</el-col>
 				</el-col>
@@ -215,8 +215,10 @@
 
 <script>
 import axios from 'axios'
+import TopBar from "@/components/Common/TopBar";
 export default {
 	name: "OrderForm",
+	components: {TopBar},
 	data(){
 		return{
 			items:[
@@ -229,14 +231,7 @@ export default {
 				userId:"某某先生",
 				payment:"电子支付",
 				delivery:[{way:"送宠到家",active:true},{way:"到店自提",active:false}],
-				orderDetails:[
-					{show:false,shopName:"爱宠社区",shopId:1214,shopMessage:"宠物寄养详细信息",details:"",price:150,num:1,nickName:"犇犇",sex:"male",
-					age:2,type:"小型犬",weight:20,expiration:7,sterilization:true,naughty:true,shy:true,friendly:null,
-					petDetails:"我是一只狗我是一只狗我是一只狗",id:1,image_names: ["hello","bye"]},
-					{show:false,shopName:"爱宠社区",shopId:1214,shopMessage:"宠物寄养详细信息",details:"",price:150,num:1,nickName:"犇犇",sex:"male",
-						age:2,type:"小",weight:20,expiration:7,sterilization:true,naughty:true,shy:true,friendly:null,
-						petDetails:"我是一只狗我是一只狗我是一只狗",id:2,image_names: ["hello","bye"]}
-				]
+				orderDetails:[]
 			},
 			orderResponse:null
 		}
@@ -257,10 +252,14 @@ export default {
 				})
 		},
 		postOrder(){
+			let ordNums = []
+			for (let order of this.order.orderDetails) {
+				ordNums.push(order.ord_num)
+			}
 			axios.put("/api/v0/order/alipay",{
-				ord_num: "20181208222020126642",
-				subject: "测试用订单",
-				return_url: "http://www.itsyuekao.com/PaySucceed",
+				ord_num: ordNums,
+				subject: this.$global.user.username +"的寄养订单",
+				return_url: "http://www.baidu.com",
 				wap:!this.isPc
 			})
 				.then(response=>{
@@ -281,7 +280,17 @@ export default {
 				}
 			}
 			return flag
+		},
+		totalPrice(){
+			let sum = 0
+			this.order.orderDetails.forEach(value => {
+				sum += value.price
+			})
+			return sum
 		}
+	},
+	mounted:function () {
+		this.getorder()
 	}
 }
 </script>
@@ -312,7 +321,7 @@ img{
 	border-radius: 10px;
 }
 .consignee-item{
-	border: 2px solid #e4393c;
+	border: 2px solid #e6a23c;
 	padding: 4px 10px;
 	min-width: 120px;
 	min-height: 30px;
@@ -326,16 +335,6 @@ img{
 	min-height: 30px;
 	text-align: center;
 	position: relative;
-}
-b {
-	display: block;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	width: 12px;
-	height: 12px;
-	overflow: hidden;
-	background: url(//misc.360buyimg.com/user/purchase/2.0.0/css/i/selected-icon.png) no-repeat;
 }
 .consignee-msg{
 	margin: 4px 10px;

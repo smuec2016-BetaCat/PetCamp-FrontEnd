@@ -9,8 +9,8 @@ export default {
 		this.token = newToken
 	},
 	setShopList (object){
-		console.log("old shopList: "+this.shopList)
+		console.log(this.shopList)
 		this.shopList = object
-		console.log("new shopList: "+this.shopList)
+		console.log(this.shopList)
 	}
 }

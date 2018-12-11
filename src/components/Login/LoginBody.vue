@@ -9,7 +9,7 @@
 					<template slot="inputGroups">
 						<el-input placeholder="邮箱/用户名/已验证手机" v-model.trim="$v.UserName.$model" class="MyMargin">
 							<template slot="prepend">
-								<v-svg-icon name="check-circle"></v-svg-icon>
+								<i class="icon iconfont icon-user"></i>
 							</template>
 						</el-input>
 					</template>
@@ -22,7 +22,7 @@
 					<template slot="inputGroups">
 						<el-input placeholder="密码" type="password" v-model.trim="$v.Password.$model" class="MyMargin" @keyup.enter="login">
 							<template slot="prepend">
-								<i class="el-icon-loading"></i>
+								<i class="icon iconfont icon-lock"></i>
 							</template>
 						</el-input>
 					</template>

@@ -5,13 +5,13 @@
 		<div style="margin-bottom: 5%;overflow: hidden" class="hidden-xs-only">
 			<div style="margin-left: 15%;width: 400px;float: left">
 				<div id="zoom">
-					<pic-zoom :url="message.myImgUrl" :scale="2.5"></pic-zoom>
+					<pic-zoom :url="myImgUrl" :scale="2.5"></pic-zoom>
 				</div>
 				<el-row>
-					<el-col :span="6" v-for="i in message.img" :key="i.id" style="height: 100px;display: flex">
+					<el-col :span="6" v-for="i in message.img_list" :key="i.id" style="height: 100px;display: flex">
 						<el-button style="padding: 5px;margin: auto;height: 95px" @mouseover.native="changeMyImage(i.id)">
 							<el-card :body-style="{ padding: '0px' }" shadow="hover" >
-								<img :src="i.url" alt="">
+								<img :src="i.src" alt="">
 							</el-card>
 						</el-button>
 					</el-col>
@@ -43,7 +43,7 @@
 						<el-col>
 							<el-card shadow="always" style="border-radius: 10px;background-color:rgba(245,222,179,0.18);color: #6A3906;margin-right: 20%" :body-style="{ padding: '0px' }">
 								<el-col style="display: flex;box-shadow: rgba(215,178,130,0.49) 1px 1px 1px">
-									<el-col :span="14" style="margin: auto">
+									<el-col :span="14" style="margin: auto 0">
 										<h4 style="margin:10px 0 10px 10px">寄养服务</h4>
 									</el-col>
 									<!--<el-col :span="10" style="margin: auto">-->
@@ -69,7 +69,7 @@
 						</el-col>
 						<el-col>
 							<el-col :span="12" style="margin-bottom: 0">
-								<el-button type="warning" plain round icon="el-icon-goods" @click="dialogFormVisible = true">我要寄养</el-button>
+								<el-button type="primary" icon="el-icon-goods" @click="dialogFormVisible = true">我要寄养</el-button>
 							</el-col>
 						</el-col>
 					</el-col>
@@ -81,9 +81,9 @@
 			<el-col>
 				<el-card shadow="always" class="mobile-card" :body-style="{ padding: '0px' }">
 					<el-col>
-						<el-carousel trigger="click">
-							<el-carousel-item v-for="item in message.img" :key="item.id">
-								<img :src="item.url" alt="">
+						<el-carousel trigger="click" style="padding-bottom:57%">
+							<el-carousel-item v-for="item in message.img_list" :key="item.id">
+								<img :src="item.src" alt="">
 							</el-carousel-item>
 						</el-carousel>
 					</el-col>
@@ -249,16 +249,17 @@ export default {
 		formLabelWidth: '180px',
 		fileList:[],
 		bottomList:["el-icon-service","el-icon-location-outline","el-icon-goods","el-icon-bell"],
-		myUrl:["/","/PurchasePage/ProductComments","/ShoppingList","/FosterPage"]
+		myUrl:["/","/PurchasePage/ProductComments","/ShoppingList","/FosterPage"],
+		myImgUrl:null
 		}
 
 	},
 	methods:{
 		changeMyImage(key){
-			this.message.myImgUrl = this.message.img[key].url
+			this.myImgUrl = this.message.img_list[key].src
 		},
 		initMyImage(){
-			this.message.myImgUrl = this.message.img[0].url
+			this.myImgUrl = this.message.img_list[0].src
 		},
 		handlePreview(file) {
 			console.log(file);
@@ -283,16 +284,14 @@ export default {
 				pet_name: this.form.pet_name,
 				age: this.form.age,
 				weight :this.form.weight,
-				expiration: (this.form.date[1]-this.form.date[0])/360000/24,
+				expiration: (this.form.date[1]-this.form.date[0])/3600000/24,
 				sterilization: this.form.sterilization,
 				naughty:this.form.naughty,
 				shy:this.form.shy,
 				friendly: this.form.friendly,
 				comment: this.form.comment,
 				price: 1000,
-				agency_id: this.$global.shopList.id,
-				user_id: this.$global.user.username,
-				image_names: ["order_test1"]
+				agency_id: this.$global.shopList.id
 			}
 			let map = {
 				"true" : true,

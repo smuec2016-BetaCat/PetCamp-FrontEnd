@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<TopBar></TopBar>
 		<LogoNav class="hidden-xs-only">
 			<template slot="title">结算页</template>
 			<template slot="line">
@@ -14,9 +15,10 @@
 import OrderNav from "../components/OrderPage/OrderNav";
 import OrderForm from "../components/OrderPage/OrderForm";
 import LogoNav from "../components/Common/logoNav";
+import TopBar from "@/components/Common/TopBar";
 export default {
 	name: "Order",
-	components: {LogoNav,OrderForm}
+	components: {TopBar, LogoNav,OrderForm}
 }
 </script>
 

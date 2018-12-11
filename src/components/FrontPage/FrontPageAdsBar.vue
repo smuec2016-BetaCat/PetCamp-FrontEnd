@@ -2,12 +2,12 @@
   <el-row>
     <el-col :sm="24" :md="{span:14, offset:5}">
       <el-row :gutter="20">
-        <el-col :span="16">
+        <el-col>
           <front-page-carousel-map></front-page-carousel-map>
         </el-col>
-        <el-col class="hidden-sm-and-down advertisement" :span="8">
-          <div class="ad-box"></div>
-        </el-col>
+        <!--<el-col class="hidden-sm-and-down advertisement" :span="8">-->
+          <!--<div class="ad-box"></div>-->
+        <!--</el-col>-->
       </el-row>
     </el-col>
   </el-row>

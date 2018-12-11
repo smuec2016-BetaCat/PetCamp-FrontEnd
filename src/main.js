@@ -11,17 +11,13 @@ import Vuelidate from 'vuelidate'
 import animated from 'animate.css'
 import global from './global'
 import VueIconfont from 'vue-iconfont'
+import '../font/iconfont.css'
 import '../font/iconfont'
 
 axios.defaults.baseURL = "http://itsyuekao.com:5000"
+// axios.defaults.timeout = 3000
 
-Vue.use(VueIconfont,[
-    {
-        tag:'v-svg-icon',
-        prefix:'v-icon',
-        type:'svg'
-    }
-])
+Vue.use(VueIconfont)
 Vue.use(animated)
 Vue.use(Vuelidate)
 Vue.use(ElementUI)
