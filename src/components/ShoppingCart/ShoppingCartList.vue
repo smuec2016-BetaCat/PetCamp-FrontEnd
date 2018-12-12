@@ -316,18 +316,19 @@ export default {
 			this.shopList = ind
 		},
 		deleteI(){
-			this.shoppingCartList[this.cartList].shoppingList.splice(this.shopList,1)
-			this.$message.success("删除成功")
-			this.dialogVisible = false
-			axios.delete('/api/v0/cart',{
-				ord_num:this.shoppingCartList[0].shoppingList[this.shoppingList].ord_num
-			})
+			console.log(this.shopList)
+			axios.delete('/api/v0/cart',{data:{
+				ord_num:this.shoppingCartList[0].shoppingList[this.shopList].ord_num
+			}})
 				.then(response=>{
 					this.$message.success(response.data.msg)
 				})
 				.catch(error=>{
 					this.$message.error(error.message)
 				})
+			this.shoppingCartList[this.cartList].shoppingList.splice(this.shopList,1)
+			this.$message.success("删除成功")
+			this.dialogVisible = false
 		},
 		pay(){
 			if (this.shoppingCartList.length === 0){
@@ -356,6 +357,15 @@ export default {
 		deleteMobile(){
 			for(let i = 0;i<this.shoppingCartList.length;i++){
 				if(this.shoppingCartList[i].shopChecked){
+					axios.delete('/api/v0/cart',{
+						data:{ord_num:this.shoppingCartList[0].shoppingList[0].ord_num}
+					})
+						.then(response=>{
+							this.$message.success(response.data.msg)
+						})
+						.catch(error=>{
+							this.$message.error(error.message)
+						})
 					this.shoppingCartList.splice(i,1)
 					i--
 				}
@@ -364,9 +374,8 @@ export default {
 						if(this.shoppingCartList[i].shoppingList[j].checked){
 							this.shoppingCartList[i].shoppingList.splice(j,1)
 							if (i===1){
-								axios.delete('/api/v0/cart',{
-									ord_num:this.shoppingCartList[0].shoppingList[j].ord_num
-								})
+								let a = {ord_num:this.shoppingCartList[0].shoppingList[j].ord_num}
+								axios.delete('/api/v0/cart',{params: a})
 									.then(response=>{
 										this.$message.success(response.data.msg)
 									})
