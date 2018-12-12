@@ -20,7 +20,7 @@ axios.interceptors.response.use(response => {
 }, error => {
     if (error.response.status === 401) {
         alert("请先注册或登录")
-        window.location="http://itsyuekao.com:8080/#/Login"
+        window.location="http://itsyuekao.com/#/Login"
     }
     return error;
 })
