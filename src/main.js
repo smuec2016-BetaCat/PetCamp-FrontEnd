@@ -15,7 +15,15 @@ import '../font/iconfont.css'
 import '../font/iconfont'
 
 axios.defaults.baseURL = "http://itsyuekao.com:5000"
-// axios.defaults.timeout = 3000
+axios.interceptors.response.use(response => {
+    return response;
+}, error => {
+    if (error.response.status === 401) {
+        alert("请先注册或登录")
+        window.location="http://itsyuekao.com:8080/#/Login"
+    }
+    return error;
+})
 
 Vue.use(VueIconfont)
 Vue.use(animated)

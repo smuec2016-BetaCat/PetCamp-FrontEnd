@@ -16,11 +16,15 @@ export default {
       CarouseMap: [
         {
           id: 1,
-          img: "http://itsyuekao.com:5000/_uploads/IMAGE/2012100657859693.jpg"
+          img: "http://itsyuekao.com:5000/_uploads/IMAGE/maxresdefault3.jpg"
         },
         {
           id: 2,
-          img: "http://itsyuekao.com:5000/_uploads/IMAGE/77157281.jpg"
+          img: "http://itsyuekao.com:5000/_uploads/IMAGE/SubaruDogTested_Paco.jpg"
+        },
+        {
+          id: 3,
+          img: "http://itsyuekao.com:5000/_uploads/IMAGE/pet-friendly-hotel-prague-01.jpg"
         }
       ]
     };

@@ -12,7 +12,7 @@
             <el-card :body-style="{ padding:'0px' }">
               <div class="img-box">
                 <img
-                  src="http://itsyuekao.com:5000/_uploads/IMAGE/20160301003554.jpg"
+                  src="http://itsyuekao.com:5000/_uploads/IMAGE/e8293800e507606e7fd1861f89ec58e8.jpg"
                   class="image">
               </div>
               <div class="text">
@@ -27,7 +27,7 @@
             <el-card :body-style="{ padding: '0px' }">
               <div class="img-box">
                 <img
-                  src="http://itsyuekao.com:5000/_uploads/IMAGE/20160301003554.jpg"
+                  src="http://itsyuekao.com:5000/_uploads/IMAGE/413345-svetik_1600x1200.jpg"
                   class="image"
                 >
               </div>
@@ -43,7 +43,7 @@
             <el-card :body-style="{ padding: '0px' }">
               <div class="img-box">
                 <img
-                  src="http://itsyuekao.com:5000/_uploads/IMAGE/20160301003554.jpg"
+                  src="http://itsyuekao.com:5000/_uploads/IMAGE/DA2K_1-1600x1200.jpg"
                   class="image">
               </div>
               <div class="text">

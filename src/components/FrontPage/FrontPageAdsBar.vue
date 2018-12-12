@@ -1,7 +1,7 @@
 <template>
   <el-row>
     <el-col :sm="24" :md="{span:14, offset:5}">
-      <el-row :gutter="20">
+      <el-row>
         <el-col>
           <front-page-carousel-map></front-page-carousel-map>
         </el-col>
