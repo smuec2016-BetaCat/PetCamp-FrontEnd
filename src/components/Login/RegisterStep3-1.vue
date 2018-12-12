@@ -105,10 +105,6 @@ export default {
 					.then(response=> {
 						this.response = response
 						this.$global.setUser(this.response.data.user)
-						this.$message({
-							message: '注册成功',
-							type: 'success'
-						})
 						this.$router.push({path:"/Register/RegisterStep4"})
 						this.$emit("listen",this.form)
 					})

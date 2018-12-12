@@ -9,7 +9,7 @@
           <router-link to="/Login">请登录|注册</router-link>
         </li>
         <li v-if="ifLogin">
-          <router-link to="" @click.native="logout">欢迎回来 {{username}} | 注销</router-link>
+          <router-link to @click.native="logout">欢迎回来 {{username}} | 注销</router-link>
         </li>
       </ul>
     </el-col>
@@ -21,33 +21,34 @@ export default {
   data() {
     return {
       topBarItem: [
-        { id: 0, title: "我的订单", url: "/MyOrder", disabled: false},
-        { id: 1, title: "我的营地", url: "/", disabled: true},
-        { id: 2, title: "收藏夹", url: "/", disabled: true},
-        { id: 3, title: "购物车", url: "/ShoppingList", disabled: false},
+        { id: 0, title: "首页", url: "/", disabled: false },
+        { id: 1, title: "我的订单", url: "/MyOrder", disabled: true },
+        { id: 2, title: "我的营地", url: "/", disabled: true },
+        { id: 3, title: "收藏夹", url: "/", disabled: true },
+        { id: 4, title: "购物车", url: "/ShoppingList", disabled: false }
       ],
-      username:this.$global.user.username
-    }
+      username: this.$global.user.username
+    };
   },
-  methods:{
-    logout(){
-      console.log(this.$global.user.username)
-      let conf = confirm("您确定要注销吗？")
-      if (!conf){
-        return 0
+  methods: {
+    logout() {
+      console.log(this.$global.user.username);
+      let conf = confirm("您确定要注销吗？");
+      if (!conf) {
+        return 0;
       }
-      this.$global.setUser({})
-      this.$global.setToken("")
-      this.username = ""
-      this.$router.push({path:"/Login"})
+      this.$global.setUser({});
+      this.$global.setToken("");
+      this.username = "";
+      this.$router.push({ path: "/Login" });
     }
   },
-  computed:{
-    ifLogin(){
-        return !(this.username === undefined || this.username === "");
+  computed: {
+    ifLogin() {
+      return !(this.username === undefined || this.username === "");
     }
   }
-}
+};
 </script>
 <style scoped>
 .top-bar {

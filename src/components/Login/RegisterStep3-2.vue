@@ -188,10 +188,6 @@ export default {
 				axios.post("/api/v0/register",a)
 						.then(response=> {
 							this.response = response
-							this.$message({
-								message: 'Congrats, this is a success message.'+this.status,
-								type: 'success'
-							})
 						})
 						.catch(error=> {
 							this.$message.error(error.response.data.error+"请检查您填写的信息是否完整，如果确实是个bug请联系我")

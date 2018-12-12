@@ -111,10 +111,6 @@ export default {
 					agency_id:1
 				})
 						.then(response=>{
-							this.$message({
-								message:response+"上传成功",
-								type:"success"
-							})
 						})
 						.catch(error=>{
 							this.$message.error(error.message)

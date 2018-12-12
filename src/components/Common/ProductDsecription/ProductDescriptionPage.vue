@@ -306,11 +306,7 @@ export default {
 			axios.post('/api/v0/cart',a)
 				.then(response=>{
 					this.ord_num = response.data.ord_num
-					this.$message.success("your ord_num is " + this.ord_num)
 					this.$router.push({path:'/shoppingList'})
-				})
-				.catch(error=>{
-					this.$message.success("please contact with me"+error.message.data.error)
 				})
 			this.dialogFormVisible = false
 		}

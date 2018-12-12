@@ -174,7 +174,7 @@
 												<span v-text="`￥${(i.price*num).toFixed(2)}`"></span>
 											</el-col>
 											<el-col :span="8">
-												<el-input-number size="mini" v-model="num" :min="1" style="width: 100%"></el-input-number>
+												<el-input-number size="mini" v-model="num" :min="1" :max="1" style="width: 100%"></el-input-number>
 											</el-col>
 										</el-col>
 									</el-col>
@@ -321,13 +321,8 @@ export default {
 				ord_num:this.shoppingCartList[0].shoppingList[this.shopList].ord_num
 			}})
 				.then(response=>{
-					this.$message.success(response.data.msg)
-				})
-				.catch(error=>{
-					this.$message.error(error.message)
 				})
 			this.shoppingCartList[this.cartList].shoppingList.splice(this.shopList,1)
-			this.$message.success("删除成功")
 			this.dialogVisible = false
 		},
 		pay(){
@@ -351,21 +346,16 @@ export default {
 					this.shoppingCartList.splice(i,1)
 					i--
 				}
-			this.$message.success("删除成功")
 			this.dialogVisible1 = false
 		},
 		deleteMobile(){
 			for(let i = 0;i<this.shoppingCartList.length;i++){
 				if(this.shoppingCartList[i].shopChecked){
-					axios.delete('/api/v0/cart',{
-						data:{ord_num:this.shoppingCartList[0].shoppingList[0].ord_num}
-					})
-						.then(response=>{
-							this.$message.success(response.data.msg)
+					for (let item of this.shoppingCartList[i].shoppingList) {
+						axios.delete("/api/v0/cart", {
+							data:{ord_num: item.ord_num}
 						})
-						.catch(error=>{
-							this.$message.error(error.message)
-						})
+					}
 					this.shoppingCartList.splice(i,1)
 					i--
 				}
@@ -377,10 +367,6 @@ export default {
 								let a = {ord_num:this.shoppingCartList[0].shoppingList[j].ord_num}
 								axios.delete('/api/v0/cart',{params: a})
 									.then(response=>{
-										this.$message.success(response.data.msg)
-									})
-									.catch(error=>{
-										this.$message.error(error.message)
 									})
 							}
 							j--;
@@ -388,7 +374,6 @@ export default {
 					}
 				}
 			}
-			this.$message.success("删除成功")
 			this.dialogVisibleMobile = false
 			this.editStatus =  false
 		},
@@ -411,9 +396,6 @@ export default {
 				.then(response=>{
 					this.shoppingCartList[0].shoppingList = response.data.orders
 				})
-				.catch((error=>{
-					this.$message.error(error.message)
-				}))
 		}
 	},
 	computed:{

@@ -159,7 +159,7 @@ export default {
 				naughty:null,
 				shy: null,
 				friendly: null,
-				comment: "aaaaaaa",
+				comment: "",
 				agency_id: 1,
 				user_id: 1,
 				image_names: ["order_test1"],
@@ -198,10 +198,7 @@ export default {
 			axios.post('/api/v0/cart',a)
 					.then(response=>{
 						this.ord_num = response.data.ord_num
-						this.$message.success("your ord_num is " + this.ord_num)
-					})
-					.catch(error=>{
-						this.$message.success("please contact with me"+error.message.data.error)
+						this.$router.push({path:'/shoppingList'})
 					})
 		}
 	}

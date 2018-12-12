@@ -88,15 +88,8 @@ export default {
 							Authorization:"Bearer "+this.$global.token
 						}
 						this.$global.setUser(response.data.user)
-						this.$message({
-							message:"登录成功！",
-							type:"success"
-						})
 						this.$router.push({path:"/"})
 						console.log(this.$global.username)
-					})
-					.catch(error=>{
-						this.$message.error(error.response.data.error+"如有问题，请联系我")
 					})
 			}
 		}

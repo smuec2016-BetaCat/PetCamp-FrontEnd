@@ -265,9 +265,6 @@ export default {
 				.then(response=>{
 					window.location.href=response.data.alipay_url
 				})
-				.catch(error=>{
-					this.$message.error(error.message)
-				})
 			}
 	},
 	computed:{

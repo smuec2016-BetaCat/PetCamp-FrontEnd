@@ -151,9 +151,6 @@ export default {
 				.then(response=>{
 					this.shopList = response.data.agency_list
 				})
-				.catch(error=>{
-					this.$message.error(error)
-				})
 		}
 	},
 	computed:{
